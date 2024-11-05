@@ -1,0 +1,20 @@
+<?php
+class Defect
+{
+    public $ID;   
+    public $DEFECT_NAME;
+    public $DEFECT_COUNT;
+    public $FOUND_IN_INCH;
+    public $PENALTY_POINT;
+    function __construct($id,$defect_name,$defect_count,$found_in_inch,$penalty_point)
+    {
+       $this->ID=$id;
+       $this->DEFECT_NAME=$defect_name;
+       $this->DEFECT_COUNT=$defect_count;
+       $this->FOUND_IN_INCH=$found_in_inch;
+       $this->PENALTY_POINT=$penalty_point;
+        
+    }
+
+} 
+?> 

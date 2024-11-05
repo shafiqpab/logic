@@ -1,0 +1,2036 @@
+﻿<?
+/*--------------------------------------------Comments----------------
+Version (MySql)          :  V2
+Version (Oracle)         :  V1
+Converted by             :  
+Converted Date           :  
+Purpose			         : 	
+Functionality	         :	
+JS Functions	         : 
+Requirment Client        :  
+Requirment By            : 
+Requirment type          : 
+Requirment               : 
+Affected page            : 
+Affected Code            :                   
+DB Script                : 
+Updated by 		         :  Reza		
+Update date		         :  03.10.2018	   
+QC Performed BY	         :	
+QC Date			         :	
+Comments		         :  From this version oracle conversion is start
+----------------------------------------------------------------------*/
+header('Content-type:text/html; charset=utf-8');
+session_start();
+extract ( $_REQUEST );
+
+include('../../../includes/common.php');
+require_once('../../../mailer/class.phpmailer.php');
+require_once('../../../includes/class4/class.conditions.php');
+require_once('../../../includes/class4/class.reports.php');
+require_once('../../../includes/class4/class.fabrics.php');
+require_once('../../../includes/class4/class.yarns.php');
+require_once('../../../includes/class4/class.washes.php');
+require_once('../../../includes/class4/class.emblishments.php');
+require_once('../../../includes/class4/class.trims.php');
+$gross_level=1;
+
+if( $action=="load_drop_down_buyer" )
+{
+	echo create_drop_down( "cbo_buyer", 170, "select buy.id,buy.buyer_name from lib_buyer buy, lib_buyer_tag_company b where buy.status_active =1 and buy.is_deleted=0 and b.buyer_id=buy.id and b.tag_company='$data' $buyer_cond  and buy.id in (select  buyer_id from  lib_buyer_party_type where party_type in (1,3,21,90)) order by buyer_name","id,buyer_name", 1, "-- All Buyer --", $selected, "" );  
+	die; 	 
+}
+
+
+
+if($cbo_company<1){$company_array=return_library_array( "select id,id from lib_company where IS_DELETED=0 and STATUS_ACTIVE=1",'id','id' );}
+else $company_array[$cbo_company]=$cbo_company;
+ 
+if ( $action=="tna_process" )
+{
+	
+ 	
+	
+	$tba_color_id=return_field_value("id","lib_color"," color_name ='TBA'");
+
+	$sql = "SELECT task_name,completion_percent FROM lib_tna_task WHERE is_deleted = 0 and status_active=1 and task_type=3 order by task_name asc";
+	$result = sql_select( $sql );
+ 	
+	foreach( $result as $row ) 
+	{
+		$tna_completion[$row[csf('task_name')]]=$row[csf('completion_percent')];
+		 
+	}
+	
+	$rID_up=0;$rID=0;
+	foreach( $company_array as $cbo_company )
+	{
+		$tna_process_type=return_field_value("tna_process_type"," variable_order_tracking"," company_name=".$cbo_company." and variable_list=31"); 
+		$tna_process_start_date=return_field_value("tna_process_start_date"," variable_order_tracking"," company_name=".$cbo_company." and variable_list=43"); 
+		
+		//start class ...............................................
+		$condition= new condition();
+		if($cbo_company>0){
+			$condition->company_name("=$cbo_company");
+		}
+		if($cbo_buyer>0){
+			$condition->buyer_name("=$cbo_buyer");
+		}
+		if($tna_process_start_date !=''){
+			$condition->pub_shipment_date(" > '".$tna_process_start_date."'");
+		}
+		
+		if(str_replace("'","",$txt_job_no) !=''){
+			$condition->job_no(" = '".str_replace("'","",$txt_job_no)."'");
+		}
+	
+		
+		if(trim($txt_ponumber_id) !=''){
+			$condition->po_id(" in($txt_ponumber_id) ");
+		}
+
+		$condition->init();	
+		$trims= new trims($condition);
+		//$trims_data=$trims->getAmountArray_by_order();
+		$trims_data=$trims->getAmountArray_by_orderAndSourceid();
+ 		//...............................end class;	
+		
+		
+		 
+		if( $tna_process_type==2 )
+		{
+			$sql = "SELECT task_id,buyer_id,start_percent,end_percent,notice_before FROM  tna_task_entry_percentage WHERE is_deleted = 0 and status_active=1 order by task_id asc";
+			$result = sql_select( $sql );
+			$tna_task_percent = array();
+			$tna_task_percent_buyer = array();
+			foreach( $result as $row ) 
+			{
+				$tna_task_percent[$row[csf('task_id')]]['task_name']=$row[csf('task_id')];
+				$tna_task_percent[$row[csf('task_id')]]['buyer_id']=$row[csf('buyer_id')];
+				$tna_task_percent[$row[csf('task_id')]]['start_percent']=$row[csf('start_percent')];
+				$tna_task_percent[$row[csf('task_id')]]['end_percent']=$row[csf('end_percent')];
+				$tna_task_percent[$row[csf('task_id')]]['notice_before']=$row[csf('notice_before')];
+				$tna_task_percent[$row[csf('task_id')]]['completion_percent']=$tna_completion[$row[csf('task_id')]];
+				
+				$tna_task_percent_buyer_wise[$row[csf('buyer_id')]]=$row[csf('buyer_id')];
+				$tna_task_percent_buyer[$row[csf('buyer_id')]][$row[csf('task_id')]]['task_name']=$row[csf('task_id')];
+				$tna_task_percent_buyer[$row[csf('buyer_id')]][$row[csf('task_id')]]['buyer_id']=$row[csf('buyer_id')];
+				$tna_task_percent_buyer[$row[csf('buyer_id')]][$row[csf('task_id')]]['start_percent']=$row[csf('start_percent')];
+				$tna_task_percent_buyer[$row[csf('buyer_id')]][$row[csf('task_id')]]['end_percent']=$row[csf('end_percent')];
+				$tna_task_percent_buyer[$row[csf('buyer_id')]][$row[csf('task_id')]]['notice_before']=$row[csf('notice_before')];
+				$tna_task_percent_buyer[$row[csf('buyer_id')]][$row[csf('task_id')]]['completion_percent']=$tna_completion[$row[csf("task_id")]];
+			} 
+		}
+		else if($tna_process_type==1)
+		{
+			$sql = "SELECT id,task_catagory,task_name,task_short_name,task_type,module_name,link_page,penalty,completion_percent FROM lib_tna_task WHERE is_deleted = 0 and status_active=1 and task_type=3";
+			$result = sql_select( $sql ) ;
+			$tna_task_details = array();
+			$tna_task_name=array();
+			$tna_task_name_tmp=array();
+			foreach( $result as $row ) 
+			{
+				$tna_task_name[$row[csf('id')]]=$row[csf('task_name')];
+				$tna_task_details[$row[csf('task_name')]]['task_catagory']=  $row[csf('task_catagory')];
+				$tna_task_details[$row[csf('task_name')]]['id']=  $row[csf('id')];
+				$tna_task_details[$row[csf('task_name')]]['task_name']=  $row[csf('task_name')];
+				$tna_task_details[$row[csf('task_name')]]['task_short_name']=  $row[csf('task_short_name')];
+				$tna_task_details[$row[csf('task_name')]]['task_type']=  $row[csf('task_type')];
+				$tna_task_details[$row[csf('task_name')]]['module_name']=  $row[csf('module_name')];
+				$tna_task_details[$row[csf('task_name')]]['link_page']=  $row[csf('link_page')];
+				$tna_task_details[$row[csf('task_name')]]['penalty']=  $row[csf('penalty')];
+				$tna_task_details[$row[csf('task_name')]]['completion_percent']=  $row[csf('completion_percent')];
+			}
+		}
+		
+	   //print_r($tna_task_details);die;	
+		
+		 //Template Details
+			$sql_task = "SELECT a.id,task_template_id,lead_time,material_source,total_task,tna_task_id,deadline,execution_days,notice_before,sequence_no,for_specific,b.task_catagory,b.task_name,b.task_type FROM  tna_task_template_details a, lib_tna_task b WHERE   a.tna_task_id=b.task_name and a.is_deleted=0 and a.status_active=1 and a.task_type=3 and b.task_type=3 and b.is_deleted=0 and b.status_active=1 and a.company_id in(".implode(',',$company_array).",0) order by for_specific,lead_time";
+			$sql_task_result = sql_select( $sql_task ) ;
+			
+			$tna_task_template = array();
+			$tna_task_template_task=array();
+			$tna_template = array();
+			$tna_template_buyer = array(); 
+			$active_task_id_arr = array();
+			$template_information=array(); 
+			
+			$i=0; $k=0; $j=0; $m=0; $n=0;
+			foreach( $sql_task_result as $row ) 
+			{
+				if($template[$row[csf("task_template_id")]]=='')
+				{
+					$template[$row[csf("task_template_id")]]=$row[csf("task_template_id")];
+					if ( $row[csf("for_specific")]==0 )
+					{
+						$tna_template[$m]['lead']=$row[csf("lead_time")];
+						$tna_template[$m]['id']=$row[csf("task_template_id")];
+						$i++; $m++;
+					}
+					else
+					{
+						if(!in_array($row[csf('for_specific')],$tna_template_spc)) { $j=0; $tna_template_spc[]=$row[csf("for_specific")]; }
+						$tna_template_buyer[$row[csf('for_specific')]][$j]['lead']=$row[csf('lead_time')];
+						$tna_template_buyer[$row[csf('for_specific')]][$j]['id']=$row[csf('task_template_id')];
+						$j++;
+					}
+					$k++;
+				}
+				 
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['deadline']= $row[csf("deadline")];
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['execution_days']= $row[csf("execution_days")];
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['notice_before']=$row[csf("notice_before")];
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['sequence_no']=$row[csf("sequence_no")];
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['for_specific']=$row[csf("for_specific")];
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['task_name']=$row[csf("task_name")];
+				$template_wise_task[$row[csf("task_template_id")]][$row[csf("task_name")]]['completion_percent']=$tna_completion[$row[csf("task_name")]];
+				$active_task_id_arr[$row[csf("task_name")]]=$row[csf("task_name")];
+
+				 $g++; $i++;
+			}
+			
+		 
+
+			
+		if( $db_type==0 ){$blank_date="0000-00-00";} else {$blank_date="";} 
+		
+		if (trim($txt_ponumber_id)==""){
+			if( $is_delete==1 )
+			{
+				$job_array=return_library_array( "select id, job_no from wo_po_details_master where buyer_name='$cbo_buyer' and company_name=$cbo_company",'id','job_no');
+				$job_str=implode("','",$job_array);
+				
+				$con = connect();
+				$p=1;
+				$job_no_list_arr=array_chunk($job_array,999);
+				foreach($job_no_list_arr as $job_no_process)
+				{
+					if($p==1){$sql_con .=" and (job_no in('".implode("','",$job_no_process)."')";} 
+					else{$sql_con .=" or job_no in('".implode("','",$job_no_process)."')";}
+					$p++;
+				}
+				$sql_con .=")";
+				$rid=execute_query("delete FROM tna_process_mst WHERE  task_type=3 $sql_con ",1);
+			
+			if( $db_type==2 ) oci_commit($con); 
+			}
+
+		}
+		else 
+		{
+			if( $is_delete==1 )
+			{
+				$con = connect();
+				$rid=execute_query("delete FROM tna_process_mst WHERE task_type=3 and  po_number_id in ( $txt_ponumber_id )",1);
+				if( $db_type==2 ) oci_commit($con); 
+			}
+			
+		}
+		
+		if( $cbo_buyer>0 ){$buyer_cond=" and a.buyer_name=$cbo_buyer ";}else{ $buyer_cond="";}
+		  
+		$is_pub_shipment_date =return_field_value("TEXTILE_TNA_PROCESS_BASE"," variable_order_tracking","variable_list=31 and company_name='".$cbo_company."'"); 
+		$shipment_date = ($is_pub_shipment_date==1)?"b.pub_shipment_date" : "b.shipment_date";
+		 
+		if($txt_ponumber_id==""){$ponumber_con="";}
+		else{$ponumber_con=" and b.id  in ( $txt_ponumber_id )";}
+		
+		$sql = "SELECT b.JOB_ID,$shipment_date as shipment_date,job_no_mst,po_received_date,b.id,(b.po_quantity*a.TOTAL_SET_QNTY)as PO_QUANTITY ,a.buyer_name,a.garments_nature,b.po_number,pp_meeting_date,a.booking_meeting_date,a.style_ref_no,is_confirmed,tna_task_from_upto FROM wo_po_break_down b, wo_po_details_master a WHERE b.is_deleted = 0 and b.status_active=1 and a.is_deleted = 0 and a.status_active=1 and a.job_no=b.job_no_mst and to_char(b.pub_shipment_date)!='0000-00-00' and to_char(b.po_received_date)!='0000-00-00' $ponumber_con  and (b.pub_shipment_date)>'$tna_process_start_date' and company_name=".$cbo_company." $buyer_cond  ORDER BY b.shipment_date asc";
+	 
+		//echo $sql;die;
+		
+		$to_process_task=array();
+		$data_array=sql_select($sql);
+		  
+		$job_no_array=array();
+		$order_id_array=array();
+		$po_order_template=array();
+		$po_order_details=array();
+		$job_nature = array();
+		$template_missing_po=array();
+		$tna_task_update_data=array();
+		$template_missing_po_mail_data_arr=array();
+		$i=0;
+		
+		foreach($data_array as $row)
+		{
+			$remain_days=datediff( "d", date("Y-m-d",strtotime($row[csf("po_received_date")])), date("Y-m-d",strtotime($row[csf("shipment_date")])) );
+			 
+			if ( $tna_process_type==1 )
+			{
+				$template_id=get_tna_template($remain_days,$tna_template,$row[csf("buyer_name")]);
+			}
+			else
+			{
+				
+				$template_id=$remain_days-1; 
+				
+				if($tna_task_percent_buyer_wise[$row[csf('buyer_name')]]=="")
+				{
+				 
+					foreach($tna_task_percent as $id=>$data)
+					{
+						$deadline=floor($template_id*$data[start_percent]/100);
+						$exe=floor($template_id*$data[end_percent]/100);
+						if($deadline==0) $v=0; else $v=1;  if($exe==0) $e=0; else $e=1;
+						$template_wise_task[$template_id][$id]['deadline']= $deadline-$v;
+						$template_wise_task[$template_id][$id]['execution_days']= $exe-$e;
+						$template_wise_task[$template_id][$id]['notice_before']=$data['notice_before'];
+						$template_wise_task[$template_id][$id]['sequence_no']=$row['sequence_no'];
+						$template_wise_task[$template_id][$id]['for_specific']=$data['buyer_id'];
+						$template_wise_task[$template_id][$id]['task_name']=$id;
+						$template_wise_task[$template_id][$id]['completion_percent']=$data['completion_percent'];
+					}
+				}
+				else
+				{
+					foreach($tna_task_percent_buyer[$row[csf("buyer_name")]] as $id=>$data)
+					{
+						$deadline=floor($template_id*$data[start_percent]/100);
+						$exe=floor($template_id*$data[end_percent]/100);
+						if($deadline==0) $v=0; else $v=1;  if($exe==0) $e=0; else $e=1;
+	
+						$template_wise_task[$template_id][$id]['deadline']= $deadline-$v;
+						$template_wise_task[$template_id][$id]['execution_days']= $exe-$e;
+						$template_wise_task[$template_id][$id]['notice_before']=$data['notice_before'];
+						$template_wise_task[$template_id][$id]['sequence_no']=$row['sequence_no'];
+						$template_wise_task[$template_id][$id]['for_specific']=$data['buyer_id'];
+						$template_wise_task[$template_id][$id]['task_name']=$id;
+						$template_wise_task[$template_id][$id]['completion_percent']=$data['completion_percent'];
+					}
+				}
+			} 
+			
+			 
+			if ( $template_id=="" || $template_id==0 )
+			{
+				$template_missing_po[]=$row[csf("po_number")];
+				//This array for missiong PO Auto mail send..............
+				$template_missing_po_mail_data_arr[]=array(
+					'job_no_mst'		=> $row[csf("job_no_mst")],
+					'style_ref_no'		=> $row[csf("style_ref_no")],
+					'buyer_name'		=> $row[csf("buyer_name")],
+					'po_number'			=> $row[csf("po_number")],
+					'po_received_date'	=> $row[csf("po_received_date")],
+					'shipment_date'		=> $row[csf("shipment_date")]
+				
+				);
+			} 
+			else
+			{
+				$job_no_array[$row[csf("job_no_mst")]]= $row[csf("job_no_mst")];
+				$order_id_array[$row[csf("id")]]=$row[csf("id")];
+				$po_order_template[$row[csf("id")]]=  $template_id; 
+				$po_order_details[$row[csf("id")]]['po_received_date']=$row[csf("po_received_date")];
+				$po_order_details[$row[csf("id")]]['shipment_date']=$row[csf("shipment_date")];
+				$po_order_details[$row[csf("id")]]['job_no_mst']=$row[csf("job_no_mst")];
+				$po_order_details[$row[csf("id")]]['po_quantity']=$row[csf("po_quantity")];
+				$po_order_details[$row[csf("id")]]['template_id']=$template_id;
+				$po_order_details[$row[csf("id")]]['po_id']=$row[csf("id")];
+				
+				$po_by_job[$row[csf("job_no_mst")]][$row[csf("id")]]=$row[csf("id")];
+			
+				//$tna_task_auto_process=array(7,10,12,15,17,32,46,47,80,101,110,120,121,131,177,178,182,183,240,241,242,243,244,245,246,247,249);
+				$tna_task_auto_process=$active_task_id_arr;
+				foreach($tna_task_auto_process as $vid=>$vtask)
+				{
+					$to_process_task[$row[csf("id")]][$vtask]=$vtask;
+				}
+				
+				$unset_auto_proecss=array(20,126,127,128,129);
+				foreach($unset_auto_proecss as $vid=>$vtask)
+				{
+					unset($to_process_task[$row[csf("id")]][$vtask]);
+				}
+				
+				
+				
+				if( count($trims_data[$row[csf("id")]])>0 )
+				{
+					foreach($trims_data[$row[csf("id")]] as $source_id=>$dataRows){
+						if($source_id==1){
+							$tna_task_update_data[$row[csf("id")]][278]['reqqnty']+=$trims_data[$row[csf("id")]][$source_id];
+							$to_process_task[$row[csf("id")]][278]=278;
+						}
+						else{
+							$tna_task_update_data[$row[csf("id")]][32]['reqqnty']+=$trims_data[$row[csf("id")]][$source_id];
+							$to_process_task[$row[csf("id")]][32]=32;
+							
+							$tna_task_update_data[$row[csf("id")]][307]['reqqnty']+=$trims_data[$row[csf("id")]][$source_id];
+							$to_process_task[$row[csf("id")]][307]=307;
+							
+						}
+					}
+				}
+			
+			}
+			
+		}//Order foreach end;
+		unset($data_array);
+
+
+
+	
+		//Changed Templates set......................start;
+
+		$sql = "SELECT id,job_no,po_number_id,task_category,task_number,actual_start_date,actual_finish_date,template_id FROM tna_process_mst WHERE status_active =1 and is_deleted = 0  and task_type=3";
+		$sql .= where_con_using_array($order_id_array,0,'po_number_id');
+
+		//echo $sql;die;
+	
+		$result = sql_select( $sql );
+		$tna_process_list = array();
+		$tna_process_details = array();
+		$changed_templates=array();
+		foreach( $result as $row ) 
+		{
+			if(($po_order_template[$row[csf('po_number_id')]]==$row[csf('template_id')]) || ($row[csf('template_id')]==''))
+			{
+				$tna_process_list[$row[csf('po_number_id')]][$row[csf('task_number')]]= $row[csf('id')];
+				$tna_process_details[$row[csf('id')]]['start']=$row[csf('actual_start_date')];
+				$tna_process_details[$row[csf('id')]]['finish']=$row[csf('actual_finish_date')];
+			}
+			else
+			{
+				$changed_templates[$row[csf('po_number_id')]]=$row[csf('po_number_id')];
+			}
+		}
+		//Changed Templates set......................end;
+	 	
+
+
+		//Menual Data pick from History Table......................start;
+	
+		
+		$hostory_sql = "SELECT task_number,po_number_id,actual_start_date,actual_finish_date,task_start_date,task_finish_date ,plan_start_flag,plan_finish_flag FROM tna_plan_actual_history WHERE  ";
+		$hostory_sql .="   status_active =1 and is_deleted=0 and task_type=3";
+		$hostory_sql .= where_con_using_array($order_id_array,0,'po_number_id');
+		 
+		 
+		$hostory_sql_result = sql_select( $hostory_sql );
+		$tna_updated_date = array();
+		 
+		foreach( $hostory_sql_result as $row ) 
+		{
+			$tna_updated_date[$row[csf('po_number_id')]][$row[csf('task_number')]]['start']=$row[csf('actual_start_date')];
+			$tna_updated_date[$row[csf('po_number_id')]][$row[csf('task_number')]]['finish']=$row[csf('actual_finish_date')];
+			$tna_updated_date[$row[csf('po_number_id')]][$row[csf('task_number')]]['planstart']=$row[csf('task_start_date')];
+			$tna_updated_date[$row[csf('po_number_id')]][$row[csf('task_number')]]['planfinish']=$row[csf('task_finish_date')];
+			$tna_updated_date[$row[csf('po_number_id')]][$row[csf('task_number')]]['planstartflag']=$row[csf('plan_start_flag')];
+			$tna_updated_date[$row[csf('po_number_id')]][$row[csf('task_number')]]['planfinishflag']=$row[csf('plan_finish_flag')];
+			
+			
+		}
+		//Menual Data pick from History Table......................end;
+		
+	
+	   
+		//TNA Auto process start.....................................................................
+		
+		
+		//Class...........................................................start;
+		$condition= new condition();
+		if($cbo_company>0){
+			$condition->company_name("=$cbo_company");
+		}
+		if($cbo_buyer>0){
+			$condition->buyer_name("=$cbo_buyer");
+		}
+		if($tna_process_start_date !=''){
+			$condition->pub_shipment_date(" > '".$tna_process_start_date."'");
+		}
+		
+		if(str_replace("'","",$txt_job_no) !=''){
+			$condition->job_no(" = '".str_replace("'","",$txt_job_no)."'");
+		}
+	
+		
+		if(trim($txt_ponumber_id) !=''){
+			$condition->po_id(" in($txt_ponumber_id) ");
+		}
+
+		$trims= new trims($condition);
+		$trims_data_item_qty=$trims->getQtyArray_by_orderSourceidAndItemid();
+
+		$wash= new wash($condition);
+		$wash_data_arr=$wash->getQtyArray_by_order();
+		/*
+		$yarn= new yarn($condition);
+		$yarndata=$yarn->getOrderWiseYarnQtyArray();*/
+		
+		//echo $yarn->getQuery();die;
+		//Class...........................................................end;
+		
+		
+		
+		
+		//Req Qty set................ 
+		foreach($order_id_array as $order_id){
+			//$tna_task_update_data[$order_id][46]['reqqnty']=$yarndata[$order_id];
+			//$tna_task_update_data[$order_id][47]['reqqnty']=$yarndata[$order_id];
+			$tna_task_update_data[$order_id][110]['reqqnty']=$po_order_details[$order_id]['po_quantity'];
+		}
+
+
+
+
+		//Sample Approval Update Data...................................
+		 
+		$sql_task = "SELECT count(a.id) as CID,a.PO_BREAK_DOWN_ID,SAMPLE_TYPE,max(submitted_to_buyer) as MAX_SUBMITTED_TO_BUYER,min(submitted_to_buyer) as MIN_SUBMITTED_TO_BUYER,max(approval_status_date) as MAX_APPROVAL_STATUS_DATE,min(approval_status_date) as MIN_APPROVAL_STATUS_DATE
+		 FROM wo_po_sample_approval_info  a, lib_sample b,wo_po_color_size_breakdown c WHERE sample_type in (2,3,4,7,8,9,10,11,9,5,13,14,12) and c.id=a.color_number_id and a.po_break_down_id=c.po_break_down_id and a.job_no_mst=c.job_no_mst and c.status_active=1 AND c.is_deleted = 0 and b.id=a.SAMPLE_TYPE_ID and a.is_deleted = 0 and a.status_active=1 and b.is_deleted = 0 and b.BUSINESS_NATURE=100 and b.status_active=1 ".where_con_using_array($job_no_array,1,'a.job_no_mst')." group by b.sample_type,a.po_break_down_id order by po_break_down_id asc";
+		 
+		  //echo $sql_task;die;
+		
+		$result = sql_select( $sql_task );
+		$sample_approval_update = array(); 
+		foreach( $result as $row ) 
+		{
+			$sub=0;  $appr=0;   $sub2=0; $appr2=0;
+			if ($row['SAMPLE_TYPE']==2) {
+				$sub=8;  $appr=12;  $sub2=172; $appr2=173;
+				$to_process_task[$row[PO_BREAK_DOWN_ID]][$appr2]=$appr2;
+				$to_process_task[$row[PO_BREAK_DOWN_ID]][$sub2]=$sub2;
+				
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['max_start_date']=$row[MAX_APPROVAL_STATUS_DATE];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['min_start_date']=$row[MIN_APPROVAL_STATUS_DATE];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['noofval']=$row[CID];	
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['max_start_date']=$row[MAX_SUBMITTED_TO_BUYER];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['min_start_date']=$row[MIN_SUBMITTED_TO_BUYER];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['noofval']=$row[CID];				 
+			}
+			else if ($row['SAMPLE_TYPE']==3) { $sub=7;  $appr=13;  }
+			else if ($row['SAMPLE_TYPE']==4) { $sub=14;  $appr=15; }
+			else if ($row['SAMPLE_TYPE']==7) { $sub=16;  $appr=17; }
+			else if ($row['SAMPLE_TYPE']==8) { $sub=21;  $appr=22; }
+			else if ($row['SAMPLE_TYPE']==9) { $sub=23;  $appr=24;}
+			else if ($row['SAMPLE_TYPE']==10) { $sub=26;  $appr=27; }
+			else if ($row['SAMPLE_TYPE']==11) { $sub=28;  $appr=29; }
+			else if ($row['SAMPLE_TYPE']==9) { $sub=124;  $appr=124; }
+			else if ($row['SAMPLE_TYPE']==5) { $sub=264;  $appr=123; }
+			else if ($row['SAMPLE_TYPE']==14) { $sub=265;  $appr=266; }
+			else if ($row['SAMPLE_TYPE']==12) { 
+				$sub=93;  $appr=94;  $sub2=193;  $appr2=194;
+				$to_process_task[$row[PO_BREAK_DOWN_ID]][$appr2]=$appr2;
+				$to_process_task[$row[PO_BREAK_DOWN_ID]][$sub2]=$sub2;
+				
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['max_start_date']=$row[MAX_APPROVAL_STATUS_DATE];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['min_start_date']=$row[MIN_APPROVAL_STATUS_DATE];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['noofval']=$row[CID];	
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['max_start_date']=$row[MAX_SUBMITTED_TO_BUYER];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['min_start_date']=$row[MIN_SUBMITTED_TO_BUYER];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['noofval']=$row[CID];				 
+			
+			}
+			else if ($row['SAMPLE_TYPE']==13) { $sub=197;  $appr=198; }
+			$to_process_task[$row[PO_BREAK_DOWN_ID]][$appr]=$appr;
+			$to_process_task[$row[PO_BREAK_DOWN_ID]][$sub]=$sub;
+			
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr]['max_start_date']=$row[MAX_APPROVAL_STATUS_DATE];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr]['min_start_date']=$row[MIN_APPROVAL_STATUS_DATE];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr]['noofval']=$row[CID];	
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub]['max_start_date']=$row[MAX_SUBMITTED_TO_BUYER];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub]['min_start_date']=$row[MIN_SUBMITTED_TO_BUYER];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub]['noofval']=$row[CID];				 
+		}
+		
+		
+			
+			
+		$sql_task = "SELECT a.id AS CID, c.PO_BREAK_DOWN_ID, SAMPLE_TYPE, SUBMITTED_TO_BUYER, APPROVAL_STATUS_DATE
+		FROM wo_po_sample_approval_info a, lib_sample b, wo_po_color_size_breakdown  c
+		WHERE     sample_type IN (2,3,4,7,8,9,10,11,12,13,14) AND c.id = a.color_number_id AND a.po_break_down_id = c.po_break_down_id AND a.job_no_mst = c.job_no_mst  AND c.status_active = 1 AND c.is_deleted = 0  AND b.id = a.SAMPLE_TYPE_ID AND a.is_deleted = 0  AND a.status_active = 1 AND b.is_deleted = 0 AND b.status_active = 1  and b.BUSINESS_NATURE=100 ".where_con_using_array($job_no_array,1,'a.job_no_mst')."";
+		//echo $sql_task;die;	
+		
+		$result = sql_select( $sql_task );
+		$sample_approval_update = array(); 
+		foreach( $result as $row ) 
+		{
+			$sub=0;  $appr=0;   $sub2=0;  $appr2=0; 
+			if ($row['SAMPLE_TYPE']==2) { $sub=8;  $appr=12;}
+			else if($row['SAMPLE_TYPE']==3){ $sub=7;  $appr=13;  }
+			else if($row['SAMPLE_TYPE']==4){ $sub=14;  $appr=15; }
+			else if($row['SAMPLE_TYPE']==7){ $sub=16;  $appr=17; }
+			else if($row['SAMPLE_TYPE']==8){ $sub=21;  $appr=22; }
+			else if($row['SAMPLE_TYPE']==9){ $sub=23;  $appr=24;}
+			else if($row['SAMPLE_TYPE']==10){ $sub=26;  $appr=27; }
+			else if($row['SAMPLE_TYPE']==11){ $sub=28;  $appr=29; }
+			else if($row['SAMPLE_TYPE']==14){ $sub=265;  $appr=266; }
+			else if($row['SAMPLE_TYPE']==12){
+				$sub=93;  $appr=94;  $sub2=193;  $appr2=194; 
+				if($row[APPROVAL_STATUS_DATE]=='0000-00-00' || $row[APPROVAL_STATUS_DATE]==''){$row[APPROVAL_STATUS_DATE]='';}
+				if($row[SUBMITTED_TO_BUYER]=='0000-00-00' || $row[SUBMITTED_TO_BUYER]==''){$row[SUBMITTED_TO_BUYER]='';}
+				
+				if($row[APPROVAL_STATUS_DATE]!=''){
+					$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr2]['noofapproved']+=1;	
+				}
+				if($row[SUBMITTED_TO_BUYER]!=''){
+					$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub2]['noofapproved']+=1;
+				}
+			}
+			else if ($row[SAMPLE_TYPE]==13) { $sub=197;  $appr=198; }
+				if($row[APPROVAL_STATUS_DATE]=='0000-00-00' || $row[APPROVAL_STATUS_DATE]==''){$row[APPROVAL_STATUS_DATE]='';}
+				if($row[SUBMITTED_TO_BUYER]=='0000-00-00' || $row[SUBMITTED_TO_BUYER]==''){$row[SUBMITTED_TO_BUYER]='';}
+				
+				if($row[APPROVAL_STATUS_DATE]!=''){
+					$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$appr]['noofapproved']+=1;	
+				}
+				if($row[SUBMITTED_TO_BUYER]!=''){
+					$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$sub]['noofapproved']+=1;
+				}
+		}
+		
+		//print_r($tna_task_update_data[72821][13]);die;
+
+		// LABDIP Approval Data.......................................
+		$sql_task = "SELECT count(id) as CID, PO_BREAK_DOWN_ID, max(submitted_to_buyer) as max_submitted_to_buyer,min(submitted_to_buyer) as min_submitted_to_buyer,max(approval_status_date) as max_approval_status_date,min(approval_status_date) as min_approval_status_date, LISTAGG(color_name_id, ',') WITHIN GROUP (ORDER BY color_name_id) AS COLOR_NAME_ID
+		 FROM wo_po_lapdip_approval_info WHERE is_deleted = 0 and status_active=1 ".where_con_using_array($job_no_array,1,'job_no_mst')."  group by po_break_down_id order by po_break_down_id asc";
+		// echo $sql_task;die;
+		  
+		$result = sql_select( $sql_task );
+		$labdip_update_task = array(); 
+		foreach( $result as $row ) 
+		{
+			$to_process_task[$row[PO_BREAK_DOWN_ID]][9]=9;
+			$to_process_task[$row[PO_BREAK_DOWN_ID]][10]=10;
+			 
+					
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][10]['max_start_date']=$row[csf("max_approval_status_date")];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][10]['min_start_date']=$row[csf("min_approval_status_date")];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][10]['noofval']=$row[CID];
+			
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][9]['max_start_date']=$row[csf("max_submitted_to_buyer")];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][9]['min_start_date']=$row[csf("min_submitted_to_buyer")];
+			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][9]['noofval']=$row[CID];	
+		}
+		
+				
+		
+		
+		$sql_task = "SELECT id as CID,PO_BREAK_DOWN_ID ,SUBMITTED_TO_BUYER,APPROVAL_STATUS_DATE FROM wo_po_lapdip_approval_info WHERE is_deleted = 0 and status_active=1 ".where_con_using_array($job_no_array,1,'job_no_mst')."";
+		$result = sql_select( $sql_task );
+		$sample_approval_update = array(); 
+		foreach( $result as $row ) 
+		{
+			if($row[APPROVAL_STATUS_DATE]=='0000-00-00'){$row[APPROVAL_STATUS_DATE]='';}
+			if($row[SUBMITTED_TO_BUYER]=='0000-00-00'){$row[SUBMITTED_TO_BUYER]='';}
+			
+			if($row[APPROVAL_STATUS_DATE]!=''){
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][10]['noofapproved']+=1;	
+			}
+			if($row[SUBMITTED_TO_BUYER]!=''){
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][9]['noofapproved']+=1;
+			}
+		}
+
+
+		//trims....................
+
+		$sql_task = "SELECT A.ITEM_CATEGORY,A.BOOKING_TYPE,A.SOURCE ,B.PO_BREAK_DOWN_ID, 
+		sum(wo_qnty) as TFB_QNTY, 
+		sum(b.amount/nullif(b.exchange_rate,0))  as TFB_AMOUNT, 
+		sum(grey_fab_qnty) as GFB_QNTY, 
+		min(a.booking_date) as START_DATE, 
+		max(a.booking_date) as END_DATE  
+		FROM  wo_booking_mst a, wo_booking_dtls b
+		WHERE a.booking_no=b.booking_no and a.item_category in ( 2,4,12,3 ) and a.status_active =1 and a.is_deleted=0 and b.status_active =1 and b.is_deleted=0 and a.is_short=2 ".where_con_using_array($order_id_array,0,'b.po_break_down_id')."  group by b.po_break_down_id,a.item_category,a.booking_type,a.SOURCE order by b.po_break_down_id asc";
+		
+		  //echo $sql_task;die;
+		$result = sql_select( $sql_task );
+		$purchase_update_task = array(); 
+		foreach( $result as $row ) 
+		{ 
+			$tsktype=0; $qnty=0; 
+			
+			if($row[SOURCE]==1){
+			
+				if ($row[csf("item_category")]==2) { $tsktype=276; $qnty=$row[csf("gfb_qnty")]; }
+				else if ($row[csf("item_category")]==3) { $tsktype=302; $qnty=$row[csf("gfb_qnty")]; }
+				else if ($row[csf("item_category")]==4) { $tsktype=278; $qnty=$row[csf("tfb_amount")]; }
+				else if ($row[csf("item_category")]==12) { $tsktype=33; $qnty=$row[csf("TFB_QNTY")]; }
+				
+				if( $row[csf("booking_type")]==4 && $row[csf("item_category")]==2) 
+				{ 
+					$tsktype=30; $qnty=$row[csf("gfb_qnty")]; 
+				}
+				else if( $row[csf("booking_type")]==4 && $row[csf("item_category")]==3) 
+				{ 
+					$tsktype=269; $qnty=$row[csf("gfb_qnty")]; 
+				}
+			}
+			else{
+				if ($row[csf("item_category")]==2) { 
+					$tsktype=31; $qnty=$row[csf("gfb_qnty")]; 
+					//Fabric Booking To Be Issued [Local]............
+					$tna_task_update_data[$row[csf("po_break_down_id")]][305]['doneqnty']+=$qnty;
+					$tna_task_update_data[$row[csf("po_break_down_id")]][305]['max_start_date']=$row[csf("end_date")];
+					$tna_task_update_data[$row[csf("po_break_down_id")]][305]['min_start_date']=$row[csf("start_date")];
+					//............................end; 
+				}
+				else if ($row[csf("item_category")]==3) { $tsktype=34; $qnty=$row[csf("gfb_qnty")]; }
+				else if ($row[csf("item_category")]==4) { 
+					$tsktype=32; $qnty=$row[csf("tfb_amount")]; 
+					//Finishing Trims Booking To Be Issued [Local]........................
+					$tna_task_update_data[$row[csf("po_break_down_id")]][307]['max_start_date']=$row[csf("end_date")];
+					$tna_task_update_data[$row[csf("po_break_down_id")]][307]['min_start_date']=$row[csf("start_date")]; 
+					$tna_task_update_data[$row[csf("po_break_down_id")]][307]['doneqnty']+=$qnty;
+					//.....................................end;
+				}
+				else if ($row[csf("item_category")]==12) { $tsktype=33; $qnty=$row[csf("TFB_QNTY")]; }
+				
+				if( $row[csf("booking_type")]==4 && $row[csf("item_category")]==2) 
+				{ 
+					$tsktype=30; $qnty=$row[csf("gfb_qnty")]; 
+				}
+				else if( $row[csf("booking_type")]==4 && $row[csf("item_category")]==3) 
+				{ 
+					$tsktype=269; $qnty=$row[csf("gfb_qnty")]; 
+				}
+			}
+			
+			
+			
+			$tna_task_update_data[$row[csf("po_break_down_id")]][$tsktype]['max_start_date']=$row[csf("end_date")];
+			$tna_task_update_data[$row[csf("po_break_down_id")]][$tsktype]['min_start_date']=$row[csf("start_date")]; 
+			$tna_task_update_data[$row[csf("po_break_down_id")]][$tsktype]['doneqnty']+=$qnty;
+			
+			
+		}
+		unset($result);
+
+
+
+
+
+		
+		//Fabric requrae..........................................end;		
+ 		
+		$sql = "select a.color_type_id,b.po_break_down_id,sum(b.requirment) as requirment from wo_pre_cost_fabric_cost_dtls a,wo_pre_cos_fab_co_avg_con_dtls b WHERE  a.id=b.pre_cost_fabric_cost_dtls_id and a.company_id=$cbo_company  ".where_con_using_array($order_id_array,0,'b.po_break_down_id')."  and a.status_active =1 and a.is_deleted=0 group by a.color_type_id,b.po_break_down_id";
+		// echo $sql;die;
+		
+		$SolidPoArr=array(); $YDPoArr=array(); $AOPPoArr=array();
+		
+		$result = sql_select( $sql );
+		foreach( $result as $row ) 
+		{
+			if( $row[csf("requirment")]>0)
+			{
+				
+				if( $gross_level==1 )
+				{//solid..
+					//269=> "Sample Fabric Booking To Be Issued Woven",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][269]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][269]=269;
+					
+					//150	=> "PPS Fabric Issue",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][150]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][150]=150;
+					
+					//37  => "PPS Making",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][37]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][37]=37;
+					//60 => "Gray Fabric Production To Be Done",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][60]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][60]=60;
+					//73 => "Finished fabric to be in-house",
+						//$tna_task_update_data[$row[csf("po_break_down_id")]][73]['reqqnty']+=$row[csf("requirment")];
+						
+						
+						foreach($req_fin_fab_qty_arr[$row[csf('po_break_down_id')]] as $source_id=>$dataRows){
+							if($source_id==1){
+								$tna_task_update_data[$row[csf("po_break_down_id")]][277]['reqqnty']+=round(array_sum($req_fin_fab_qty_arr[$row[csf('po_break_down_id')]][$source_id]));
+								$to_process_task[$row[csf("po_break_down_id")]][277]=277;
+							}
+							else{
+								$tna_task_update_data[$row[csf("po_break_down_id")]][73]['reqqnty']+=round(array_sum($req_fin_fab_qty_arr[$row[csf('po_break_down_id')]][$source_id]));
+								$to_process_task[$row[csf("po_break_down_id")]][73]=73;
+								
+								$tna_task_update_data[$row[csf("po_break_down_id")]][306]['reqqnty']+=round(array_sum($req_fin_fab_qty_arr[$row[csf('po_break_down_id')]][$source_id]));
+								$to_process_task[$row[csf("po_break_down_id")]][306]=306;
+							}
+						
+						
+						}
+						
+						
+						
+						
+						
+					//131 => "Production File Handover",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][131]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][131]=131;
+					//130 => "Trim Card Handover",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][130]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][130]=130;
+					//80	=> "PP Meeting To Be Conducted",
+						//$tna_task_update_data[$row[csf("po_break_down_id")]][80]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][80]=80;
+						$tna_task_update_data[$row[csf("po_break_down_id")]][80]['doneqnty']=1;
+						$tna_task_update_data[$row[csf("po_break_down_id")]][80]['reqqnty']=1; 
+						
+					//84=> "Cutting To Be Done",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][84]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][84]=84;
+					//86	=> "Sewing To Be Done",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][86]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][86]=86;
+					
+					//51	=> "Yarn Send for Dyeing",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][51]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][51]=51;
+
+					//165	=> "Yarndip Requisition",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][165]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][165]=165;
+					//166	=> "Yarndip Submit To Buyer",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][166]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][166]=166;
+					//167	=> "Yarndip Approval",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][167]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][167]=167;
+						
+					//203	=> "Grey Fab Issue",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][203]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][203]=203;
+						
+					//212=> "Knitting production Solid",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][212]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][212]=212;
+						
+						
+					//256=> "YD Knit down Submission",
+					    $tna_task_update_data[$row[csf("po_break_down_id")]][256]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][256]=256;
+						
+					//257=> "YD Knit down Approval", 
+						$tna_task_update_data[$row[csf("po_break_down_id")]][257]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][257]=257;
+
+						$SolidPoArr[$row[csf("po_break_down_id")]]=$row[csf("po_break_down_id")];
+						
+				}
+				else
+				{
+					//2,3,4,6,32,33 Y/D
+					if(($row[csf("color_type_id")]==2) || ($row[csf("color_type_id")]==3) || ($row[csf("color_type_id")]==4) || ($row[csf("color_type_id")]==6) || ($row[csf("color_type_id")]==32) || ($row[csf("color_type_id")]==33)){
+	
+					//51	=> "Yarn Send for Dyeing",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][51]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][51]=51;
+					//169	=> "PPS Fabrics Issue (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][169]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][169]=169;
+					//171	=> "PPS Making (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][171]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][171]=171;
+					//174	=> "PPS Submit (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][174]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][174]=174;
+					//175	=> "PPS Approval (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][175]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][175]=175;
+					//177	=> "Trim Card Handover (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][177]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][177]=177;
+					//178	=> "Knitting production (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][178]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][178]=178;
+					//180	=> "Finish Fabrics Inhouse (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][180]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][180]=180;
+					//181	=> "Production File Handover(YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][181]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][181]=181;
+					//185	=> "PP Meeting (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][185]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][185]=185;
+					//187	=> "Cutting Production (YD)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][187]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][187]=187;
+					//191	=> "Sewing Production(YD)"
+						$tna_task_update_data[$row[csf("po_break_down_id")]][191]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][191]=191;
+					//165	=> "Yarndip Requisition",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][165]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][165]=165;
+					//166	=> "Yarndip Submit To Buyer",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][166]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][166]=166;
+					//167	=> "Yarndip Approval",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][167]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][167]=167;
+						
+						
+					//256=> "YD Knit down Submission",
+					    $tna_task_update_data[$row[csf("po_break_down_id")]][256]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][256]=256;
+					//257=> "YD Knit down Approval", 
+						$tna_task_update_data[$row[csf("po_break_down_id")]][257]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][257]=257;
+						
+						//258=> "Bulk Hanger submission",
+						$to_process_task[$row[csf("po_break_down_id")]][258]=258;
+						//259=> "Bulk Hanger Approval",	
+						$to_process_task[$row[csf("po_break_down_id")]][259]=259;
+						
+						
+						$YDPoArr[$row[csf("po_break_down_id")]]=$row[csf("po_break_down_id")];
+					}
+					//5,7 AOP
+					else if(($row[csf("color_type_id")]==5) || ($row[csf("color_type_id")]==7)){
+					//168	=> "PPS Fabrics Issue (AOP)"
+						$tna_task_update_data[$row[csf("po_break_down_id")]][168]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][168]=168;
+					//170	=> "PPS Making (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][170]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][170]=170;
+					//172	=> "PPS Submit (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][172]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][172]=172;
+					//173	=> "PPS Approval (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][173]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][173]=173;
+					//176	=> "Trim Card Handover (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][176]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][176]=176;
+					//179	=> "Finish Fabrics Inhouse (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][179]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][179]=179;
+					//184	=> "PP Meeting (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][184]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][184]=184;
+					//186	=> "Cutting Production (AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][186]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][186]=186;
+					//190	=> "Sewing Production(AOP)",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][190]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][190]=190;
+						
+					//60 => "Gray Fabric Production To Be Done",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][60]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][60]=60;
+					//62 => "Fabric Send for AOP",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][62]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][62]=62;
+						
+						
+					//254=> "AOP Strike Off Submission",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][254]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][254]=254;
+					//255=> "AOP Strike Off Approval",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][255]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][255]=255;
+						
+					//258=> "Bulk Hanger submission",
+						$to_process_task[$row[csf("po_break_down_id")]][258]=258;
+					//259=> "Bulk Hanger Approval",	
+						$to_process_task[$row[csf("po_break_down_id")]][259]=259;
+	
+					//254=> "AOP Strike Off Submission",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][254]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][254]=254;
+					//255=> "AOP Strike Off Approval",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][255]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][255]=255;
+						
+						$AOPPoArr[$row[csf("po_break_down_id")]]=$row[csf("po_break_down_id")];
+						
+					}//solid..
+					else if(($row[csf("color_type_id")]==1) || ($row[csf("color_type_id")]==20) || ($row[csf("color_type_id")]==25) || ($row[csf("color_type_id")]==26) || ($row[csf("color_type_id")]==27) || ($row[csf("color_type_id")]==28) || ($row[csf("color_type_id")]==29) || ($row[csf("color_type_id")]==30) || ($row[csf("color_type_id")]==31) || ($row[csf("color_type_id")]==34)  || ($row[csf("color_type_id")]==35)  || ($row[csf("color_type_id")]==36)  || ($row[csf("color_type_id")]==37) || ($row[csf("color_type_id")]==''))
+					{
+					//150	=> "PPS Fabric Issue",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][150]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][150]=150;
+					//37  => "PPS Making",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][37]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][37]=37;
+					//60 => "Gray Fabric Production To Be Done",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][60]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][60]=60;
+					//73 => "Finished fabric to be in-house",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][73]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][73]=73;
+					
+					//131 => "Production File Handover",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][131]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][131]=131;
+					//130 => "Trim Card Handover",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][130]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][130]=130;
+					//80 => "PP Meeting To Be Conducted",
+						//$tna_task_update_data[$row[csf("po_break_down_id")]][80]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][80]=80;
+						$tna_task_update_data[$row[csf("po_break_down_id")]][80]['doneqnty']=1;
+						$tna_task_update_data[$row[csf("po_break_down_id")]][80]['reqqnty']=1; 
+						
+					//84 => "Cutting To Be Done",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][84]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][84]=84;
+					//86 => "Sewing To Be Done",	
+						$tna_task_update_data[$row[csf("po_break_down_id")]][86]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][86]=86;
+					
+						//212=> "Knitting production Solid",
+						$tna_task_update_data[$row[csf("po_break_down_id")]][212]['reqqnty']+=$row[csf("requirment")];
+						$to_process_task[$row[csf("po_break_down_id")]][212]=212;
+						
+						//258=> "Bulk Hanger submission",
+						$to_process_task[$row[csf("po_break_down_id")]][258]=258;
+						//259=> "Bulk Hanger Approval",	
+						$to_process_task[$row[csf("po_break_down_id")]][259]=259;
+						
+						
+						$SolidPoArr[$row[csf("po_break_down_id")]]=$row[csf("po_break_down_id")];
+					}
+				}
+					
+			}
+			
+
+		}
+		unset($result);
+
+	
+
+		
+
+		foreach($trims_data_item_qty as $pid=>$soruceDataArr){
+			foreach($soruceDataArr as $source_id=>$itemArr){
+				foreach($itemArr as $item_id=>$trims_pre_cost_qty){
+					if($trim_type_arr[$item_id] == 1){
+						$tna_task_update_data[$pid][270]['reqqnty']+=$trims_pre_cost_qty;
+						$to_process_task[$pid][270]=270;
+					}
+					else{
+						$tna_task_update_data[$pid][71]['reqqnty']+=$trims_pre_cost_qty;
+						$to_process_task[$pid][71]=71;
+					}
+				}
+			}
+		}
+		
+	
+			
+		// Garments Production Data  .................................................... 
+			
+			$production_sql = "select a.PO_BREAK_DOWN_ID,min(a.production_date) as MIND,max(a.production_date) as MAXD,a.PRODUCTION_TYPE,sum(b.production_qnty) as PRODUCTION_QUANTITY,a.EMBEL_NAME from pro_garments_production_mst a,pro_garments_production_dtls b where a.id=b.mst_id and a.status_active=1 and a.is_deleted=0 and b.status_active=1 and b.is_deleted=0 ".where_con_using_array($order_id_array,0,'a.PO_BREAK_DOWN_ID')." and a.production_type in(2,3,111,112,4,1,8) and a.GARMENTS_NATURE=100 group by a.po_break_down_id,a.production_type,a.embel_name";
+			// echo $production_sql;die;
+			$production_sql_res = sql_select( $production_sql );
+			foreach( $production_sql_res as $row ) 
+			{
+				$tsktype=0;
+				if($row['EMBEL_NAME']==3 && $row['PRODUCTION_TYPE']==2) $tsktype=89;
+				else if($row['EMBEL_NAME']==0 && $row['PRODUCTION_TYPE']==1) $tsktype=212;
+				else if($row['EMBEL_NAME']==3 && $row['PRODUCTION_TYPE']==3) $tsktype=90;
+				else if($row['EMBEL_NAME']==0 && $row['PRODUCTION_TYPE']==111) $tsktype=350;
+				else if($row['EMBEL_NAME']==0 && $row['PRODUCTION_TYPE']==112) $tsktype=351;
+				else if($row['EMBEL_NAME']==0 && $row['PRODUCTION_TYPE']==4) $tsktype=86;
+				else if($row['EMBEL_NAME']==0 && $row['PRODUCTION_TYPE']==8) $tsktype=88;
+
+				 
+
+
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$tsktype]['max_start_date']=$row['MAXD'];
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$tsktype]['min_start_date']=$row['MIND'];
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$tsktype]['doneqnty']+=$row['PRODUCTION_QUANTITY'];
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$tsktype]['reqqnty']=$po_order_details[$row['PO_BREAK_DOWN_ID']]['po_quantity'];
+				
+			} 
+
+			unset($production_sql_res);
+
+			//print_r($tna_task_update_data[72821][88]);die;
+
+
+		//Sewing Trims Booking-------------------
+			$trimsBookingSql="SELECT a.SOURCE,c.TRIM_TYPE,b.PO_BREAK_DOWN_ID,max(a.BOOKING_DATE) as MAX_BOOKING_DATE,min(a.BOOKING_DATE) as MIN_BOOKING_DATE,sum(b.WO_QNTY) as WO_QNTY  FROM  WO_BOOKING_MST a,WO_BOOKING_DTLS b,LIB_ITEM_GROUP c WHERE b.TRIM_GROUP=c.id and a.BOOKING_NO=b.BOOKING_NO and b.is_deleted = 0 AND b.status_active = 1 and b.BOOKING_TYPE=2 and c.TRIM_TYPE=1 and c.ITEM_CATEGORY=4 ".where_con_using_array($order_id_array,0,'b.PO_BREAK_DOWN_ID')." group by b.PO_BREAK_DOWN_ID,a.SOURCE,c.TRIM_TYPE";
+			$trimsBookingSqlResult=sql_select($trimsBookingSql);
+			//echo $trimsBookingSql;die;
+
+			foreach($trimsBookingSqlResult as $row){
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][270]['max_start_date']=$row['MAX_BOOKING_DATE'];
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][270]['min_start_date']=$row['MIN_BOOKING_DATE']; 
+				$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][270]['doneqnty']+=$row['WO_QNTY'];
+			}
+			unset($trimsBookingSqlResult); 
+
+		// //Kniting production...........................
+			
+		// 	$knitin_pro_sql = "select b.BODY_PART_ID,c.PO_BREAKDOWN_ID,sum(c.qnty) as QTY,min(a.receive_date) as START_DATE,max(a.receive_date) as END_DATE from inv_receive_master a,pro_grey_prod_entry_dtls b,pro_roll_details c where a.id=b.mst_id and a.id=c.mst_id and b.id=c.dtls_id  and c.roll_used=1 and c.entry_form=2 and c.status_active=1 and c.is_deleted=0 ".where_con_using_array($order_id_array,0,'c.po_breakdown_id')." group by b.BODY_PART_ID,c.po_breakdown_id";
+		// 	 echo $knitin_pro_sql;die;
+
+		// 	$knitin_pro_sql_res = sql_select($knitin_pro_sql); 
+		// 	foreach($knitin_pro_sql_res as $row)
+		// 	{	
+		// 		$tna_task_update_data[$row['PO_BREAKDOWN_ID']][212]['max_start_date']=$row["END_DATE"];
+		// 		$tna_task_update_data[$row['PO_BREAKDOWN_ID']][212]['min_start_date']=$row["START_DATE"]; 
+		// 		$tna_task_update_data[$row['PO_BREAKDOWN_ID']][212]['doneqnty']=$row['QTY'];
+		// 		//$tna_task_update_data[$row['PO_BREAKDOWN_ID']][212]['reqqnty']=array_sum ($program_qnty_array[$row['PO_BREAKDOWN_ID']]);
+
+		// 	}
+		// 	unset($knitin_pro_sql_res);
+
+			//print_r($tna_task_update_data[15691][212]);die;
+
+		//Finishing Trims To Be In-house....................		
+		
+				$finish_trims_sql = "SELECT b.po_breakdown_id, min(a.transaction_date) mindate, max(a.transaction_date) maxdate, sum(quantity) as prod_qntry,d.trim_type FROM inv_transaction a,  order_wise_pro_details b, product_details_master c , lib_item_group d
+			where a.prod_id=c.id and b.trans_id=a.id and c.item_group_id=d.id and d.trim_type in (1,2) and b.entry_form in ( 24 )  and a.status_active =1 and a.is_deleted=0 and b.status_active =1 and b.is_deleted=0 and c.status_active =1 and c.is_deleted=0 and d.status_active =1 and d.is_deleted=0 ".where_con_using_array($order_id_array,0,'b.po_breakdown_id')." group by b.po_breakdown_id,d.trim_type order by b.po_breakdown_id";
+				//echo $sql;die;
+				
+				$finish_trims_sql_res=sql_select($finish_trims_sql);
+				foreach($finish_trims_sql_res as $row)
+				{
+					$entry=($row[csf("trim_type")] == 1) ? 70 : 71;
+					$tna_task_update_data[$row[csf("po_breakdown_id")]][$entry]['max_start_date']=$row[csf("maxdate")];
+					$tna_task_update_data[$row[csf("po_breakdown_id")]][$entry]['min_start_date']=$row[csf("mindate")];
+					$tna_task_update_data[$row[csf("po_breakdown_id")]][$entry]['doneqnty']=$row[csf("prod_qntry")]; 
+				}
+				unset($finish_trims_sql_res);
+
+		// //Start Linking .......................................
+
+		// 		$link_sql = "select a.PO_BREAK_DOWN_ID,min(a.production_date) as MIND,max(a.production_date) as MAXD,a.PRODUCTION_TYPE,sum(b.production_qnty) as PRO_QTY,a.embel_name,b.color_type_id from pro_garments_production_mst a,pro_garments_production_dtls b where a.id=b.mst_id and a.status_active=1 and a.is_deleted=0 and b.status_active=1 and b.is_deleted=0 AND B.PRODUCTION_TYPE=56 ".where_con_using_array($order_id_array,0,'a.po_break_down_id')." group by a.po_break_down_id,a.production_type,b.color_type_id,a.embel_name";
+		// 		 echo $link_sql;die;
+		// 		$link_sql_res = sql_select( $link_sql );	
+		// 		foreach( $link_sql_res as $row ) 
+		// 		{
+		// 			$tsktype=86;
+		// 			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$tsktype]['max_start_date']=$row[MAXD];
+		// 			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$tsktype]['min_start_date']=$row[MIND];
+		// 			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$tsktype]['doneqnty']+=$row[PRO_QTY];
+		// 			$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][$tsktype]['reqqnty']=$po_order_details[$row[PO_BREAK_DOWN_ID]]['po_quantity_pcs'];
+					
+		// 		} 
+				
+		// 	unset($link_sql_res);
+		// 	//print_r($tna_task_update_data[15691][86]);die;
+			
+
+
+		//end Linking .......................................
+
+
+		// Ex-factory .......................................................start;
+			
+			$exf_sql = "SELECT PO_BREAK_DOWN_ID,min(ex_factory_date) as MIND,max(ex_factory_date) as MAXD,sum(ex_factory_qnty) as SUMTOT FROM  pro_ex_factory_mst WHERE status_active =1 and is_deleted = 0 ".where_con_using_array($order_id_array,0,'po_break_down_id')." group by po_break_down_id";
+			// echo $exf_sql;die;
+			$exf_sql_res = sql_select( $exf_sql );
+			foreach( $exf_sql_res as $row ) 
+			{
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][110]['max_start_date']=$row['MAXD'];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][110]['min_start_date']=$row['MIND'];
+				$tna_task_update_data[$row[PO_BREAK_DOWN_ID]][110]['doneqnty']=$row['SUMTOT'];
+			}
+			unset($exf_sql_res);
+			
+		
+
+		// Ex-factory ..............................................................end;
+			
+		//Yarn Purchase Requisition................................................................start;	
+				$yarn_purchase_req="select c.ID,b.job_no ,max(a.requisition_date) MAX_DATE,min(a.requisition_date) MIN_DATE,sum(b.quantity) QTY from inv_purchase_requisition_mst a,inv_purchase_requisition_dtls b,WO_PO_BREAK_DOWN c where a.id=b.mst_id and a.entry_form=70 and a.basis=4 and a.status_active=1  and b.is_deleted=0 and b.status_active=1  and a.is_deleted=0 and a.item_category_id=1   and b.job_id=c.job_id ".where_con_using_array($order_id_array,0,'c.ID')." group by b.job_no,c.ID";
+				//echo $yarn_purchase_req;die;
+				$yarn_purchase_req_result=sql_select($yarn_purchase_req);
+				foreach($yarn_purchase_req_result as $row)
+				{
+					$tna_task_update_data[$row[ID]][45]['max_start_date']=$row[MAX_DATE];
+					$tna_task_update_data[$row[ID]][45]['min_start_date']=$row[csf("min_date")]; 
+					$tna_task_update_data[$row[ID]][45]['doneqnty']+=$row[MIN_DATE];
+					$tna_task_update_data[$row[ID]][46]['reqqnty']+=$row[QTY];
+				}
+				unset($yarn_purchase_req_result);
+
+		//Yarn Purchase wo................................................................end;	
+			$yarn_purches_sql = "select  c.ID as PO_ID,a.entry_form,b.job_no, sum(b.req_quantity) req_qty, sum(b.supplier_order_quantity) QTY ,max(a.wo_date) MAX_DATE,min(a.wo_date) MIN_DATE
+				from  wo_non_order_info_mst a, wo_non_order_info_dtls b,WO_PO_BREAK_DOWN c
+				where a.status_active=1 and a.is_deleted=0 and b.status_active=1 and b.is_deleted=0 and a.company_name=$cbo_company and a.id=b.mst_id and b.job_id=c.job_id ".where_con_using_array($order_id_array,0,'c.ID')." group by  b.job_no,a.entry_form,c.ID";
+				//echo $yarn_purches_sql;die;
+				$yarn_purches_sql_result=sql_select($yarn_purches_sql);
+				foreach($yarn_purches_sql_result as $row)
+				{
+					$tna_task_update_data[$row[PO_ID]][46]['max_start_date']=$row[MAX_DATE];
+					$tna_task_update_data[$row[PO_ID]][46]['min_start_date']=$row[MIN_DATE]; 
+					$tna_task_update_data[$row[PO_ID]][46]['doneqnty']+=$row[QTY];
+					if($row[csf("entry_form")]==234){
+						$tna_task_update_data[$row[PO_ID]][47]['reqqnty']+=$row[QTY];
+					}
+				}
+				unset($yarn_purches_sql_result);
+		//Yarn Purchase wo................................................................end;	
+
+		//Yarn Rec................................................................start;	
+				
+				$yarn_rec_sql = "select a.JOB_NO,max(c.RECEIVE_DATE) as MAX_DATE,min(c.RECEIVE_DATE) as MIN_DATE, sum(a.order_qnty) as QTY from inv_transaction a,inv_receive_master c where c.id=a.mst_id and a.status_active=1 and a.is_deleted=0 and a.transaction_type=1 ".where_con_using_array($job_no_array,1,'a.job_no')."  and c.entry_form=248 group by a.job_no";
+				$yarn_rec_sql_result=sql_select($yarn_rec_sql);
+				foreach($yarn_rec_sql_result as $row)
+				{
+					foreach($po_by_job[$row[JOB_NO]] as $po_id){
+						$tna_task_update_data[$po_id][47]['max_start_date']=$row[MAX_DATE];
+						$tna_task_update_data[$po_id][47]['min_start_date']=$row[MIN_DATE]; 
+						$tna_task_update_data[$po_id][47]['doneqnty']=$row[QTY];
+					}
+				}
+				unset($yarn_rec_data_array);
+		//Yarn Rec................................................................end;	
+
+
+		//Knit precost app...........................................start;
+
+		//Knit precost app...........................................start;
+
+		$pre_cost_sql="select a.APPROVED,b.id as PO_ID,max(c.APPROVED_DATE) as MAX_DATE,MIN(c.APPROVED_DATE) as MIN_DATE from WO_PRE_COST_MST a,WO_PO_BREAK_DOWN b,APPROVAL_HISTORY c where a.job_no=b.job_no_mst and a.id=c.mst_id and c.entry_form=15 AND c.UN_APPROVED_BY = 0 and a.IS_DELETED=0 and a.STATUS_ACTIVE =1 and b.IS_DELETED=0 and b.STATUS_ACTIVE=1 and a.APPROVED>0 ".where_con_using_array($order_id_array,0,'b.id')." GROUP BY a.APPROVED,b.id";
+			
+			$pre_cost_sql_arr = sql_select($pre_cost_sql); 
+			foreach($pre_cost_sql_arr as $row)
+			{	
+				$tna_task_update_data[$row['PO_ID']][346]['max_start_date']=date("d-M-Y",strtotime($row['MAX_DATE']));
+				$tna_task_update_data[$row['PO_ID']][346]['min_start_date']=date("d-M-Y",strtotime($row['MIN_DATE'])); 
+				$tna_task_update_data[$row['PO_ID']][346]['doneqnty']=($row['APPROVED']==1)?1:0;
+				$tna_task_update_data[$row['PO_ID']][346]['reqqnty']=1;
+				$to_process_task[$row['PO_ID']][346]=346;
+			}
+		unset($pre_cost_sql_arr);
+
+
+
+			//Knit precost app...........................................end;
+
+
+
+
+
+
+		// Embelishment Approval Data for Update
+
+		$sql_emb = "SELECT COUNT(ID) AS CID,PO_BREAK_DOWN_ID,MAX(SUBMITTED_TO_BUYER) AS MAX_SUBMITTED_TO_BUYER,MIN(SUBMITTED_TO_BUYER) AS MIN_SUBMITTED_TO_BUYER,MAX(APPROVAL_STATUS_DATE) AS MAX_APPROVAL_STATUS_DATE,MIN(APPROVAL_STATUS_DATE) AS MIN_APPROVAL_STATUS_DATE,EMBELLISHMENT_ID
+		FROM wo_po_embell_approval WHERE is_deleted = 0 and status_active=1 ".where_con_using_array($order_id_array,0,'po_break_down_id')." group by po_break_down_id,embellishment_id order by po_break_down_id asc";
+		// echo $sql_emb;die;
+
+		$result = sql_select( $sql_emb );
+		$embelishment_update_task = array(); 
+		foreach( $result as $row ) 
+		{
+			if ($row['EMBELLISHMENT_ID']==1) { $sub=126;  $appr=127;}
+			else if ($row['EMBELLISHMENT_ID']==2) { $sub=128;  $appr=129;}
+			else{ $sub=19;  $appr=20;}
+
+			$to_process_task[$row['PO_BREAK_DOWN_ID']][$sub]=$sub;
+			$to_process_task[$row['PO_BREAK_DOWN_ID']][$appr]=$appr;
+		
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$appr]['max_start_date']=$row["MAX_APPROVAL_STATUS_DATE"];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$appr]['min_start_date']=$row["MIN_APPROVAL_STATUS_DATE"];
+			
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$sub]['max_start_date']=$row["MAX_SUBMITTED_TO_BUYER"];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$sub]['min_start_date']=$row["MIN_SUBMITTED_TO_BUYER"];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$appr]['noofval']=$row["CID"];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$sub]['noofval']=$row["CID"];
+		}
+
+	 
+
+		$sql_task = "SELECT count(id) as CID,PO_BREAK_DOWN_ID,EMBELLISHMENT_ID FROM wo_po_embell_approval WHERE approval_status_date is not null   and is_deleted = 0 and status_active=1 ".where_con_using_array($order_id_array,0,'po_break_down_id')." group by po_break_down_id,embellishment_id order by po_break_down_id asc";
+			//echo $sql_task;die;
+		$result = sql_select( $sql_task );
+		$sample_approval_update = array(); 
+		foreach( $result as $row ) 
+		{
+			if ($row['EMBELLISHMENT_ID']==1) { $sub=126;  $appr=127;}
+			else if ($row['EMBELLISHMENT_ID']==2) { $sub=128;  $appr=129;}
+			else{ $sub=19;  $appr=20;}
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$sub]['noofapproved']=$row['CID'];	
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][$appr]['noofapproved']=$row['CID'];	
+		}
+		unset($result);
+
+
+
+
+		// Inspection Data for Update
+	
+		$inspection_sql = "SELECT PO_BREAK_DOWN_ID,min(inspection_date) as MIND,max(inspection_date) as MAXD,sum(inspection_qnty) as SUMTOT FROM pro_buyer_inspection WHERE status_active =1 and is_deleted = 0 ".where_con_using_array($order_id_array,0,'po_break_down_id')."  group by po_break_down_id";
+		// echo $inspection_sql;die;
+		
+		$inspection_sql_res = sql_select( $inspection_sql );
+		$inspection_status_array = array();
+		foreach( $inspection_sql_res as $row ) 
+		{
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][101]['max_start_date']=$row['MAXD'];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][101]['min_start_date']=$row['MIND'];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][101]['doneqnty']=$row['SUMTOT'];
+			$tna_task_update_data[$row['PO_BREAK_DOWN_ID']][101]['reqqnty']=$po_order_details[$row['PO_BREAK_DOWN_ID']]['po_quantity'];
+		}
+
+
+
+
+			//print_r($tna_task_update_data[42397][47]);die;
+
+			//TNA Auto process end.....................................................................
+			//---------------------------------------------------------------------------------------------------------
+	 
+		$field_array_tna_process="id,template_id,job_no,po_number_id,po_receive_date,shipment_date,task_category,task_number,target_date,task_start_date,task_finish_date,notice_date_start,notice_date_end,process_date,sequence_no,plan_start_flag,plan_finish_flag,status_active,is_deleted,task_type";
+		$field_array_tna_process_up="actual_start_date*actual_finish_date";
+		$approval_array=array(7=>7,8=>8,9=>9,10=>10,11=>11,12=>12,13=>13,14=>14,15=>15,16=>16,17=>17,19=>19,20=>20,197=>197,198=>198,194=>194,21=>21,22=>22,23=>23,24=>24,28=>28,29=>29,265=>265,266=>266);
+
+		//print_r($po_order_details);die;
+		
+		foreach( $po_order_details as $row )  // Process Starts Here
+		{
+
+			foreach( $template_wise_task[$row['template_id']]  as $task_id=>$row_task)
+			{  
+				if($to_process_task[$row['po_id']][$row_task['task_name']]!="")
+				{ 
+					if ($tna_process_type==1)
+					{ 
+						if($db_type==0) $target_date=add_date($row[shipment_date] ,- $row_task[deadline]);
+						else $target_date=change_date_format(trim(add_date($row[shipment_date] ,- $row_task['deadline'])),'','',1);
+						 
+						$to_add_days=$row_task['execution_days']-1;
+						if($db_type==0) $start_date=add_date($target_date ,-$to_add_days);
+						else $start_date=change_date_format(trim(add_date($target_date ,-$to_add_days)),'','',1);
+						 
+						$finish_date=$target_date;
+						$to_add_days=$row_task['notice_before'];
+						
+						if($db_type==0) $notice_date_start=add_date($start_date ,-$to_add_days);
+						else $notice_date_start=change_date_format(trim(add_date($start_date ,-$to_add_days)),'','',1);
+						 
+						
+						if($db_type==0) $notice_date_end=add_date($finish_date ,-$to_add_days);
+						else $notice_date_end=change_date_format(trim(add_date($finish_date ,-$to_add_days)),'','',1);
+					}
+					else
+					{
+						 
+						if($db_type==0) $target_date=add_date($row[po_received_date] , $row_task[execution_days]);
+						else $target_date=change_date_format(trim(add_date($row[po_received_date] ,$row_task['execution_days'])),'','',1);
+						 
+						if($db_type==0) $start_date=add_date($row[po_received_date] ,$row_task[deadline]);
+						else $start_date=change_date_format(trim(add_date($row[po_received_date] ,$row_task[deadline])),'','',1);
+						$finish_date=$target_date;
+						$to_add_days=$row_task['notice_before'];
+						
+						if($db_type==0) $notice_date_start=add_date($start_date ,-$to_add_days);
+						else $notice_date_start=change_date_format(trim(add_date($start_date ,-$to_add_days)),'','',1);
+						 
+						
+						if($db_type==0) $notice_date_end=add_date($finish_date ,-$to_add_days);
+						else $notice_date_end=change_date_format(trim(add_date($finish_date ,-$to_add_days)),'','',1);
+					}
+					
+				
+					if( $tna_process_list[$row['po_id']][$row_task['task_name']]=="") 
+					{
+						if ($mst_id=="") $mst_id=return_next_id( "id", "tna_process_mst"); else $mst_id+=1;
+						//if ($data_array_tna_process!="") $data_array_tna_process .=",";
+						 
+						
+						if($tna_updated_date[$row['po_id']][$row_task[task_name]]['planstart'] =='0000-00-00') $tna_updated_date[$row[po_id]][$row_task[task_name]]['planstart'] ='';
+						if($tna_updated_date[$row['po_id']][$row_task[task_name]]['planfinish'] =='0000-00-00') $tna_updated_date[$row[po_id]][$row_task[task_name]]['planfinish'] ='';
+						
+						if( $tna_updated_date[$row['po_id']][$row_task[task_name]]['planstart'] !='' ) $start_date=$tna_updated_date[$row[po_id]][$row_task[task_name]]['planstart'];
+						if( $tna_updated_date[$row['po_id']][$row_task[task_name]]['planfinish'] !='' ) $finish_date=$tna_updated_date[$row[po_id]][$row_task[task_name]]['planfinish'];
+						
+						$plan_start_flag=$tna_updated_date[$row['po_id']][$row_task[task_name]]['planstartflag']*1;
+						$plan_finish_flag=$tna_updated_date[$row['po_id']][$row_task[task_name]]['planfinishflag']*1;
+						
+						//$data_array_tna_process .="('$mst_id','$row[template_id]','$row[job_no_mst]','$row[po_id]','$row[po_received_date]','$row[shipment_date]','1','$row_task[task_name]','$target_date','$start_date','$finish_date','$notice_date_start','$notice_date_end','$date','$row_task[sequence_no]',$plan_start_flag,$plan_finish_flag,1,0,3)";
+						
+						$insert_string[] ="('$mst_id','$row[template_id]','$row[job_no_mst]','$row[po_id]','$row[po_received_date]','$row[shipment_date]','1','$row_task[task_name]','$target_date','$start_date','$finish_date','$notice_date_start','$notice_date_end','$date','$row_task[sequence_no]',$plan_start_flag,$plan_finish_flag,1,0,3)";
+					}
+					else
+					{ 	
+						if ( ($tna_task_update_data[$row[po_id]][$row_task[task_name]]['min_start_date']=="0000-00-00" || $tna_task_update_data[$row[po_id]][$row_task[task_name]]['min_start_date']=="") && ($tna_task_update_data[$row[po_id]][$row_task[task_name]]['max_start_date']!="0000-00-00" || $tna_task_update_data[$row[po_id]][$row_task[task_name]]['max_start_date']!="" ) )
+						{  
+							$tna_task_update_data[$row[po_id]][$row_task[task_name]]['min_start_date']= $tna_task_update_data[$row[po_id]][$row_task[task_name]]['max_start_date'];
+						}
+						
+						if ( $tna_task_update_data[$row[po_id]][$row_task[task_name]]['min_start_date']!="0000-00-00" || $tna_task_update_data[$row[po_id]][$row_task[task_name]]['min_start_date']!="" ) $start_date=$tna_task_update_data[$row[po_id]][$row_task[task_name]]['min_start_date']; else $start_date="0000-00-00";
+						if ( $tna_task_update_data[$row[po_id]][$row_task[task_name]]['max_start_date']!="0000-00-00" || $tna_task_update_data[$row[po_id]][$row_task[task_name]]['max_start_date']!="" ) $finish_date=$tna_task_update_data[$row[po_id]][$row_task[task_name]]['max_start_date']; else $finish_date="0000-00-00";
+						
+						if($approval_array[$row_task[task_name]]=='')
+						{
+							$compl_perc=get_percent($tna_task_update_data[$row[po_id]][$row_task[task_name]]['doneqnty'], $tna_task_update_data[$row[po_id]][$row_task[task_name]]['reqqnty']); 
+							
+							if($compl_perc<$row_task[completion_percent])
+							{
+								$finish_date=$blank_date;
+							}
+						}
+						else
+						{
+							if( $tna_task_update_data[$row[po_id]][$row_task[task_name]]['noofapproved']!=$tna_task_update_data[$row[po_id]][$row_task[task_name]]['noofval']) $finish_date=$blank_date; //"0000-00-00";
+						
+						
+						}
+	
+						$process_id_up_array[]=$tna_process_list[$row[po_id]][$row_task[task_name]];
+						
+						if($tna_updated_date[$row[po_id]][$row_task[task_name]]['start'] =='0000-00-00') $tna_updated_date[$row[po_id]][$row_task[task_name]]['start'] ='';
+						if($tna_updated_date[$row[po_id]][$row_task[task_name]]['finish'] =='0000-00-00') $tna_updated_date[$row[po_id]][$row_task[task_name]]['finish'] ='';
+						
+						if( $tna_updated_date[$row[po_id]][$row_task[task_name]]['start'] !='' ) $start_date=$tna_updated_date[$row[po_id]][$row_task[task_name]]['start'];
+						if( $tna_updated_date[$row[po_id]][$row_task[task_name]]['finish'] !='' ) $finish_date=$tna_updated_date[$row[po_id]][$row_task[task_name]]['finish'];
+						
+						$data_array_tna_process_up[$tna_process_list[$row[po_id]][$row_task[task_name]]] =explode(",",("'".$start_date."','".$finish_date."'")); 
+					}
+				} // To Process Task List check
+			}
+		}
+		
+		/*		$file = 'sweater_tna_log.txt';
+				$current = file_get_contents($file);
+				$current .= "TNA-PROCESS:: Company ID: ".$cbo_company.", Date and Time: ".date("d-m-Y H:i:s",time())."\n";
+				file_put_contents($file, $current);
+		*/		
+	
+			//save---------
+			
+			 $con = connect();
+		
+			if($db_type==1 || $db_type==2 )
+			{
+				if( count($insert_string) > 0) 
+				{
+					$tna_pro_array=array_chunk($insert_string,2);
+					foreach($tna_pro_array as $dd=>$tna_pro_list)
+					{
+						$rID=sql_insert("tna_process_mst",$field_array_tna_process,implode(",",$tna_pro_list),1);
+						oci_commit($con); 
+					}
+					
+				}
+
+
+				//echo count($insert_string);die;
+
+				
+				if(count($process_id_up_array)>0) 
+				{
+					$data_array_tna_up=array_chunk($data_array_tna_process_up,100,true);
+					$id_up_array=array_chunk($process_id_up_array,100);
+					$count=count($id_up_array);
+					for ($i=0;$i<=$count;$i++)
+					{
+						$rID_up=execute_query(bulk_update_sql_statement( "tna_process_mst", "id", $field_array_tna_process_up, $data_array_tna_up[$i], array_values($id_up_array[$i] )),1);
+					}
+					oci_commit($con);
+				}
+			
+			}
+			disconnect($con);
+	
+	
+			//echo $insert_string;die;
+	
+		unset($insert_string);
+		unset($process_id_up_array);
+		unset($data_array_tna_process_up);
+		unset($po_order_details);
+
+	
+	}//end company foreach;
+
+	 
+	echo "0**".($rID || $rID_up)."**".implode(", ",$template_missing_po);
+	 
+	
+}//end tna_process;
+
+
+
+
+// Always treat the lowest template ... if not no process on that
+function get_tna_template( $remain_days, $tna_template, $buyer ) 
+{
+	global $tna_template_buyer;
+	if(count($tna_template_buyer[$buyer])>0)
+	{ 
+		$n=count($tna_template_buyer[$buyer]); 
+		for($i=0;$i<$n; $i++)
+		{ 
+			if($remain_days<$tna_template_buyer[$buyer][$i]['lead']) 
+			{
+				if( $i!=0 )
+					return $tna_template_buyer[$buyer][$i-1]['id'];
+				else
+					return "0";
+				 
+			}
+			else if( $remain_days==$tna_template_buyer[$buyer][$i]['lead'] ) 
+			{
+				return $tna_template_buyer[$buyer][$i]['id'];
+			}
+			else if($remain_days>$tna_template_buyer[$buyer][$i]['lead'] &&  $i==$n-1) 
+			{
+				return $tna_template_buyer[$buyer][$i]['id'];
+			}
+		}
+	}
+	else
+	{
+		 
+		$n=count($tna_template); 
+		for($i=0;$i<$n;$i++)
+		{
+			if( $remain_days<$tna_template[$i]['lead']) 
+			{
+				if( $i!=0 )
+					return $tna_template[$i-1]['id'];
+				else
+					return "0";
+					
+				//return $i."ss".$tna_template[$i-1]['id'];
+				/*if ($i!=0)
+				{
+					$up_day=$tna_template[$i]['lead']-$remain_days;
+					$low_day=$remain_days-$tna_template[$i-1]['lead'];
+					if ($up_day>=$low_day)
+						return $tna_template[$i-1]['id'];
+					else
+						return $tna_template[$i]['id'];
+				}
+				else
+				{
+					return $tna_template[$i]['id'];
+				}*/
+			}
+			else if($remain_days==$tna_template[$i]['lead']) 
+			{
+				return $tna_template[$i]['id'];
+			}
+			else if($remain_days>$tna_template[$i]['lead'] &&  $i==$n-1) 
+			{
+				return $tna_template[$i]['id'];
+			}
+			 
+		}
+	}
+}
+
+
+function get_percent($completed, $actual)
+{
+	return number_format((($completed*100)/$actual),0);
+}
+
+if ($action=="search_po_number______off")
+{
+  	echo load_html_head_contents("Popup Info","../../../", 1, 1, $unicode);
+	extract($_REQUEST);  
+?>
+     
+<script>
+	function js_set_value(str, str1)
+	{
+		$("#selected_job").val(str+"__"+str1);
+		parent.emailwindow.hide(); 
+	}
+</script>
+</head>
+<body>
+
+
+</head>
+
+<div align="center" style="width:100%;" >
+<form name="searchorderfrm_1"  id="searchorderfrm_1" autocomplete="off">
+	<table width="1000" cellspacing="0" cellpadding="0" border="0" class="rpt_table" align="center">
+    	<tr>
+        	<td align="center" width="100%">
+            	<table  cellspacing="0" cellpadding="0" border="0" class="rpt_table" align="center">
+                        <thead>
+                         <th width="150" colspan="3"> </th>
+                        	<th>
+                              <?
+                               echo create_drop_down( "cbo_string_search_type", 130, $string_search_type,'', 1, "-- Searching Type --" );
+                              ?>
+                            </th>
+                          <th width="150" colspan="3"> </th>
+                        </thead>
+                    <thead>                	 
+                        <th width="150">Company Name</th>
+                        <th width="150">Buyer Name</th>
+                        <th width="80">Job No</th>
+                        <th width="100">Style Ref </th>
+                        <th width="120">Order No</th>
+                        <th width="200">Ship Date Range</th>
+                        <th><input type="checkbox" value="0" onClick="set_checkvalue()" id="chk_job_wo_po">Job Without PO</th>           
+                    </thead>
+        			<tr>
+                    	<td> 
+                        <input type="hidden" id="selected_job">
+                        <input type="hidden" id="garments_nature" value="<? echo $garments_nature; ?>">
+							<? 
+								echo create_drop_down( "cbo_company_mst", 150, "select id,company_name from lib_company comp where status_active =1 and is_deleted=0 $company_cond order by company_name","id,company_name",1, "-- Select Company --", $company,"load_drop_down( 'tna_process_sweater_controller', this.value, 'load_drop_down_buyer', 'buyer_td' );" );
+							?>
+                    </td>
+                   	<td id="buyer_td">
+                     <? 
+						echo create_drop_down( "cbo_buyer_name", 172, $blank_array,'', 1, "-- Select Buyer --");
+					?>
+                    </td>
+                    <td><input name="txt_job_prifix" id="txt_job_prifix" class="text_boxes" style="width:80px"></td>
+                    <td><input name="txt_style" id="txt_style" class="text_boxes" style="width:100px"></td>
+                    <td><input name="txt_order_search" id="txt_order_search" class="text_boxes" style="width:120px"></td>
+                    <td>
+                    	<input name="txt_date_from" id="txt_date_from" class="datepicker" style="width:70px">
+					  	<input name="txt_date_to" id="txt_date_to" class="datepicker" style="width:70px">
+					</td> 
+            		<td align="center">
+                     <input type="button" name="button2" class="formbutton" value="Show" onClick="show_list_view ( document.getElementById('cbo_company_mst').value+'_'+document.getElementById('cbo_buyer').value+'_'+document.getElementById('txt_date_from').value+'_'+document.getElementById('txt_date_to').value+'_'+document.getElementById('txt_job_prifix').value+'_'+document.getElementById('cbo_year_selection').value+'_'+document.getElementById('cbo_string_search_type').value+'_'+document.getElementById('txt_order_search').value+'_'+document.getElementById('txt_style').value, 'ponumber_search_list_view', 'search_div', 'tna_process_sweater_controller', 'setFilterGrid(\'list_view\',-1)')" style="width:100px;" /></td>
+        		</tr>
+             </table>
+          </td>
+        </tr>
+        <tr>
+            <td  align="center" height="40" valign="middle">
+             <? 
+				echo create_drop_down( "cbo_year_selection", 70, $year,"", 1, "-- Select --", date('Y'), "",0 );		
+				echo load_month_buttons();  
+			?>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top" id="search_div"></td>
+        </tr>
+    </table>    
+    </form>
+   </div>
+   
+</body>           
+<script src="../../../includes/functions_bottom.js" type="text/javascript"></script>
+<script>
+	var buyer='<? echo $buyer; ?>';
+	load_drop_down( 'tna_process_sweater_controller', <? echo $company;?>, 'load_drop_down_buyer', 'buyer_td' );
+	document.getElementById('cbo_buyer').value=buyer;
+</script>
+</html>
+<?
+exit();
+}
+
+if ($action=="ponumber_search_list_view_____off")
+{
+ list($company,$buyer,$start_date,$end_date,$job_no,$year,$surch_by,$order_no,$style_no)=explode('_',$data);
+
+
+
+ if($buyer==0 && $job_no=='' && $style_no=='' && $order_no=='' && ($start_date=='' and $end_date=='')){
+	 exit('<h1 style="color:blue;">Please Select Date Range.</h1>');
+ }
+ 
+ 
+ $company_array=return_library_array( "select id, company_name from lib_company",'id','company_name');
+ $buyer_array=return_library_array( "select id, buyer_name from lib_buyer",'id','buyer_name');
+ if($buyer!=0) $buyer_con="and a.buyer_name='$buyer'"; else $buyer_con="";
+ if($surch_by==1)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no='".trim($job_no)."'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number='".trim($order_no)."'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no='".trim($style_no)."'"; else $style_no_con="";
+ }
+ else if($surch_by==2)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no like '".trim($job_no)."%'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number like '".trim($order_no)."%'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no like '".trim($style_no)."%'"; else $style_no_con="";
+ }
+ else if($surch_by==3)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no like '%".trim($job_no)."'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number like '%".trim($order_no)."'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no like '%".trim($style_no)."'"; else $style_no_con="";
+ }
+ else if($surch_by==4 || $surch_by==0)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no like '%".trim($job_no)."%'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number like '%".trim($order_no)."%'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no like '%".trim($style_no)."%'"; else $style_no_con="";
+ }
+ 
+	$start_date=str_replace("'","",$start_date);
+	$end_date=str_replace("'","",$end_date); 
+	if($start_date!="" && $end_date!="")
+	{
+		if($db_type==0)
+		{
+		$date_cond  = " and b.pub_shipment_date between'".change_date_format($start_date, "yyyy-mm-dd", "-")."' and '".change_date_format($end_date, "yyyy-mm-dd", "-")."'";
+		}
+		
+		if($db_type==2)
+		{
+		$date_cond  = " and b.pub_shipment_date between'".change_date_format($start_date, "yyyy-mm-dd", "-",1)."' and '".change_date_format($end_date, "yyyy-mm-dd", "-",1)."'";
+		}
+	}
+	else
+	{
+	$date_cond  = "";	
+	}
+ ?>
+        <table width="802" cellspacing="0" cellpadding="0" border="1" rules="all" class="rpt_table" id="">
+            <thead>
+                <th width="40" height="34">SL</th>
+                <th width="130">Company Name</th>
+                <th width="130">Buyer Name</th>
+                <th width="130">PO Number/Style Reff</th>
+                <th width="110">Po Receive Date</th>
+                <th width="150">Publish Shipment Date</th>
+                <th>Lead Time</th>
+            </thead>
+        </table>
+        <div style="width:802px; max-height:250px; overflow-y:scroll"> 
+        <table width="780" cellspacing="0" cellpadding="0" border="1" rules="all" class="rpt_table" id="tbl_list_search">
+		<?
+			if($db_type==0) $lead_time="DATEDIFF(b.pub_shipment_date,b.po_received_date) as  date_diff";
+			if($db_type==2) $lead_time="(b.pub_shipment_date-b.po_received_date) as  date_diff";
+			
+			$sql="select a.company_name,a.buyer_name,b.po_number,b.id,b.po_received_date,b.pub_shipment_date,$lead_time from   wo_po_details_master a,wo_po_break_down b where a.job_no=b.job_no_mst and a.company_name='$company' and a.status_active=1 and b.status_active=1 and a.is_deleted=0 and b.is_deleted=0 $job_no_con $buyer_con $order_no_con $style_no_con $date_cond";
+			$sql_result=sql_select($sql);
+			$i=1;
+			foreach($sql_result as $row){
+			$bgcolor=($i%2==0)?"#E9F3FF":"#FFFFFF";
+			?>
+              <tr bgcolor="<? echo $bgcolor; ?>" onClick="js_set_value('<?  echo $row[csf("po_number")];  ?>',<?  echo $row[csf("id")];  ?>)" style="cursor:pointer;">
+                   <td width="40" align="center" ><? echo $i; ?></td>
+                   <td width="130" align="center"><? echo $company_array[$row[csf("company_name")]]; ?></td>
+                   <td width="130" align="center"><? echo $buyer_array[$row[csf("buyer_name")]]; ?></td>
+                   <td width="130" align="center" id="txt_style_reff" ><? echo $row[csf("po_number")]; ?></td>
+                   <td width="110" align="center" id="txt_style_reff" ><? echo change_date_format($row[csf("po_received_date")]); ?></td>
+                   <td width="150" align="center" id="txt_style_reff" ><? echo change_date_format($row[csf("pub_shipment_date")]); ?></td>
+                   <td  align="center" id="txt_style_reff" ><? echo $row[csf("date_diff")]; ?></td>
+              </tr>
+    	<?
+            $i++;   
+        }
+        ?>
+        </table>
+    </div>
+<?       
+exit();
+}
+
+
+
+if ($action=="search_po_number")
+{
+  	echo load_html_head_contents("Popup Info","../../../", 1, 1, $unicode);
+	extract($_REQUEST);  
+?>
+     
+<script>
+
+		var selected_id = new Array();
+		var selected_name = new Array();
+		 
+		function check_all_data(totalRow){
+			
+			if(document.getElementById('check_all').checked){ 
+				var returnFlag=0;
+				for( var i = 1; i < totalRow; i++ ) {
+					if(document.getElementById( 'tr_'+$('#po_'+i).val()).style.backgroundColor!='yellow'){
+						js_set_value($('#po_'+i).val());
+						returnFlag=1;
+					}
+				}
+				if(returnFlag==1){return;}
+			}
+			else
+			{
+				var returnFlag=0;
+				for( var i = 1; i < totalRow; i++ ) {
+					if(document.getElementById( 'tr_'+$('#po_'+i).val()).style.backgroundColor=='yellow'){
+						js_set_value($('#po_'+i).val());
+						returnFlag=1;
+					}
+				}
+				if(returnFlag==1){return;}
+			}
+			
+			
+			for( var i = 1; i < totalRow; i++ ) {
+				js_set_value($('#po_'+i).val());
+			}
+			
+		}
+		
+		function toggle( x, origColor ) {
+			var newColor = 'yellow';
+			if ( x.style ) {
+				x.style.backgroundColor = ( newColor == x.style.backgroundColor )? origColor : newColor;
+			}
+		}
+		
+		function js_set_value(po_id) {
+			po_id=po_id*1;
+			if ( $('#tr_'+po_id).is(':visible') ) {
+			
+				var po_no=$('#tr_'+po_id).find("td p").eq(1).html();
+				
+				toggle( document.getElementById( 'tr_' + po_id ), '#E9F3FF' );
+				
+				if( jQuery.inArray(po_id, selected_id ) == -1 ) {
+					selected_id.push(po_id);
+					selected_name.push(po_no);
+					
+				}
+				else {
+					for( var i = 0; i < selected_id.length; i++ ) {
+						if( selected_id[i] == po_id) break;
+					}
+					selected_id.splice( i, 1 );
+					selected_name.splice( i, 1 );
+				}
+				
+				var id ='' 
+				var name = '';
+				for( var i = 0; i < selected_id.length; i++ ) {
+					id += selected_id[i] + ',';
+					name += selected_name[i] + ',';
+				}
+				id = id.substr( 0, id.length - 1 );
+				name = name.substr( 0, name.length - 1 );
+				
+				$('#txt_selected_id').val( id );
+				$('#txt_selected_name').val( name );
+			
+			
+				var totalRow =  $('#tbl_list_search tbody tr:visible').length-1;
+				if(selected_id.length == totalRow){
+					document.getElementById("check_all").checked = true;
+				}
+				else{
+					document.getElementById("check_all").checked = false;
+				}
+			}
+		
+		}
+		
+		function generate_list_view(dataStr){
+			var dataArr=dataStr.split('_');
+			var poNoSplitArr=dataArr[7].split('+');
+			dataArr[7]=(poNoSplitArr.join('*'));
+			show_list_view ( dataArr[0]+'_'+dataArr[1]+'_'+dataArr[2]+'_'+dataArr[3]+'_'+dataArr[4]+'_'+dataArr[5]+'_'+dataArr[6]+'_'+dataArr[7]+'_'+dataArr[8], 'ponumber_search_list_view', 'search_div', 'tna_process_sweater_controller', 'setFilterGrid(\'tbl_list_search\',-1)');
+		}
+		
+		
+		
+     </script>
+
+
+</head>
+<body>
+</head>
+
+<div align="center" style="width:100%;" >
+<form name="searchorderfrm_1"  id="searchorderfrm_1" autocomplete="off">
+	<table width="100%" cellspacing="0" cellpadding="0" border="0" align="center">
+    	<tr>
+        	<td align="center">
+            	<table cellspacing="0" cellpadding="0"  border="1" rules="all" class="rpt_table" align="center">
+                        <thead>
+                         <th colspan="3"></th>
+                        	<th>
+                              <?
+                               echo create_drop_down( "cbo_string_search_type", 110, $string_search_type,'', 1, "-- Searching Type --" );
+                              ?>
+                            </th>
+                          <th colspan="3"></th>
+                        </thead>
+                    <thead>                	 
+                        <th width="150">Company Name</th>
+                        <th width="150">Buyer Name</th>
+                        <th width="80">Job No</th>
+                        <th width="100">Style Ref </th>
+                        <th width="120">Order No</th>
+                        <th width="170">Ship Date Range</th>
+                        <th><input type="checkbox" value="0" onClick="set_checkvalue()" id="chk_job_wo_po">Job Without PO</th>           
+                    </thead>
+                    
+        			<tr>
+                    	<td> 
+                        <input type="hidden" id="garments_nature" value="<? echo $garments_nature; ?>">
+							<? 
+								echo create_drop_down( "cbo_company_mst", 150, "select id,company_name from lib_company comp where status_active =1 and is_deleted=0 $company_cond order by company_name","id,company_name",1, "-- Select Company --", $company,"load_drop_down( 'tna_process_sweater_controller', this.value, 'load_drop_down_buyer', 'buyer_td' );" );
+							?>
+                    </td>
+                   	<td id="buyer_td">
+                     <? 
+						echo create_drop_down( "cbo_buyer_name", 172, $blank_array,'', 1, "-- Select Buyer --");
+					?>
+                    </td>
+                    <td align="center"><input name="txt_job_prifix" id="txt_job_prifix" class="text_boxes" style="width:80px"></td>
+                    <td align="center"><input name="txt_style" id="txt_style" class="text_boxes" style="width:100px"></td>
+                    <td align="center"><input name="txt_order_search" id="txt_order_search" class="text_boxes" style="width:120px"></td>
+                    <td align="center">
+                    	<input name="txt_date_from" id="txt_date_from" class="datepicker" style="width:70px">
+					  	<input name="txt_date_to" id="txt_date_to" class="datepicker" style="width:70px">
+					</td> 
+            		<td align="center">
+                    <input type="button" name="button2" class="formbutton" value="Show" onClick="generate_list_view ( document.getElementById('cbo_company_mst').value+'_'+document.getElementById('cbo_buyer').value+'_'+document.getElementById('txt_date_from').value+'_'+document.getElementById('txt_date_to').value+'_'+document.getElementById('txt_job_prifix').value+'_'+document.getElementById('cbo_year_selection').value+'_'+document.getElementById('cbo_string_search_type').value+'_'+document.getElementById('txt_order_search').value+'_'+document.getElementById('txt_style').value)" style="width:100px;" /> 
+                     
+                     </td>
+        		</tr>
+                
+                <tr>
+                    <td colspan="7"  align="center" >
+                     <? 
+                        echo create_drop_down( "cbo_year_selection", 70, $year,"", 1, "-- Select --", date('Y'), "",0 );		
+                        echo load_month_buttons();  
+                    ?>
+                    
+                        <input type="hidden" id="txt_selected_id">
+                        <input type="hidden" id="txt_selected_name">
+                    
+                    </td>
+                </tr>
+                
+                
+             </table>
+          </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top" id="search_div"></td>
+        </tr>
+    </table>    
+    </form>
+   </div>
+   
+</body>           
+<script src="../../../includes/functions_bottom.js" type="text/javascript"></script>
+<script>
+	var buyer='<? echo $buyer; ?>';
+	load_drop_down( 'tna_process_sweater_controller', <? echo $company;?>, 'load_drop_down_buyer', 'buyer_td' );
+	document.getElementById('cbo_buyer').value=buyer;
+</script>
+</html>
+<?
+exit();
+}
+
+if ($action=="ponumber_search_list_view")
+{
+
+ list($company,$buyer,$start_date,$end_date,$job_no,$year,$surch_by,$order_no,$style_no)=explode('_',$data);
+ $order_no=str_replace('*','+',$order_no);
+ 
+ $company_array=return_library_array( "select id, company_name from lib_company",'id','company_name');
+ $buyer_array=return_library_array( "select id, buyer_name from lib_buyer",'id','buyer_name');
+ 
+ if($buyer==0 && $style_no=='' && $job_no=='' && $order_no=='' && str_replace("'","",$start_date)==''){
+	 echo "<h1>Please Select Ship Date</h1>";exit();
+ }
+ 
+
+ 
+ if($buyer!=0) $buyer_con="and a.buyer_name='$buyer'"; else $buyer_con="";
+ 
+ if($surch_by==1)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no='".trim($job_no)."'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number='".trim($order_no)."'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no='".trim($style_no)."'"; else $style_no_con="";
+ }
+ else if($surch_by==2)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no like '".trim($job_no)."%'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number like '".trim($order_no)."%'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no like '".trim($style_no)."%'"; else $style_no_con="";
+ }
+ else if($surch_by==3)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no like '%".trim($job_no)."'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number like '%".trim($order_no)."'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no like '%".trim($style_no)."'"; else $style_no_con="";
+ }
+ else if($surch_by==4 || $surch_by==0)
+ {
+	 if($job_no!="") $job_no_con="and a.job_no like '%".trim($job_no)."%'"; else $job_no_con="";
+	 if($order_no!="") $order_no_con="and b.po_number like '%".trim($order_no)."%'"; else $order_no_con="";
+	 if($style_no!="") $style_no_con="and a.style_ref_no like '%".trim($style_no)."%'"; else $style_no_con="";
+ }
+ 
+	$start_date=str_replace("'","",$start_date);
+	$end_date=str_replace("'","",$end_date); 
+	if($start_date!="" && $end_date!="")
+	{
+		if($db_type==0)
+		{
+		$date_cond  = " and b.pub_shipment_date between'".change_date_format($start_date, "yyyy-mm-dd", "-")."' and '".change_date_format($end_date, "yyyy-mm-dd", "-")."'";
+		}
+		
+		if($db_type==2)
+		{
+		$date_cond  = " and b.pub_shipment_date between'".change_date_format($start_date, "yyyy-mm-dd", "-",1)."' and '".change_date_format($end_date, "yyyy-mm-dd", "-",1)."'";
+		}
+	}
+	else
+	{
+	$date_cond  = "";	
+	}
+ ?>
+        <table width="802" cellspacing="0" cellpadding="0" border="1" rules="all" class="rpt_table" id="">
+            <thead>
+                <th width="40" height="34">SL</th>
+                <th width="130">Company Name</th>
+                <th width="130">Buyer Name</th>
+                <th width="130">PO Number</th>
+                <th width="130">Style Ref.</th>
+                <th width="80">Po Receive Date</th>
+                <th width="80">Publish Shipment Date</th>
+                <th>Lead Time</th>
+            </thead>
+        </table>
+        <div style="width:802px; max-height:250px; overflow-y:scroll"> 
+        <table width="780" align="left" cellspacing="0" cellpadding="0" border="1" rules="all" class="rpt_table" id="tbl_list_search">
+		<?
+			if($db_type==0) $lead_time="DATEDIFF(b.pub_shipment_date,b.po_received_date) as  date_diff";
+			if($db_type==2) $lead_time="(b.pub_shipment_date-b.po_received_date) as  date_diff";
+			
+			$sql="select a.company_name,a.buyer_name,a.style_ref_no,b.po_number,b.id,b.po_received_date,b.pub_shipment_date,$lead_time from wo_po_details_master a,wo_po_break_down b where a.job_no=b.job_no_mst and a.company_name='$company' and a.status_active=1 and b.status_active=1 and a.is_deleted=0 and b.is_deleted=0 $job_no_con $buyer_con $order_no_con $style_no_con $date_cond";
+			$sql_result=sql_select($sql);
+			$i=1;
+			foreach($sql_result as $row){
+			$bgcolor=($i%2==0)?"#E9F3FF":"#FFFFFF";
+			?>
+             <tbody>
+              <tr id="tr_<? echo $row[csf("id")]; ?>" bgcolor="<? echo $bgcolor; ?>" onClick="js_set_value(<? echo $row[csf("id")]; ?>)" style="cursor:pointer;">
+                   <td width="40" align="center" ><? echo $i; ?><input type="hidden" id="po_<? echo $i; ?>" value="<? echo $row[csf("id")]; ?>" /></td>
+                   <td width="130"><? echo $company_array[$row[csf("company_name")]]; ?></td>
+                   <td width="130"><p><? echo $buyer_array[$row[csf("buyer_name")]]; ?></p></td>
+                   <td width="130"><p><? echo $row[csf("po_number")]; ?></p></td>
+                   <td width="130"><p><? echo $row[csf("style_ref_no")]; ?></p></td>
+                   <td width="80" align="center"><? echo change_date_format($row[csf("po_received_date")]); ?></td>
+                   <td width="80" align="center"><? echo change_date_format($row[csf("pub_shipment_date")]); ?></td>
+                   <td  align="center"><? echo $row[csf("date_diff")]; ?></td>
+              </tr>
+    	<?
+            $i++;   
+        }
+        ?>
+        </tbody>
+        </table>
+
+    </div>
+        <table width="750">
+        	<td><input onClick="check_all_data(<? echo $i;?>)" type="checkbox" id="check_all"> All Select/Unselect</td>
+        	<td align="center"><input type="button" class="formbutton" value="Close" onClick="parent.emailwindow.hide();" style="width:100px;" />
+            </td>
+        </table>
+    
+<?       
+exit();
+}
+
+
+
+
+
+
+
+
+
+?>
+

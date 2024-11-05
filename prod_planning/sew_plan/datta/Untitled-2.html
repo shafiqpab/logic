@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script>
+function get_data()
+{
+	var o=$('#nnn').attr('data_set');
+	//alert(o);
+	 if (typeof o == 'string') {
+		   var d=eval('('+o+')');
+		   
+		  if (typeof d == 'object') {
+			  alert(d.data_set[0].id);
+		  }
+	 }
+}
+</script>
+</head>
+
+<body>
+<div data_set="{ data_set:[{ id: 'user', msg: 'Member not found', session_id: 'ssss123564' }] }" onclick="get_data()" id="nnn">click</div>
+</body>
+</html>
+
+CREATE OR REPLACE Function FIND_IN_SET
+   ( vSET IN varchar2, vToFind IN VARCHAR2 )
+   RETURN number
+IS
+    rRESULT number;
+BEGIN
+
+rRESULT := -1;
+SELECT COUNT(*) INTO rRESULT FROM DUAL WHERE vSET LIKE ( vToFind || ',%' ) OR vSET = vToFind OR vSET LIKE ('%,' || vToFind || ',%') OR vSET LIKE ('%,' || vToFind);
+
+RETURN rRESULT;
+
+END;
+
+
+
+SELECT * FROM MyTable WHERE FIND_IN_SET (categories, 'c2' ) > 0;

@@ -1,0 +1,649 @@
+<?
+/*-------------------------------------------- Comments
+Purpose			: 	This form will create Style Wise Finich Fabric Stock Report
+
+Functionality	:
+JS Functions	:
+Created by		:	Aziz
+Creation date 	: 	18-02-2017
+Updated by 		: 	Aziz
+Update date		:
+QC Performed BY	:
+QC Date			:
+Comments		:
+*/
+
+session_start();
+if( $_SESSION['logic_erp']['user_id'] == "" ) header("location:login.php");
+
+require_once('../../../includes/common.php');
+extract($_REQUEST);
+$_SESSION['page_permission']=$permission;
+//--------------------------------------------------------------------------------------------------------------------
+echo load_html_head_contents("Order Wise Finich Fabric Stock Report","../../../", 1, 1, $unicode,1,1);
+?>
+<script>
+	var permission='<? echo $permission; ?>';
+	if( $('#index_page', window.parent.document).val()!=1) window.location.href = "../logout.php";
+
+	var tableFilterShow_Knit =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_today_rtn_qnty","value_total_today_trans_in_qnty","value_total_rec_qty","value_total_rec_ret_qty","value_total_rec_trns_qty","value_total_rec_bal","value_recv_today_issue_qty","value_total_today_issue_rcv_rtn_qty","value_recv_total_today_issue_trns_out_qnty","value_total_issue_qty","value_total_issue_ret_qty","value_total_issue_trns_qty","value_total_stock","value_total_store_qty"],
+		col: [10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+
+	var tableFilters =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_today_rtn_qnty","value_total_today_trans_in_qnty","value_total_rec_qty","value_total_rec_ret_qty","value_total_rec_trns_qty","value_total_rec_bal","value_recv_today_issue_qty","value_total_today_issue_rcv_rtn_qty","value_recv_total_today_issue_trns_out_qnty","value_total_issue_qty","value_total_issue_ret_qty","value_total_issue_trns_qty","value_total_stock","value_total_store_qty"],
+		//col: [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+		col: [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+
+	var tableFilters2 =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_rec_qty","value_total_rec_bal","value_recv_today_issue_qty","value_total_issue_qty","value_total_stock"],
+		//col: [8,9,10,11,12,13,14],
+		col: [10,11,12,13,14,15,16],
+		operation: ["sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+
+	var tableFilters3 =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_rec_qty","value_total_rec_bal","value_total_rec_amount","value_recv_today_issue_qty","value_total_issue_qty","value_total_iss_amount","value_total_stock","value_total_StockValue"],
+		//col: [8,9,10,11,12,13,14],
+		col: [9,10,11,12,14,15,16,18,19,21],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+	var tableFilters4 =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_rec_qty","value_total_rec_bal","value_total_rec_amount","value_recv_today_issue_qty","value_total_issue_qty","value_total_iss_amount","value_total_stock","value_total_StockValue"],
+		//col: [12,13,14,15,17,18,19,21,22,24],
+		col: [11,12,13,14,16,17,18,20,21,23],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+	var tableFilters5 =
+	{
+		//col_15: "none",
+		col_operation: {
+		id: ["value_total_req_qty","value_issue_tot_val","value_total_today_rec_qty","value_total_rec_qty","value_total_recv_val","value_total_rec_bal","value_recv_today_issue_qty","value_total_issue_qty","value_total_stock","value_total_stock_value"],
+		col: [11,12,13,15,17,18,19,20,21,22],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+	var tableFilters6 =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_today_rtn_qnty","value_total_today_trans_in_qnty","value_total_rec_qty","value_total_rec_ret_qty","value_total_rec_trns_qty","value_total_rec_bal","value_recv_today_issue_qty","value_total_today_issue_rcv_rtn_qty","value_recv_total_today_issue_trns_out_qnty","value_total_issue_qty","value_total_issue_ret_qty","value_total_issue_trns_qty","value_total_stock"],
+		//col: [8,9,10,11,12,13,14],
+		col: [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+	var tableFilters9 =
+	{
+		col_operation: {
+		id: ["value_total_req_qty","value_total_today_rec_qty","value_total_rec_qty","value_total_rec_bal","value_total_rec_rtn_qty","value_total_actual_rec_qty","value_total_transfer_rec_qty","value_total_transfer_iss_qty","value_total_rec_amount","value_recv_today_issue_qty","value_total_issue_qty","value_total_issue_rtn_qty","value_total_actual_issue_qty","value_total_iss_amount","value_total_stock","value_total_StockValue"],
+		//col: [12,13,14,15,16,17,19,20,21,22,23,25,26,28],
+		col: [12,13,14,15,16,17,18,19,21,22,23,24,25,27,28,30],
+		operation: ["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"],
+		write_method: ["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"]
+		}
+	}
+
+	var btn_type=1;
+	function generate_report(type)
+	{
+		if(type == "7")
+		{
+			if( form_validation('cbo_company_id*txt_search_comm','Company Name*Fill Reference')==false )
+			{
+				return;
+			}
+		}
+		else
+		{
+			if( form_validation('cbo_company_id*cbo_report_type','Company Name*Report Type')==false )
+			{
+				return;
+			}
+		}
+
+
+		var report_title=$( "div.form_caption" ).html();
+		if(type == "2")
+		{
+			var data="action=report_generate_uom"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_uom*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_store_name*cbo_shipment_status',"../../../")+'&report_title='+report_title;
+			btn_type=2;
+		}
+		else if(type == "3")
+		{
+			var data="action=report_generate2"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_shipment_status*cbo_store_name',"../../../")+'&report_title='+report_title;
+			btn_type=3;
+		}
+		else if(type == "4")
+		{
+			var data="action=report_generate3"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm',"../../../")+'&report_title='+report_title;
+			btn_type=4;
+		}
+		else if(type == "5")
+		{
+			var data="action=report_generate4"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_shipment_status*cbo_store_name',"../../../")+'&report_title='+report_title;
+			btn_type=5;
+		}
+		else if(type == "6")
+		{
+			var data="action=report_generate5"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm',"../../../")+'&report_title='+report_title;
+			btn_type=6;
+		}
+		else if(type == "7")
+		{
+			var data="action=report_generate6"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm',"../../../")+'&report_title='+report_title;
+			btn_type=7;
+		}
+		else if(type == "8")
+		{
+			var data="action=report_generate7"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_shipment_status',"../../../")+'&report_title='+report_title;
+			btn_type=8;
+		}
+		else if(type == "9")
+		{
+			var data="action=report_generate8"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm',"../../../")+'&report_title='+report_title;
+			btn_type=9;
+		}
+		else if(type == "10"){
+			var data="action=report_generate444"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_store_name*cbo_shipment_status',"../../../")+'&report_title='+report_title;
+			btn_type=10;
+		}
+		else if(type == "11")
+		{
+			var data="action=report_generate11"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm',"../../../")+'&report_title='+report_title;
+			btn_type=11;
+		}
+		else if(type == "12")
+		{
+			var data="action=report_generate12"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_store_name*cbo_shipment_status*cbo_sock_for',"../../../")+'&report_title='+report_title;
+			btn_type=12;
+		}
+		else
+		{
+			var data="action=report_generate"+get_submitted_data_string('cbo_company_id*txt_date_from*cbo_buyer_id*cbo_year*cbo_report_type*cbo_search_by*cbo_value_range_by*txt_search_comm*cbo_store_name*cbo_shipment_status*cbo_sock_for',"../../../")+'&report_title='+report_title;
+			btn_type=1;
+		}
+
+		//alert (data);
+		freeze_window(3);
+		http.open("POST","requires/style_wise_finish_fabric_stock_controller.php",true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send(data);
+		http.onreadystatechange = generate_report_reponse;
+	}
+
+	function generate_report_reponse()
+	{
+		if(http.readyState == 4)
+		{
+			var ReportType = $("#cbo_report_type").val();
+			var reponse=trim(http.responseText).split("**");
+			$("#report_container2").html(reponse[0]);
+			document.getElementById('report_container').innerHTML='<a href="requires/'+reponse[1]+'" style="text-decoration:none"><input type="button" value="Excel Preview" name="excel" id="excel" class="formbutton" style="width:100px"/></a>&nbsp;&nbsp;<input type="button" onclick="new_window()" value="Print Preview" name="Print" class="formbutton" style="width:100px"/>';
+			var cbo_presentation=$('#cbo_presentation').val();
+			if(btn_type==1)
+			{
+				if(ReportType==1)
+				{
+					setFilterGrid("table_body",-1,tableFilterShow_Knit);
+				}
+				else
+				{
+					setFilterGrid("table_body",-1,tableFilters2);
+				}
+			}
+			if(btn_type==3)
+			{
+				if(ReportType==1)
+				{
+					setFilterGrid("table_body",-1,tableFilters);
+				}
+				else
+				{
+					setFilterGrid("table_body",-1,tableFilters3);
+				}
+			}
+			if(btn_type==4)
+			{
+				if(ReportType==1)
+				{
+					setFilterGrid("table_body",-1,tableFilters);
+				}
+				else
+				{
+					setFilterGrid("table_body",-1,tableFilters4);
+				}
+			}
+			if(btn_type==5)
+			{
+				if(ReportType==1)
+				{
+					//setFilterGrid("table_body",-1,tableFilters);
+				}
+				else
+				{
+					setFilterGrid("table_body",-1,tableFilters5);
+				}
+			}
+			if(btn_type==6)
+			{
+				if(ReportType==1)
+				{
+					setFilterGrid("table_body",-1,tableFilters);
+				}
+				else
+				{
+					setFilterGrid("table_body",-1,tableFilters6);
+				}
+			}
+
+			if(btn_type==8)
+			{
+				if(ReportType==1)
+				{
+					if(ReportType==1)
+					{
+						var add_ids =""; var add_operations = ""; var add_methods = ""; var add_cols = ""; var colnumber=0;
+						if(reponse[3] !="")
+						{
+							for (let i = 1; i <= reponse[3]; i++) {
+								add_ids += ', "value_total_store_qty' + i +'"';
+								add_operations += ', "sum"';
+								add_methods += ', "innerHTML"';
+								colnumber = 29 + i;
+								add_cols += ',' + colnumber;
+							}
+						}
+						var f_cols = "[15,16,17,18,19,20,21,22,23,24,25,26,27,28,29" + add_cols + "]" ;
+						var f_operations = '["sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum","sum"' +add_operations+ "]" ;
+						var f_methods = '["innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML","innerHTML"' +add_methods+ "]";
+						var f_ids = '["value_total_req_qty","value_total_today_rec_qty","value_total_today_rtn_qnty","value_total_today_trans_in_qnty","value_total_rec_qty","value_total_rec_ret_qty","value_total_rec_trns_qty","value_total_rec_bal","value_recv_today_issue_qty","value_total_today_issue_rcv_rtn_qty","value_recv_total_today_issue_trns_out_qnty","value_total_issue_qty","value_total_issue_ret_qty","value_total_issue_trns_qty","value_total_stock"' + add_ids+ "]";
+						
+						var tableFilters8 =
+						{
+							col_operation: {
+							id: eval(f_ids),
+							col: eval(f_cols),
+							operation: eval(f_operations),
+							write_method: eval(f_methods)
+							}
+						}
+					}
+					setFilterGrid("table_body",-1,tableFilters8);
+				}
+			}
+			
+			if(btn_type==9)
+			{
+				if(ReportType==1)
+				{
+					setFilterGrid("table_body",-1,tableFilters);
+				}
+				else
+				{
+					setFilterGrid("table_body",-1,tableFilters9);//woven
+				}
+			}
+
+			show_msg('3');
+			release_freezing();
+		}
+	}
+
+	function new_window()
+	{
+		document.getElementById('scroll_body').style.overflow="auto";
+		document.getElementById('scroll_body').style.maxHeight="none";
+		$('#table_body tr:first').hide();
+		var w = window.open("Surprise", "#");
+		var d = w.document.open();
+		d.write ('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">'+
+	'<html><head><title></title><link rel="stylesheet" href="../../../css/style_common.css" type="text/css" media="print" /></head><body>'+document.getElementById('report_container2').innerHTML+'</body</html>');
+		d.close();
+
+		document.getElementById('scroll_body').style.overflowY="scroll";
+		document.getElementById('scroll_body').style.maxHeight="380px";
+		$('#scroll_body tr:first').show();
+	}
+
+	function openmypage_job(search_type)
+	{
+		if( form_validation('cbo_company_id','Company Name')==false )
+		{
+			return;
+		}
+		var companyID = $("#cbo_company_id").val();
+		var buyer_name = $("#cbo_buyer_id").val();
+		var cbo_year_id = $("#cbo_year").val();
+		var page_link='requires/style_wise_finish_fabric_stock_controller.php?action=job_no_popup2&companyID='+companyID+'&buyer_name='+buyer_name+'&cbo_year_id='+cbo_year_id+'&search_type='+search_type;
+
+		if(search_type==1)
+			var title='Job No Search';
+		else if(search_type==2)
+			var title='Order No Search';
+		else if(search_type==3)
+			var title='Booking No Search';
+
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=650px,height=400px,center=1,resize=1,scrolling=0','../../');
+		emailwindow.onclose=function()
+		{
+			var theform=this.contentDoc.forms[0];
+			var job_no=this.contentDoc.getElementById("hide_job_no").value;
+			var job_id=this.contentDoc.getElementById("hide_job_id").value;
+			if(search_type==1)
+			{
+				$('#txt_search_comm').val(job_no);
+				$('#txt_job_id').val(job_id);
+			}
+			/*else if(search_type==2)
+			{
+				$('#txt_style_ref_no').val(job_no);
+				$('#txt_search_comm').val(job_id);
+			}*/
+		}
+	}
+
+	function openmypage_order()
+	{
+		if( form_validation('cbo_company_id','Company Name')==false )
+		{
+			return;
+		}
+		var data=document.getElementById('cbo_company_id').value+'_'+document.getElementById('cbo_buyer_id').value+'_'+document.getElementById('txt_job_no').value;
+		//alert (data);
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe','requires/style_wise_finish_fabric_stock_controller.php?action=order_no_popup&data='+data,'Order No Popup', 'width=700px,height=420px,center=1,resize=0','../../')
+
+		emailwindow.onclose=function()
+		{
+			var theemail=this.contentDoc.getElementById("order_no_id");
+			var theemailv=this.contentDoc.getElementById("order_no_val");
+			var response=theemail.value.split('_');
+			if (theemail.value!="")
+			{
+				freeze_window(5);
+				document.getElementById("txt_order_id").value=theemail.value;
+			    document.getElementById("txt_order_no").value=theemailv.value;
+				release_freezing();
+			}
+		}
+	}
+	function openmypageShow6(po_id,prod_id,color,type,action,batchId,job_no,buyer,style_ref_no,internalref,determination,itemdesc,gsm,dia)
+	{
+		var companyID = $("#cbo_company_id").val();
+
+		var popup_width='1270px';
+
+
+		prod_id=encodeURIComponent(prod_id);
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'requires/style_wise_finish_fabric_stock_controller.php?companyID='+companyID+'&po_id='+po_id+'&prod_id='+prod_id+'&job_no='+job_no+'&color='+color+'&type='+type+'&action='+action+'&style_ref_no='+style_ref_no+'&internalref='+internalref+'&buyer='+buyer+'&batchId='+batchId+'&determination='+determination+'&itemdesc='+itemdesc+'&gsm='+gsm+'&dia='+dia, 'Details Veiw', 'width='+popup_width+', height=300px,center=1,resize=0,scrolling=0','../../');
+	}
+	function openmypage(po_id,prod_id,color,from_date,type,action,style_ref_no,rate,rpt_btn,batchId,storeId)
+	{
+		var companyID = $("#cbo_company_id").val();
+		if(type==0)
+		{
+			popup_width='1270px';
+		}
+		else if(type==1)
+		{
+			popup_width='1395px';
+		}
+		else if(type==2)
+		{
+			popup_width='1150px';
+		}
+		else if(type==3)
+		{
+			popup_width='1000px';
+		}
+		else if(type==4)
+		{
+			popup_width='885px';
+		}
+		else if(type==5)
+		{
+			popup_width='1430px';
+		}
+		else if(type==6)
+		{
+			popup_width='885px';
+		}
+		else if(type==8)
+		{
+			popup_width='1170px';
+		}
+		else
+		{
+			var popup_width='600px';
+		}
+
+		prod_id=encodeURIComponent(prod_id);
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'requires/style_wise_finish_fabric_stock_controller.php?companyID='+companyID+'&po_id='+po_id+'&prod_id='+prod_id+'&from_date='+from_date+'&color='+color+'&type='+type+'&action='+action+'&style_ref_no='+style_ref_no+'&rate='+rate+'&rpt_btn='+rpt_btn+'&batchId='+batchId, 'Details Veiw', 'width='+popup_width+', height=300px,center=1,resize=0,scrolling=0','../../');
+	}
+	function openmypage9(po_id,prod_id,color,from_date,type,action,style_ref_no,rate,rpt_btn,batchId)
+	{
+		var companyID = $("#cbo_company_id").val();
+		if(type==1)
+		{
+			popup_width='1395px';
+		}
+		else if(type==5)
+		{
+			popup_width='1430px';
+		}
+		prod_id=encodeURIComponent(prod_id);
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'requires/style_wise_finish_fabric_stock_controller.php?companyID='+companyID+'&po_id='+po_id+'&prod_id='+prod_id+'&from_date='+from_date+'&color='+color+'&type='+type+'&action='+action+'&style_ref_no='+style_ref_no+'&rate='+rate+'&rpt_btn='+rpt_btn+'&batchId='+batchId, 'Details Veiw', 'width='+popup_width+', height=300px,center=1,resize=0,scrolling=0','../../');
+	}
+
+	function openmypage_req_qnty(po_id,prod_id,color,from_date,job_key,poID,desc_key,type,action,style_ref_no)
+	{
+		var companyID = $("#cbo_company_id").val();
+			//alert(desc_key);
+		var popup_width='1050px';
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'requires/style_wise_finish_fabric_stock_controller.php?companyID='+companyID+'&po_id='+po_id+'&prod_id='+prod_id+'&from_date='+from_date+'&job_key='+job_key+'&poID='+poID+'&desc_key='+desc_key+'&color='+color+'&type='+type+'&action='+action+'&style_ref_no='+style_ref_no, 'Details Veiw', 'width='+popup_width+', height=300px,center=1,resize=0,scrolling=0','../../');
+	}
+	function openmypage_req_qnty9(po_id,prod_id,color,from_date,job_key,poID,desc_key,type,action,style_ref_no)
+	{
+		var companyID = $("#cbo_company_id").val();
+			//alert(desc_key);
+		var popup_width='1050px';
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'requires/style_wise_finish_fabric_stock_controller.php?companyID='+companyID+'&po_id='+po_id+'&prod_id='+prod_id+'&from_date='+from_date+'&job_key='+job_key+'&poID='+poID+'&desc_key='+desc_key+'&color='+color+'&type='+type+'&action='+action+'&style_ref_no='+style_ref_no, 'Details Veiw', 'width='+popup_width+', height=300px,center=1,resize=0,scrolling=0','../../');
+	}
+
+	function openmypage_ex_factory(po_id,rpt_type)
+	{
+		var companyID = $("#cbo_company_id").val();
+		var action="";
+		if(rpt_type==1)
+		{
+			action="open_exfactory";
+			popup_width='500px';
+		}
+		else
+		{
+			action="open_order_exfactory";
+			popup_width='500px';
+		}
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', 'requires/style_wise_finish_fabric_stock_controller.php?companyID='+companyID+'&po_id='+po_id+'&action='+action, 'Details Veiw', 'width='+popup_width+', height=400px,center=1,resize=0,scrolling=0','../../');
+	}
+
+	function change_caption(type)
+	{
+		if(type==1)
+		{
+			$('#td_search').html('Enter Job');
+			$('#txt_search_comm').removeAttr("onDblClick").attr("onDblClick","openmypage_job(1);").attr("placeholder", "Browse/Write");
+			$('#txt_search_comm').val('')
+			$('#txt_job_id').val('')
+		}
+		else if(type==2)
+		{
+			$('#td_search').html('Enter Style');
+			$('#txt_search_comm').removeAttr("onDblClick","openmypage_job(1);").attr("placeholder", "Write");
+			$('#txt_search_comm').val('')
+			$('#txt_job_id').val('')
+		}
+		else if(type==3)
+		{
+			$('#td_search').html('Enter Order');
+			$('#txt_search_comm').removeAttr("onDblClick","openmypage_job(1);").attr("placeholder", "Write");
+			$('#txt_search_comm').val('')
+			$('#txt_job_id').val('')
+		}
+		else if(type==4)
+		{
+			$('#td_search').html('Enter File');
+			$('#txt_search_comm').removeAttr("onDblClick","openmypage_job(1);").attr("placeholder", "Write");
+			$('#txt_search_comm').val('')
+			$('#txt_job_id').val('')
+		}
+		else if(type==5)
+		{
+			$('#td_search').html('Enter Ref.');
+			$('#txt_search_comm').removeAttr("onDblClick","openmypage_job(1);").attr("placeholder", "Write");
+			$('#txt_search_comm').val('')
+			$('#txt_job_id').val('')
+		}
+	}
+
+</script>
+</head>
+
+<body onLoad="set_hotkey()">
+<div style="width:100%;" align="center">
+	<? echo load_freeze_divs ("../../../",$permission); ?>
+    <form name="ordewisefinishfabricstock_1" id="ordewisefinishfabricstock_1" autocomplete="off" >
+    <h3 style="width:1880px; margin-top:20px;" align="" id="accordion_h1" class="accordion_h" onClick="accordion_menu( this.id,'content_search_panel', '')"> -Search Panel</h3>
+        <div id="content_search_panel" style="width:100%;" align="center">
+            <fieldset style="width:1880px;">
+                <table class="rpt_table" width="1880" cellpadding="0" cellspacing="0" border="1" rules="all">
+                    <thead>
+                        <tr>
+                            <th width="140" class="must_entry_caption">Company</th>
+                            <th width="140">Buyer</th>
+                            <th width="110" class="must_entry_caption">Category By</th>
+                            <th width="90">Year</th>
+                            <th width="90">UOM</th>
+                            <th width="90">Search By</th>
+                            <th width="100" id="td_search">Enter Job</th>
+                            <th width="100">Store</th>
+                            <th width="100">Value Range</th>
+                            <th width="100">Shipment Status</th>
+							<th width="100">Stock For</th>
+                            <th width="75">Date</th>
+                            <th width="420" ><input type="reset" name="res" id="res" value="Reset" style="width:70px" class="formbutton" onClick="reset_form('ordewisefinishfabricstock_1','report_container*report_container2','','','','');" /></th>
+                        </tr>
+                    </thead>
+                    <tr align="center" class="general">
+                        <td>
+                            <?
+                               echo create_drop_down( "cbo_company_id", 140, "select comp.id, comp.company_name from lib_company comp where comp.status_active=1 and comp.is_deleted=0 and comp.core_business not in(3) $company_cond order by comp.company_name","id,company_name", 1, "-- Select Company --", $selected, "load_drop_down( 'requires/style_wise_finish_fabric_stock_controller',this.value+'_'+1+'_'+4, 'load_drop_down_buyer', 'buyer_td' );get_php_form_data(this.value,'print_button_variable_setting','requires/style_wise_finish_fabric_stock_controller' );load_drop_down( 'requires/style_wise_finish_fabric_stock_controller', this.value+'_'+ document.getElementById('cbo_report_type').value, 'load_drop_down_store', 'store_td' );" );
+                            ?>
+                        </td>
+                        <td id="buyer_td">
+                            <?
+                                echo create_drop_down( "cbo_buyer_id", 140, $blank_array,"", 1, "--Select Buyer--", 0, "",0 );
+                            ?>
+                        </td>
+                        <td>
+                            <?
+                                $report_arr=array(1=>'Knit Finish',2=>'Woven Finish');
+                                echo create_drop_down( "cbo_report_type", 115, $report_arr, "", 1, "-- Select --", 1, "load_drop_down( 'requires/style_wise_finish_fabric_stock_controller', document.getElementById('cbo_company_id').value+'_'+this.value, 'load_drop_down_store', 'store_td' );", "", "1,2");
+                            ?>
+                        </td>
+                        <td>
+                            <?
+								$selected_year=date("Y");
+                                echo create_drop_down( "cbo_year", 90, $year,"", 1, "--All Year--", "", "",0 );
+                            ?>
+                        </td>
+                        <td>
+                            <?
+                                echo create_drop_down( "cbo_uom", 90, $unit_of_measurement ,"", 0, "", "", "", "","1,12,23,27" );
+                            ?>
+                        </td>
+                        <td>
+                            <?
+								$search_by=array(1=>'Job',2=>'Style',3=>'Order',4=>'File',5=>'Ref.');
+                                echo create_drop_down( "cbo_search_by", 90, $search_by,"", 0, "--Select--", 1, "change_caption(this.value);",0 );
+                            ?>
+                        </td>
+                        <td>
+                            <!-- <input type="text" id="txt_search_comm" name="txt_search_comm" class="text_boxes" style="width:100px"  placeholder="Write" /> -->
+                            <input type="text" id="txt_search_comm" name="txt_search_comm" class="text_boxes" style="width:100px" onDblClick="openmypage_job(1)"   placeholder="Browse/Write" />
+                            <input type="hidden" name="txt_job_id" id="txt_job_id"/>
+                        </td>
+                        <td id="store_td">
+                                <?
+                                    echo create_drop_down( "cbo_store_name", 100, $blank_array,"", 1, "--Select Store--", "", "" );
+                                ?>
+                           </td>
+                        <td>
+                            <?
+								$value_range_by=array(1=>'Value with 0',2=>'Value without 0');
+                                echo create_drop_down( "cbo_value_range_by", 90, $value_range_by,"", 1, "--Select--", 1, "",0 );
+                            ?>
+                        </td>
+                        <td>
+                            <?
+                                echo create_drop_down( "cbo_shipment_status", 90, $shipment_status,"", 1, "--Select--", 0, "",0 );
+                            ?>
+                        </td>
+						<td>
+                            <?
+								$stock_for_arr=array(1=>"Running Order",2=>"Cancelled Order",3=>"Left Over");
+                                echo create_drop_down( "cbo_sock_for", 100, $stock_for_arr,"", 1, "Select", 0, "",0 );
+                            ?>
+                        </td>
+                        <td>
+                            <input type="text" name="txt_date_from" id="txt_date_from" value="<? echo date("d-m-Y", time());?>" class="datepicker" style="width:75px;" readonly/>
+                        </td>
+                        </td>
+                        <td>
+							<span id="button_data_panel">
+
+							</span>
+							<span><input type="button" name="excel_sum" id="excel_sum" value="Summary" onClick="generate_report(10)" style="width:90px" class="formbutton" /></span>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </div>
+
+    </form>
+</div>
+	<div id="report_container" align="center"></div>
+    <div id="report_container2"></div>
+</body>
+<script>
+	//set_multiselect('cbo_yarn_type*cbo_yarn_count','0*0','0*0','','0*0');
+	set_multiselect('cbo_uom','0','0','','0');
+	set_multiselect('cbo_shipment_status','0','0','','0');
+</script>
+<script src="../../../includes/functions_bottom.js" type="text/javascript"></script>
+</html>

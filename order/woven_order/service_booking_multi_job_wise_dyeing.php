@@ -1,0 +1,1007 @@
+﻿<?
+/*-------------------------------------------- Comments 
+Version          : V1
+Purpose			 : This form will create Service Booking Multi Job Wise.
+Functionality	 :	
+JS Functions	 :
+Created by		 : Aziz 
+Creation date 	 : 09-09-2018
+Requirment Client: 
+Requirment By    : 
+Requirment type  : 
+Requirment       : 
+Affected page    : 
+Affected Code    :              
+DB Script        : 
+Updated by 		 : 
+Update date		 : 
+QC Performed BY	 :		
+QC Date			 :	
+Comments		 : From this version oracle conversion is start
+*/
+
+session_start();
+if( $_SESSION['logic_erp']['user_id'] == "" ) header("location:login.php");
+require_once('../../includes/common.php');
+extract($_REQUEST);
+$_SESSION['page_permission']=$permission;
+//--------------------------------------------------------------------------------------------------------------------
+echo load_html_head_contents("Woven Service Booking Multi Job Wise", "../../", 1, 1,$unicode,'','');
+?>	
+<script>
+
+if( $('#index_page', window.parent.document).val()!=1) window.location.href = "../../logout.php"; 
+	var mandatory_field='';
+	var field_message = '';
+	<?
+
+	if(isset($_SESSION['logic_erp']['mandatory_field'][229]))
+	{
+		echo " mandatory_field = '". implode('*',$_SESSION['logic_erp']['mandatory_field'][229]) . "';\n";
+		echo " field_message = '". implode('*',$_SESSION['logic_erp']['field_message'][229]) . "';\n";
+	}
+	?>
+
+var permission='<? echo $permission; ?>';
+function openmypage_order(page_link,title)
+{
+	var cbo_short_type=document.getElementById('cbo_short_type').value;
+	if (form_validation('txt_booking_no*cbo_company_name','Booking No*Company')==false)
+	{
+		alert('Master Part Save First');return;
+	}	
+	else
+	{
+		page_link=page_link+get_submitted_data_string('cbo_company_name*cbo_buyer_name*cbo_booking_month*cbo_booking_year*txt_booking_date*cbo_short_type','../../');
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=1150px,height=470px,center=1,resize=1,scrolling=0','../')
+		emailwindow.onclose=function()
+		{
+			var theform=this.contentDoc.forms[0];;
+			var id=this.contentDoc.getElementById("po_number_id");
+			var po=this.contentDoc.getElementById("po_number");
+			if (id.value!="")
+			{
+				//reset_form('','booking_list_view','txt_order_no_id*txt_order_no*cbo_currency*txt_exchange_rate*txt_booking_date*cbo_supplier_name*txt_attention*txt_delivery_date*cbo_source*txt_booking_no','txt_booking_date,<? echo date("d-m-Y"); ?>');
+				freeze_window(5);
+				document.getElementById('txt_order_no_id').value=id.value;
+				document.getElementById('txt_order_no').value=po.value;
+				get_php_form_data( id.value+'_'+cbo_short_type, "populate_order_data_from_search_popup", "requires/service_booking_multi_job_wise_dyeing_controller" );
+				release_freezing();
+	
+			}
+		}
+	}
+}
+
+
+function set_process(fabric_desription_id,type)
+{
+	
+	var cbo_colorsizesensitive=document.getElementById('cbo_colorsizesensitive').value;
+	if (form_validation('cbo_colorsizesensitive','Sensitivity')==false)
+	{
+		return;
+	}
+	$("#booking_list_view").text('');
+	fabric_desription_id=$("#cbo_fabric_description").val();
+	//alert(fabric_desription_id)
+	if(type=='set_process') //check_conversion_rate
+	{
+		show_list_view(document.getElementById('txt_order_no_id').value+'**'+1+'**'+fabric_desription_id+'**'+document.getElementById('cbo_process').value+'**'+document.getElementById('cbo_colorsizesensitive').value+'**'+document.getElementById('txt_order_no_id').value+'**'+document.getElementById('txt_booking_no').value+'****'+document.getElementById('service_rate_from').value+'**'+document.getElementById('cbo_company_name').value+'**'+document.getElementById('cbo_short_type').value, 'show_detail_booking_list_view','booking_list_view','requires/service_booking_multi_job_wise_dyeing_controller','$(\'#hide_fabric_description\').val(\'\');setFilterGrid(\'table_search\',-1)');
+	}
+	
+	$("#hide_fabric_description").val(fabric_desription_id);
+}
+
+function fnc_fabric_description_id(color_id, button_status, type)
+{
+	var hide_color_id='';
+	if(type==1)
+	{
+		hide_color_id=document.getElementById('hide_fabric_description').value;
+		//document.getElementById('copy_val').checked=true;
+	}
+	else
+	{
+		hide_color_id=parseInt(document.getElementById('hide_fabric_description').value);
+		//document.getElementById('copy_val').checked=false;
+	}
+
+	if(color_id==hide_color_id)
+	{
+		document.getElementById('hide_fabric_description').value='';
+		set_button_status(0, permission, 'fnc_trims_booking',1);
+	}
+	else
+	{
+		document.getElementById('hide_fabric_description').value=color_id;
+		set_button_status(button_status, permission, 'fnc_trims_booking',1);	
+	}
+}
+function setmaster_value(process, sensitivity)
+{
+	document.getElementById('cbo_process').value=process;
+	document.getElementById('cbo_colorsizesensitive').value=sensitivity;
+}
+
+// function calculate_amount(param1,param2)
+// {
+// 	var txt_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+param2).value)*1;
+// 	var txt_rate=(document.getElementById('txt_rate_'+param1+'_'+param2).value)*1;
+// 	var txt_amount=txt_woqnty*txt_rate;
+// 	document.getElementById('txt_amount_'+param1+'_'+param2).value=txt_amount;	
+
+// }
+function calculate_process_per(param1,param2)
+{
+	
+	
+	 var txt_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+param2).value)*1;
+	  var process_loss=(document.getElementById('txt_process_loss_'+param1+'_'+param2).value)*1;
+	 // var fin_qty=(document.getElementById('txt_fin_qty_'+param1+'_'+j).value)*1;
+	  var fin_req_chk=(txt_woqnty*process_loss)/100;	
+	  var fin_qty_chk=txt_woqnty-fin_req_chk;	
+	   document.getElementById('txt_process_loss_'+param1+'_'+param2).value=process_loss;	
+	  document.getElementById('txt_fin_qty_'+param1+'_'+param2).value=fin_qty_chk;
+	
+	
+}
+function calculate_amount(param1,param2)
+{
+	 var copy_val=document.getElementById('copy_val').checked;
+	 
+	 
+	 
+	var txt_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+param2).value)*1;
+	var curr_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+param2).value)*1;
+	
+	var txt_reqqty=(document.getElementById('txt_reqqty_'+param1+'_'+param2).value)*1;
+	
+	
+	var txt_rate=(document.getElementById('txt_rate_'+param1+'_'+param2).value)*1;
+	var txt_pre_amount=(document.getElementById('txt_pre_amount_'+param1+'_'+param2).value)*1;
+	var priv_amount=(document.getElementById('txt_priv_amount_'+param1+'_'+param2).value)*1;
+	var prev_woqnty=(document.getElementById('txt_prev_woqnty_'+param1+'_'+param2).value)*1;
+	var cur_amount=(document.getElementById('txt_amount_'+param1+'_'+param2).value)*1;
+	 var updateid=(document.getElementById('updateid_'+param1+'_'+param2).value)*1;
+	
+	var txt_hidden_bal_woqnty=(document.getElementById('txt_hidden_bal_woqnty_'+param1+'_'+param2).value)*1;
+	var service_rate_from = $('#service_rate_from').val()*1;
+	var pre_cost_rate=$('#txt_rate_'+param1+'_'+param2).attr('pre-cost-rate')*1;
+	var txt_process_loss=(document.getElementById('txt_process_loss_'+param1+'_'+param2).value)*1;
+	
+	console.log(service_rate_from+'--'+pre_cost_rate+'--'+txt_rate);	
+
+
+
+		// txt_reqqty_34357_1
+		
+
+
+
+		if(txt_woqnty<1)
+		{
+		var txt_amount=txt_woqnty*txt_rate;
+		}
+		else
+		{
+		var txt_amount=number_format(txt_woqnty*txt_rate,4,'.','');
+		}
+		if(txt_woqnty<1) //For Fraction value check
+		{
+			var tot_wo_amt=((txt_woqnty*txt_rate)+priv_amount);//-txt_prev_woamt;
+		}
+		else
+		{
+			var tot_wo_amt=number_format(((txt_woqnty*txt_rate)+priv_amount),4,'.','');//-txt_prev_woamt;
+		}
+
+		
+	
+		
+			if(updateid>0){
+				var bal_amount=(txt_reqqty*pre_cost_rate)-priv_amount;
+				var current_amount=(txt_woqnty*txt_rate);
+				if(current_amount>priv_amount){
+					var extra_amt=current_amount-priv_amount;
+				}
+				// console.log(current_amount+'>'+priv_amount);
+				// console.log(extra_amt+'>'+bal_amount);
+				if(extra_amt>bal_amount){
+					alert("Amount Can't Greater Then Budget");
+					$('#txt_woqnty_'+param1+'_'+param2).val(prev_woqnty);
+					$('#txt_amount_'+param1+'_'+param2).val(priv_amount);
+					$('#txt_rate_'+param1+'_'+param2).val(priv_amount/prev_woqnty);
+					var finish_qnty=number_format(prev_woqnty-((prev_woqnty*txt_process_loss)/100),3,'.','');				
+					$('#txt_fin_qty_'+param1+'_'+param2).val(finish_qnty);
+					return;
+				}
+			}
+
+			
+
+
+	if(tot_wo_amt>txt_pre_amount && txt_pre_amount>0)
+	{
+		//var txt_amount=txt_hidden_bal_woqnty*pre_cost_rate;
+		//var txt_woqnty=txt_hidden_bal_woqnty;
+		alert("amount can't greater then budget");
+		$('#txt_woqnty_'+param1+'_'+param2).val(txt_hidden_bal_woqnty);
+		$('#txt_fin_qty_'+param1+'_'+param2).val(txt_hidden_bal_woqnty);
+		$('#txt_amount_'+param1+'_'+param2).val(txt_hidden_bal_woqnty*pre_cost_rate);
+		$('#txt_rate_'+param1+'_'+param2).val(pre_cost_rate);
+		var finish_qnty=number_format(txt_woqnty-((txt_hidden_bal_woqnty*txt_process_loss)/100),3,'.','');	;
+		$('#txt_fin_qty_'+param1+'_'+param2).val(finish_qnty);
+		return;
+	}
+	 document.getElementById('txt_amount_'+param1+'_'+param2).value=txt_amount;	
+	 var finish_qnty=number_format(txt_woqnty-((txt_woqnty*txt_process_loss)/100),3,'.','');;
+	$('#txt_fin_qty_'+param1+'_'+param2).val(finish_qnty);
+	 
+}
+function copy_value(param1,param2,type)
+{
+	 var copy_val=document.getElementById('copy_val').checked;
+	 var rowCount=$('#table_'+param1+' tbody tr').length;
+	 if(copy_val==true)
+	  {
+		  for(var j=param2; j<=rowCount; j++)
+		  {
+			  if(type=='txt_rate')
+			  {
+				    var txt_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+j).value)*1;
+					  var txt_rate=(document.getElementById('txt_rate_'+param1+'_'+param2).value)*1;
+					  var txt_amount=txt_woqnty*txt_rate;
+					  document.getElementById('txt_rate_'+param1+'_'+j).value=txt_rate;
+					  document.getElementById('txt_amount_'+param1+'_'+j).value=txt_amount;
+			  }
+			  
+			  else if(type=='txt_woqnty')
+			  {
+				 
+					  var txt_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+param2).value)*1;
+					  var txt_rate=(document.getElementById('txt_rate_'+param1+'_'+j).value)*1;
+					  var txt_amount=txt_woqnty*txt_rate;
+					  document.getElementById('txt_amount_'+param1+'_'+j).value=txt_amount;
+					  document.getElementById('txt_woqnty_'+param1+'_'+j).value=txt_woqnty;
+					  document.getElementById('txt_fin_qty_'+param1+'_'+j).value=txt_woqnty;
+				    
+			  }
+			  else if(type=='txt_process_loss')
+			  {
+				  var txt_woqnty=(document.getElementById('txt_woqnty_'+param1+'_'+param2).value)*1;
+	              var process_loss=(document.getElementById('txt_process_loss_'+param1+'_'+param2).value)*1;
+				 // var fin_qty=(document.getElementById('txt_fin_qty_'+param1+'_'+j).value)*1;
+                  var fin_req_chk=(txt_woqnty*process_loss)/100;	
+				  var fin_qty_chk=txt_woqnty-fin_req_chk;	
+				  document.getElementById('txt_fin_qty_'+param1+'_'+j).value=fin_qty_chk;
+				 document.getElementById('txt_process_loss_'+param1+'_'+j).value=process_loss;	
+			  }
+			  else if(type=='uom')
+			  {
+				  var uom=(document.getElementById('uom_'+param1+'_'+param2).value)*1;
+				  document.getElementById('uom_'+param1+'_'+j).value=uom;
+			  }
+			  else if(type=='composition')
+			  {
+				  var composition=(document.getElementById('subcon_supplier_compo_'+param1+'_'+param2).value);
+				  var supplier_rate_id=(document.getElementById('subcon_supplier_rateid_'+param1+'_'+param2).value);
+				  document.getElementById('subcon_supplier_compo_'+param1+'_'+j).value=composition;
+				  document.getElementById('subcon_supplier_rateid_'+param1+'_'+j).value=supplier_rate_id;
+			  }
+			  else
+			  {
+				  var doc_value=document.getElementById(type+param1+'_'+param2).value;
+				  document.getElementById(type+param1+'_'+j).value=doc_value;
+			  }
+			  
+		  }
+	  }
+	
+}
+
+
+function fnc_generate_booking()
+{
+	
+	if (form_validation('txt_order_no_id','Order No*Fabric Nature*Fabric Source')==false)
+	{
+		return;
+	}
+	else
+	{
+		var data="action=generate_fabric_booking"+get_submitted_data_string('txt_order_no_id',"../../");
+		http.open("POST","requires/service_booking_multi_job_wise_dyeing_controller.php",true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send(data);
+		http.onreadystatechange = fnc_generate_booking_reponse;
+	}
+}
+
+function fnc_generate_booking_reponse()
+{
+	if(http.readyState == 4) 
+	{
+		document.getElementById('booking_list_view').innerHTML=http.responseText;
+	}
+}
+function open_consumption_popup(page_link,title,po_id,i)
+{
+	var cbo_company_id=document.getElementById('cbo_company_name').value;
+	var po_id =document.getElementById(po_id).value;
+	var txtwoq=document.getElementById('txtwoq_'+i).value;
+	var cons_breck_downn=document.getElementById('consbreckdown_'+i).value;
+	var cbocolorsizesensitive=document.getElementById('cbocolorsizesensitive_'+i).value;
+	if(po_id==0 )
+	{
+		alert("Select Po Id")
+	}
+	
+	else
+	{
+		var page_link=page_link+'&po_id='+po_id+'&cbo_company_id='+cbo_company_id+'&txtwoq='+txtwoq+'&cons_breck_downn='+cons_breck_downn+'&cbocolorsizesensitive='+cbocolorsizesensitive;
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=1060px,height=450px,center=1,resize=1,scrolling=0','../')
+		emailwindow.onclose=function()
+		{
+			var cons_breck_down=this.contentDoc.getElementById("cons_breck_down");
+			var woq=this.contentDoc.getElementById("cons_sum");
+			document.getElementById('consbreckdown_'+i).value=cons_breck_down.value;
+			document.getElementById('txtwoq_'+i).value=woq.value;
+			document.getElementById('txtamount_'+i).value=(woq.value)*1*(document.getElementById('txtrate_'+i).value);
+		}	
+	}
+}
+
+
+function openmypage_booking(page_link,title)
+{
+	var company=$("#cbo_company_name").val()*1;
+	var cbo_short_type=$("#cbo_short_type").val()*1;
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe',  page_link+'&company='+company+'&cbo_short_type='+cbo_short_type, title, 'width=995px,height=450px,center=1,resize=1,scrolling=0','../')
+	emailwindow.onclose=function()
+	{
+		var theform=this.contentDoc.forms[0];
+		var theemail=this.contentDoc.getElementById("selected_booking");
+		
+		if (theemail.value!="")
+		{
+			reset_form('servicebooking_1','booking_list_view','','txt_booking_date,<? echo date("d-m-Y"); ?>');
+			$('#booking_list_view').text('');
+			$('#hide_fabric_description').val('');
+			$('#cbo_fabric_description').val(0); 
+			$('#txt_order_no').val('');
+			$('#txt_order_no_id').val('');
+		 	get_php_form_data( theemail.value, "populate_data_from_search_popup", "requires/service_booking_multi_job_wise_dyeing_controller" );
+	   		set_button_status(1, permission, 'fnc_trims_booking',1);
+		    show_list_view(document.getElementById('txt_booking_no').value+'**'+document.getElementById('txt_booking_no').value, 'fabric_detls_list_view','data_panel','requires/service_booking_multi_job_wise_dyeing_controller','');
+		}
+	}
+}
+
+
+
+
+
+function open_terms_condition_popup(page_link,title)
+{
+	var txt_booking_no=document.getElementById('txt_booking_no').value;
+	if (txt_booking_no=="")
+	{
+		alert("Save The Booking First")
+		return;
+	}	
+	else
+	{
+	    page_link=page_link+get_submitted_data_string('txt_booking_no','../../');
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=720px,height=470px,center=1,resize=1,scrolling=0','../')
+		emailwindow.onclose=function()
+		{
+		}
+	}
+}
+
+
+function fnc_trims_booking( operation )
+{
+	var data_all="";
+	if (form_validation('cbo_booking_month*cbo_company_name','Booking Month*Company Name')==false)
+	{
+		return;
+	}
+	else
+	{
+	data_all=data_all+get_submitted_data_string('txt_booking_no*cbo_booking_month*cbo_booking_year*cbo_company_name*cbo_supplier_name*cbo_currency*txt_exchange_rate*txt_booking_date*txt_delivery_date*cbo_pay_mode*cbo_source*txt_attention*txt_tenor*cbo_buyer_name*txt_order_no_id*cbo_process*cbo_colorsizesensitive*txt_remark*txt_delivery_to*cbo_ready_to_approved*cbo_short_type',"../../");
+	}
+
+	if(mandatory_field){
+			if (form_validation(mandatory_field,field_message)==false)
+			{
+				return;
+			}
+		}
+
+	if(operation==2)
+		{
+			var r=confirm("Press OK to Delete All Or Press Cancel");
+			if(r==false){
+				release_freezing();
+				return;
+			}
+		}
+		
+	var hide_fabric_description=$('#hide_fabric_description').val();
+	var data="action=save_update_delete&operation="+operation+data_all+'&hide_fabric_description='+hide_fabric_description;
+	freeze_window(operation);
+	http.open("POST","requires/service_booking_multi_job_wise_dyeing_controller.php",true);
+	http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	http.send(data);
+	http.onreadystatechange = fnc_trims_booking_reponse;
+}
+	 
+function fnc_trims_booking_reponse()
+{
+	if(http.readyState == 4) 
+	{
+		 var reponse=trim(http.responseText).split('**');
+		 show_msg(trim(reponse[0]));
+		 if(reponse[0]==0 || reponse[0]==1)
+		 {
+			document.getElementById('txt_booking_no').value=reponse[1];
+			document.getElementById('update_id').value=reponse[2];
+		 	set_button_status(1, permission, 'fnc_trims_booking',1);
+		 }
+		 if(reponse[0]==2)
+		 {
+			set_button_status(0, permission, 'fnc_trims_booking',1);
+			release_freezing();
+			reset_form('','data_panel','txt_booking_no*txt_order_no*cbo_company_name*txt_order_no_id*txt_job_no*cbo_buyer_name*cbo_currency*txt_exchange_rate*txt_booking_date*txt_delivery_date*cbo_pay_mode*cbo_source*cbo_supplier_name*txt_attention*txt_tenor','txt_booking_date,<? echo date("d-m-Y"); ?>'); 
+			$('#data_panel').text('');
+			
+			 
+		 }
+		 release_freezing();
+	}
+}
+ 
+
+
+
+function fnc_service_booking_dtls( operation )
+{
+	if (form_validation('txt_booking_no','Booking No')==false)
+	{
+		alert('Please  Save Master Part First');return;
+	}
+	if (form_validation('txt_order_no*cbo_fabric_description','PO No*Fabric Desc.')==false)
+	{
+		return;
+	}
+	if(operation==2)
+		{
+			var r=confirm("Press OK to Delete Detail Part Or Press Cancel");
+			if(r==false){
+				release_freezing();
+				return;
+			}
+		}
+	//var txt_job_no = $('#txt_job_no').val();
+	var txt_booking_no = $('#txt_booking_no').val();
+	var cbo_process = $('#cbo_process').val();
+	var txt_order_no_id = $('#txt_order_no_id').val();
+	
+	var data_all="";
+	
+	var hide_fabric_description=$('#hide_fabric_description').val();
+	var row_num=$('#table_'+hide_fabric_description+' tbody tr').length-1;
+	
+		
+	var tot_req_qnty=0;var tot_wo_woqnty=0;
+	for (var i=1; i<=row_num; i++)
+	{
+	
+		var txt_woqnty= (document.getElementById('txt_woqnty_'+hide_fabric_description+'_'+i).value)*1;
+		var txt_reqqty= (document.getElementById('txt_reqqty_'+hide_fabric_description+'_'+i).value)*1;
+		var txt_prev_woqnty= (document.getElementById('txt_prev_woqnty_'+hide_fabric_description+'_'+i).value)*1;
+		var txt_hidden_bal_woqnty= (document.getElementById('txt_hidden_bal_woqnty_'+hide_fabric_description+'_'+i).value)*1;
+		var pre_cost_rate=$('#txt_rate_'+hide_fabric_description+'_'+i).attr('pre-cost-rate')*1;
+		var updateid= (document.getElementById('updateid_'+hide_fabric_description+'_'+i).value)*1;
+		var woqnty_cal=number_format(txt_woqnty,2,'.','');
+		var	tot_prev_woqnty_cal=number_format((txt_prev_woqnty+txt_woqnty),2,'.','');
+		
+		var txt_amount= (document.getElementById('txt_amount_'+hide_fabric_description+'_'+i).value)*1;
+		var is_editable=document.getElementById('txt_amount_vali_id').value;
+		
+		if(operation!=2)
+		{
+			
+			if(updateid!='')
+			{
+				if(operation==0)
+				{
+					var total_curr_wo_woqnty=woqnty_cal;
+				}
+				else
+				{
+					var total_curr_wo_woqnty=woqnty_cal;
+				}
+			}
+			else
+			{
+				if(operation==0)
+				{
+					var total_curr_wo_woqnty=tot_prev_woqnty_cal;
+				}
+				else
+				{
+					var total_curr_wo_woqnty=tot_prev_woqnty_cal;
+				}
+				
+				
+				if(is_editable==1){
+					var hidd_bal_amount= (document.getElementById('hidd_bal_amount_'+hide_fabric_description+'_'+i).value)*1;
+					 if(txt_amount>hidd_bal_amount){
+				 		var booking_msg2="Exceed Amount not allowed.\n Bal. Amount : "+hidd_bal_amount+"\n Current. Amount : "+txt_amount;
+				 		alert(booking_msg2);
+				 		return;
+					 }
+				}
+				
+
+			}
+
+			if(is_editable !=1){
+				if(woqnty_cal>0)
+				{
+					//alert(total_curr_wo_woqnty+'=='+txt_prev_woqnty+'=='+txt_woqnty+'=='+txt_reqqty);
+					if(total_curr_wo_woqnty>txt_reqqty)
+					{
+							var booking_msg="Exceed qty not allowed.\n Req. Qty : "+txt_reqqty+"\n Current. Qty : "+total_curr_wo_woqnty;
+							alert(booking_msg);
+							return;
+					}
+				}
+			}
+
+			
+		
+		}	
+	
+			
+			// if(txt_woqnty>txt_hidden_bal_woqnty){
+			// 	var booking_msg2="Exceed qty not allowed.\n Bal. Qty : "+txt_reqqty+"\n Current. Qty : "+total_curr_wo_woqnty;
+			// 	alert(booking_msg2);
+			// 	return;
+			// }
+				
+		data_all+=get_submitted_data_string('po_id_'+hide_fabric_description+'_'+i+'*fabric_description_id_'+hide_fabric_description+'_'+i+'*artworkno_'+hide_fabric_description+'_'+i+'*color_size_table_id_'+hide_fabric_description+'_'+i+'*gmts_color_id_'+hide_fabric_description+'_'+i+'*item_color_id_'+hide_fabric_description+'_'+i+'*txt_job_no_'+hide_fabric_description+'_'+i+'*uom_'+hide_fabric_description+'_'+i+'*txt_woqnty_'+hide_fabric_description+'_'+i+'*txt_rate_'+hide_fabric_description+'_'+i+'*txt_amount_'+hide_fabric_description+'_'+i+'*txt_paln_cut_'+hide_fabric_description+'_'+i+'*updateid_'+hide_fabric_description+'_'+i+'*startdate_'+hide_fabric_description+'_'+i+'*enddate_'+hide_fabric_description+'_'+i+'*item_color_'+hide_fabric_description+'_'+i+'*findia_'+hide_fabric_description+'_'+i+'*subcon_supplier_compo_'+hide_fabric_description+'_'+i+'*subcon_supplier_rateid_'+hide_fabric_description+'_'+i+'*txt_mcdia_'+hide_fabric_description+'_'+i+'*txt_option_'+hide_fabric_description+'_'+i+'*txt_slength_'+hide_fabric_description+'_'+i+'*txt_ycount_'+hide_fabric_description+'_'+i+'*txt_lot_'+hide_fabric_description+'_'+i+'*txt_brand_'+hide_fabric_description+'_'+i+'*txt_fingsm_'+hide_fabric_description+'_'+i+'*txt_labdip_no_'+hide_fabric_description+'_'+i+'*gmts_size_id_'+hide_fabric_description+'_'+i+'*item_size_'+hide_fabric_description+'_'+i+'*txt_pcs_qty_'+hide_fabric_description+'_'+i+'*txt_fin_qty_'+hide_fabric_description+'_'+i+'*txt_process_loss_'+hide_fabric_description+'_'+i,"../../",i);	
+	}
+	
+	
+	data_all=data_all+get_submitted_data_string('cbo_process*cbo_colorsizesensitive*txt_booking_no*txt_all_update_id*update_id*txt_sub_process*txt_sub_process_id',"../../");
+	var data="action=save_update_delete_dtls&operation="+operation+data_all+'&hide_fabric_description='+hide_fabric_description+'&row_num='+row_num;
+	//alert(data_all);
+	freeze_window(operation);
+	http.open("POST","requires/service_booking_multi_job_wise_dyeing_controller.php",true);
+	http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	http.send(data);
+	http.onreadystatechange = fnc_service_booking_dtls_reponse;
+}
+	 
+function fnc_service_booking_dtls_reponse()
+{
+	if(http.readyState == 4) 
+	{
+		// alert(http.responseText);
+		 var reponse=trim(http.responseText).split('**');
+		 if(trim(reponse[0])=='rec1'){
+			alert("Receive  found :"+trim(reponse[2])+"\n So Update/Delete Not Possible");
+			release_freezing();
+			return;
+		}
+		 
+		 if(reponse[0]==0 || reponse[0]==1 || reponse[0]==2)
+		 {
+			show_msg(trim(reponse[0]));
+		 	$('#booking_list_view').text('');
+			$("#cbo_colorsizesensitive").val(0);
+			$("#cbo_fabric_description").val(0);
+			$("#cbo_colorsizesensitive").removeAttr("disabled","disabled");
+			$("#cbo_fabric_description").removeAttr("disabled","disabled");
+		 	set_button_status(0, permission, 'fnc_service_booking_dtls',2);
+			show_list_view(reponse[2]+'**'+reponse[2], 'fabric_detls_list_view','data_panel','requires/service_booking_multi_job_wise_dyeing_controller','$(\'#hide_fabric_description\').val(\'\')');
+		 }
+		
+		 release_freezing();
+		 
+		// get_php_form_data(reponse[1], "populate_data_from_search_popup", "requires/service_booking_multi_job_wise_dyeing_controller" );
+	     
+		
+	}
+}
+ 
+
+function update_booking_data(data)
+{
+	var data=data.split("_");
+	$("#booking_list_view").text('');
+	$("#cbo_fabric_description").val(data[2]);
+	$("#hide_fabric_description").val(data[2]);
+	$("#cbo_colorsizesensitive").val(data[4]);
+	$("#cbo_colorsizesensitive").attr("disabled",true);
+	$("#cbo_fabric_description").attr("disabled",true);
+	$("#txt_all_update_id").val(data[0]);
+	$("#txt_order_no_id").val(data[5]);
+	$("#txt_order_no").val(data[7]);
+	var company= $("#cbo_company_name").val();
+	
+	load_drop_down( 'requires/service_booking_multi_job_wise_dyeing_controller', data[1], 'load_drop_down_fabric_description', 'fabric_description_td' );
+	get_php_form_data( data[0], 'populate_sub_process', "requires/service_booking_multi_job_wise_dyeing_controller" );
+	$("#cbo_fabric_description").val(data[2]);
+	show_list_view(data[1]+'**'+0+'**'+data[2]+'**'+data[3]+'**'+data[4]+'**'+data[5]+'**'+data[6]+'**'+data[0]+'**'+document.getElementById('service_rate_from').value+'**'+data[8]+'**'+company, 'update_detail_booking_list_view','booking_list_view','requires/service_booking_multi_job_wise_dyeing_controller','setFilterGrid(\'table_search\',-1)');
+	set_button_status(1, permission, 'fnc_service_booking_dtls',2);
+	
+	
+}
+
+
+
+
+function fnc_show_booking()
+{
+	if (form_validation('txt_booking_no','Booking No')==false)
+	{
+		return;
+	}
+	else
+	{
+		var data="action=show_trim_booking"+get_submitted_data_string('txt_booking_no',"../../");
+		http.open("POST","requires/service_booking_multi_job_wise_dyeing_controller.php",true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send(data);
+		http.onreadystatechange = fnc_show_booking_reponse;
+	}
+}
+
+function fnc_show_booking_reponse()
+{
+	if(http.readyState == 4) 
+	{
+		document.getElementById('booking_list_view').innerHTML=http.responseText;
+		set_button_status(1, permission, 'fnc_trims_booking',2);
+		set_all_onclick();
+	}
+}
+
+
+
+
+function generate_trim_report(action)
+{
+	if (form_validation('txt_booking_no','Booking No')==false)
+	{
+		return;
+	}
+	else
+	{
+		var show_comments='';
+		if(action=='show_trim_booking_report2' || action=='show_trim_booking_report' || action=='show_trim_booking_report1' || action=='show_trim_booking_report3' || action=='show_trim_booking_report6' || action=='show_trim_booking_report7' || action=='show_trim_booking_report8' || action=='show_trim_booking_report9' || action=='show_trim_booking_report10')
+		{
+			var r=confirm("Press  \"Ok\"  to Show  Rate & Amount\nPress  \"Cancel\"  to Hide Rate & Amount");
+			//alert(r)
+			if (r==true)
+			{
+				show_comments="1";
+			}
+			else
+			{
+				show_comments="0";
+			} 
+		}
+		var data="action="+action+get_submitted_data_string('txt_booking_no*cbo_company_name*cbo_supplier_name*update_id',"../../")+'&show_comments='+show_comments;
+		http.open("POST","requires/service_booking_multi_job_wise_dyeing_controller.php",true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send(data);
+		http.onreadystatechange = generate_trim_report_reponse;
+	}	
+}
+
+function generate_trim_report_reponse()
+{
+	if(http.readyState == 4) 
+	{
+		$('#data_panel2').html( http.responseText );
+		var w = window.open("Surprise", "#");
+		var d = w.document.open();
+		d.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">'+
+'<html><head><link rel="stylesheet" href="../../../css/style_common.css" type="text/css" /><title></title></head><body>'+document.getElementById('data_panel2').innerHTML+'</body</html>');
+		d.close();
+	}
+}
+
+function check_exchange_rate()
+{
+	var cbo_currercy=$('#cbo_currency').val();
+	var booking_date = $('#txt_booking_date').val();
+	var cbo_company_name = $('#cbo_company_name').val();
+	var response=return_global_ajax_value( cbo_currercy+"**"+booking_date+"**"+cbo_company_name, 'check_conversion_rate', '', 'requires/service_booking_multi_job_wise_dyeing_controller');
+	var response=response.split("_");
+	$('#txt_exchange_rate').val(response[1]);
+	
+}
+
+
+function service_supplier_popup(id)
+{
+	var cbo_company_name = $('#cbo_company_name').val();
+	var cbo_supplier_name = $('#cbo_supplier_name').val();
+	if (form_validation('cbo_company_name*cbo_supplier_name*txt_exchange_rate','Company Name*cbo_supplier_name*Exchange Rate')==false)
+	{
+		return;
+	}
+	hidden_supplier_rate_id=$('#subcon_supplier_rateid_'+id).val();
+	var title="Supplier Work Order Rate Info";
+	var page_link = 'requires/service_booking_multi_job_wise_dyeing_controller.php?cbo_company_name='+cbo_company_name+'&cbo_supplier_name='+$("#cbo_supplier_name").val()+'&txt_exchange_rate='+$("#txt_exchange_rate").val()+'&hidden_supplier_rate_id='+hidden_supplier_rate_id+'&action=Supplier_workorder_popup';
+	  
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=750px,height=400px,center=1,resize=1,scrolling=0','../');
+	emailwindow.onclose=function()
+	{
+		var theform=this.contentDoc.forms[0]//("search_order_frm"); //Access the form inside the modal window
+		var hide_charge_id=this.contentDoc.getElementById("hide_charge_id").value;	
+		var hide_supplier_rate=this.contentDoc.getElementById("hide_supplier_rate").value;
+		var construction_compo=this.contentDoc.getElementById("hide_construction_compo").value;		
+		//alert('#subcon_supplier_compo_'+id)
+		$('#subcon_supplier_compo_'+id).val(construction_compo);
+		$('#subcon_supplier_rateid_'+id).val(hide_charge_id);
+		$('#txt_rate_'+id).val(hide_supplier_rate);
+		var fabric_id=id.split("_");
+		copy_value(fabric_id[0],fabric_id[1],'txt_rate');
+		copy_value(fabric_id[0],fabric_id[1],'composition');
+	}
+}
+
+function print_report_button_setting(report_ids)
+{
+	$("#print_booking").hide();
+	$("#print_booking1").hide();
+	$("#print_booking2").hide();
+	$("#print_booking3").hide();
+	$("#print_booking4").hide();
+	$("#print_booking5").hide();
+	$("#print_booking6").hide();
+	$("#print_booking7").hide();
+	$("#print_booking8").hide();
+	$("#print_booking9").hide();
+	$("#print_booking10").hide();
+	
+	var report_id=report_ids.split(",");
+	for (var k=0; k<report_id.length; k++)
+	{
+		if(report_id[k]==8) $("#print_booking").show();
+		if(report_id[k]==163) $("#print_booking1").show();
+		if(report_id[k]==164) $("#print_booking2").show();
+		if(report_id[k]==209) $("#print_booking3").show();
+		if(report_id[k]==177) $("#print_booking4").show();
+		if(report_id[k]==129) $("#print_booking5").show();
+		if(report_id[k]==161) $("#print_booking6").show();
+		if(report_id[k]==191) $("#print_booking7").show();
+		if(report_id[k]==220) $("#print_booking8").show();
+		if(report_id[k]==93) $("#print_booking9").show();
+		if(report_id[k]==274) $("#print_booking10").show();
+	}
+}
+
+	function fnc_load_print_report_setting(data)
+	{
+		get_php_form_data(data,'report_formate_setting','requires/service_booking_multi_job_wise_dyeing_controller');
+	}
+
+
+	function openmypage_process()
+	{
+		var txt_process_id = $('#txt_sub_process_id').val();
+	
+
+
+		var title = 'Sub Process Name Selection Form';
+		var page_link = 'requires/service_booking_multi_job_wise_dyeing_controller.php?txt_process_id='+txt_process_id+'&action=process_name_popup';
+
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=400px,height=370px,center=1,resize=1,scrolling=0','');
+		emailwindow.onclose=function()
+		{
+			var theform=this.contentDoc.forms[0]//("search_order_frm"); //Access the form inside the modal window
+			var process_id=this.contentDoc.getElementById("hidden_process_id").value;	 //Access form field with id="emailfield"
+			var process_name=this.contentDoc.getElementById("hidden_process_name").value;
+			
+			console.log(`${process_id} ${process_name}`)
+			$('#txt_sub_process').val(process_name);
+			$('#txt_sub_process_id').val(process_id);
+			
+		}
+	}
+</script>
+ 
+</head>
+ 
+<body onLoad="set_hotkey();check_exchange_rate();">
+<div style="width:100%;" align="center">
+    <? echo load_freeze_divs ("../../",$permission);  ?>
+    <form name="servicebooking_1"  autocomplete="off" id="servicebooking_1">
+        <fieldset style="width:1000px;">
+            <legend>Service Booking</legend>
+            <table  width="1000" cellspacing="2" cellpadding="0" border="0">
+                <tr>
+                    <td colspan="4" align="right" class="must_entry_caption"> Booking No </td>              <!-- 11-00030  -->
+                    <td colspan="4"><input class="text_boxes" type="text" style="width:130px" onDblClick="openmypage_booking('requires/service_booking_multi_job_wise_dyeing_controller.php?action=service_booking_popup','Service Booking Search')" readonly placeholder="Double Click for Booking" name="txt_booking_no" id="txt_booking_no"/> </td>
+                </tr>
+                <tr>
+                    <td width="110" class="must_entry_caption">Booking Month</td>   
+                    <td width="140"> 
+                        <? 
+                        echo create_drop_down( "cbo_booking_month", 80, $months,"", 1, "-- Select --", "", "",0 );		
+                        echo create_drop_down( "cbo_booking_year", 50, $year,"", 1, "-- Select --", date('Y'), "",0 );		
+                        ?>
+                    </td>
+                    
+                    <td width="110" class="must_entry_caption">Company</td>
+                    <td width="140"><?=create_drop_down( "cbo_company_name", 130, "select id,company_name from lib_company comp where status_active=1 and is_deleted=0 and core_business not in(3) $company_cond order by company_name", "id,company_name",1, "-- Select Company --", $selected, "fnc_load_print_report_setting(this.value);load_drop_down( 'requires/service_booking_multi_job_wise_dyeing_controller', this.value, 'load_drop_down_buyer', 'buyer_td' );check_exchange_rate();","","" ); ?></td>
+                    <td width="110">Buyer Name</td>   
+                    <td width="140" id="buyer_td"> <?=create_drop_down( "cbo_buyer_name", 130, "select id,buyer_name from lib_buyer where status_active =1 and is_deleted=0 order by buyer_name","id,buyer_name", 1, "-- Select Buyer --", $selected, "",1,"" ); ?></td>
+                    <td width="110">Booking Date</td>
+                    <td><input class="datepicker" type="text" style="width:120px" name="txt_booking_date" id="txt_booking_date" onChange="check_exchange_rate();" value="<? echo date("d-m-Y")?>" disabled /></td>
+                </tr>
+                <tr>
+                    <td>Currency</td>
+                    <td><?=create_drop_down( "cbo_currency", 130, $currency,"", 1, "-- Select --", 2, "set_conversion_rate(this.value,$('#txt_booking_date').val(),'../../','txt_exchange_rate')",0 ); ?></td>
+                    <td>Exchange Rate</td>
+                    <td><input style="width:120px;" type="text" class="text_boxes_numeric"  name="txt_exchange_rate" id="txt_exchange_rate"  readonly /></td>
+                    <td>Delivery Date</td>
+                    <td><input class="datepicker" type="text" style="width:120px" name="txt_delivery_date" id="txt_delivery_date"/></td>
+                    <td class="must_entry_caption">Pay Mode</td>
+                    <td><?=create_drop_down( "cbo_pay_mode", 130, $pay_mode,"", 1, "-- Select Pay Mode --", "", "load_drop_down( 'requires/service_booking_multi_job_wise_dyeing_controller', this.value, 'load_drop_down_supplier', 'supplier_td' )","" ); ?></td>
+                </tr>
+                <tr>
+                    <td>Source</td>              <!-- 11-00030  -->
+                    <td><?=create_drop_down( "cbo_source", 130, $source,"", 1, "-- Select Source --", "", "","" ); ?></td>
+                    <td>Supplier Name</td>
+                    <td id="supplier_td"><?=create_drop_down( "cbo_supplier_name", 130, "select a.id,a.supplier_name from lib_supplier a, lib_supplier_party_type b where a.id=b.supplier_id and b.party_type=21 and   a.status_active =1 and a.is_deleted=0 order by supplier_name","id,supplier_name", 1, "-- Select Supplier --", $selected, "get_php_form_data( this.value+'_'+document.getElementById('cbo_pay_mode').value, 'load_drop_down_attention', 'requires/service_booking_multi_job_wise_dyeing_controller');",0 ); ?></td> 
+                    <td>Delivery To</td>
+                	<td><input style="width:120px;" type="text" class="text_boxes" name="txt_delivery_to" id="txt_delivery_to" /></td> 
+                    <td>Tenor</td>
+                	<td><input style="width:120px;" type="text" class="text_boxes_numeric" name="txt_tenor" id="txt_tenor" /></td> 
+                </tr>
+                <tr>
+                	<td>Attention</td>   
+                    <td colspan="3">
+                        <input class="text_boxes" type="text" style="width:370px;"  name="txt_attention" id="txt_attention"/>
+                        <input type="hidden" class="image_uploader" style="width:162px" value="Lab DIP No" onClick="openmypage('requires/service_booking_multi_job_wise_dyeing_controller.php?action=lapdip_no_popup','Lapdip No','lapdip')">
+                    </td>
+                    <td>Remarks</td>
+                    <td colspan="3"> <input class="text_boxes" type="text" style="width:370px;"  name="txt_remark" id="txt_remark"  placeholder="Remark" /> </td>
+                </tr>
+                <tr>
+                    <td>Ready To Approved</td>
+                    <td><?=create_drop_down( "cbo_ready_to_approved", 130, $yes_no,"", 1, "-- Select--", 2, "","","" ); ?></td>
+                     <td>Booking Type</td>  
+					<?
+					//$bookingTypeArr=array(10=>"Short");
+					?>
+                     <td >
+					 <select style="width:130px;"class="text_boxes" id="cbo_short_type">
+						<option value="0">-- Select--</option>
+						<option value="10">Short</option>
+					</select>
+					 <?//=create_drop_down( "cbo_short_type", 130, $bookingTypeArr,"", 0, "-- Select --", 0, "","" ,""); ?></td>
+                    <td valign="middle">
+                        <input type="button" class="image_uploader" style="width:110px" value="ADD/VIEW IMAGE" onClick="file_uploader ( '../../', document.getElementById('txt_booking_no').value,'', 'service_booking', 0 ,1)">
+                        <input type="hidden" name="update_id"   id="update_id" value="">
+                    </td>
+                   
+                    
+                    <td align="center"><? 
+						include("../../terms_condition/terms_condition.php");
+						terms_condition(229,'txt_booking_no','../../');
+						?>    
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                	<td align="center" colspan="8" valign="top" id="booking_list_view1"></td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="8" valign="middle" class="button_container">
+                    	<? echo load_submit_buttons( $permission, "fnc_trims_booking", 0,0 ,"",1) ; ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" colspan="8">
+                        <input type="button" value="Print Booking" onClick="generate_trim_report('show_trim_booking_report')"  style="width:100px" name="print_booking" id="print_booking" class="formbutton" />
+                        <input type="button" value="Print Booking1" onClick="generate_trim_report('show_trim_booking_report1')"  style="width:100px" name="print_booking1" id="print_booking1" class="formbutton" />  
+                        <input type="button" value="Print Booking2" onClick="generate_trim_report('show_trim_booking_report2')"  style="width:100px" name="print_booking2" id="print_booking2" class="formbutton" /> 
+                        <input type="button" value="Print Booking3" onClick="generate_trim_report('show_trim_booking_report3')"  style="width:100px" name="print_booking3" id="print_booking3" class="formbutton" /> 
+                        <input type="button" value="Print Booking4" onClick="generate_trim_report('show_trim_booking_report4')"  style="width:100px" name="print_booking4" id="print_booking4" class="formbutton" /> 
+						<input type="button" value="Print Booking5" onClick="generate_trim_report('show_trim_booking_report5')"  style="width:100px" name="print_booking5" id="print_booking5" class="formbutton" />
+						<input type="button" value="Print Booking6" onClick="generate_trim_report('show_trim_booking_report6')"  style="width:100px" name="print_booking6" id="print_booking6" class="formbutton" />
+						<input type="button" value="Print Booking 7" onClick="generate_trim_report('show_trim_booking_report7')"  style="width:100px" name="print_booking7" id="print_booking7" class="formbutton" />
+						<input type="button" value="Print Booking 8" onClick="generate_trim_report('show_trim_booking_report8')"  style="width:100px" name="print_booking8" id="print_booking8" class="formbutton" />
+						<input type="button" value="Print Booking 9" onClick="generate_trim_report('show_trim_booking_report9')"  style="width:120px;display: none; " name="print_booking9" id="print_booking9" class="formbutton" />
+						<input type="button" value="Print Booking 10" onClick="generate_trim_report('show_trim_booking_report10')"  style="width:120px;display: none; " name="print_booking10" id="print_booking10" class="formbutton" />
+
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
+              <br/>
+           <form name="servicebookingknitting_1"  autocomplete="off" id="servicebookingknitting_1">   
+              <fieldset style="width:1200px;">
+                <legend>Service Booking&nbsp;<b style=" margin-left:270px;">&nbsp;Select Po No <input class="text_boxes" type="text" style="width:200px;" placeholder="Double click for Order"  onDblClick="openmypage_order('requires/service_booking_multi_job_wise_dyeing_controller.php?action=order_search_popup','Order Search')"   name="txt_order_no" id="txt_order_no"/>
+                     <input class="text_boxes" type="hidden" style="width:270px;"  name="txt_order_no_id" id="txt_order_no_id"/>
+                     <input class="text_boxes" type="hidden"   name="service_rate_from" id="service_rate_from" value=""/> </b></legend>
+            		<table width="900" cellspacing="2" cellpadding="0" border="0">
+                        <tr>
+                        <td align="" >Process</td>
+                        <td align="" id="process_td">
+							<?
+                            echo create_drop_down( "cbo_process", 172, $conversion_cost_head_array,"", 1, "-- Select --", 31, "",1 );
+                            ?>
+                        </td>
+                        <td align="">Sensitivity</td>
+                        <td align="">
+					    <? //set_process(document.getElementById('cbo_fabric_description').value,'colorsizesensitive')
+						echo create_drop_down( "cbo_colorsizesensitive", 172, $size_color_sensitive,"", 0, "--Select--", "1", "",$disabled,"1,2,3,4" ); 
+						?>
+                        </td>
+                        <td  width="130" height="" align="right"><b>Copy</b> :<input type="checkbox" id="copy_val" name="copy_val"/> 
+                         <input type="hidden" name="hide_fabric_description"   id="hide_fabric_description" value="">
+                          <input type="hidden" name="txt_all_update_id"   id="txt_all_update_id" value="">
+						  <input type="hidden" name="txt_amount_vali_id"   id="txt_amount_vali_id" value="">
+						
+                          </td>              <!-- 11-00030  -->
+                        <td  width="170" >
+                            
+                        </td>
+                        </tr>
+                        <tr>
+                        	<td align="center" colspan="6" valign="top" id="booking_list_view1">
+                            	
+                            </td>
+                        </tr>
+                            <tr>
+                            <td align="">Fabric Description</td>
+                            <td align="" id="fabric_description_td" colspan="3">
+                                   <?
+                                        echo create_drop_down( "cbo_fabric_description",450, $blank_array,"", 1, "-- Select --", $selected, "",0 );
+                                   ?> 
+                             </td>
+							 <td>Sub Process</td>
+							 <td align="left" >
+							 <input type="text" name="txt_sub_process" id="txt_sub_process" class="text_boxes" style="width:132px;" placeholder="Double Click To Search" onDblClick="openmypage_process();" align="left"  readonly  />								
+								 <input type="hidden" name="txt_sub_process_id"   id="txt_sub_process_id" value="">
+							</td>
+                        </tr>
+                        <tr>
+                        	<td align="center" colspan="6" valign="middle" class="button_container">
+                              <? echo load_submit_buttons( $permission, "fnc_service_booking_dtls", 0,0 ,"",2) ; ?>
+                            </td>
+                        </tr>
+                    </table>
+                 
+              <div id="booking_list_view">
+              </div>
+           	  <br/>  <br/> 
+              <div style="" id="data_panel">
+              </div>
+              <br/>  <br/>
+              <div style="display:none" id="data_panel2">
+              </div> 
+              </fieldset>
+           </form>
+              
+
+</div>
+</body>
+<script src="../../includes/functions_bottom.js" type="text/javascript"></script>
+</html>

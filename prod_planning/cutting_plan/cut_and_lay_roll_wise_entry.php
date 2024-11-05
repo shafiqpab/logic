@@ -1,0 +1,744 @@
+﻿<?
+/*-------------------------------------------- Comments
+Purpose			: Cut and Lay Entry Roll Wise
+Functionality	:	
+JS Functions	:
+Created by		:	Fuad Shahriar
+Creation date 	: 	19-05-2015
+Updated by 		: 		
+Update date		: 		   
+QC Performed BY	:		
+QC Date			:	
+Comments		:
+*/
+session_start();
+if( $_SESSION['logic_erp']['user_id'] == "" ) header("location:login.php");
+require_once('../../includes/common.php');
+extract($_REQUEST);
+$_SESSION['page_permission']=$permission;
+//--------------------------------------------------------------------------------------------------------------------
+echo load_html_head_contents("Cut and Lay Entry Roll Wise","../../", 1, 1, $unicode,'','');
+
+?>
+<script>
+    var txt_job_id=$("#txt_job_no").val();
+	var permission='<? echo $permission; ?>';
+	function add_break_down_tr(i)
+   	{ 
+		var row_num=$('#tbl_order_details tbody tr').length;
+		if (row_num!=i)
+		{
+			return false;
+		}
+		else
+		{ 
+			i++;
+		   var k=i-1;
+			$("#tbl_order_details tbody tr:last").clone().find("input,select").each(function(){
+			$(this).attr({ 
+			  'id': function(_, id) { var id=id.split("_"); return id[0] +"_"+ i },
+			  'name': function(_, name) { var name=name.split("_"); return name[0] +"_"+ i },
+			  'value': function(_, value) { return value }              
+			});
+			}).end().appendTo("#tbl_order_details");
+			$("#tbl_order_details tbody tr:last").css({"height":"10px","background-color":"#FFF"});	
+			$("#tbl_order_details tbody tr:last ").removeAttr('id').attr('id','tr_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(2)").removeAttr('id').attr('id','cutNo_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(3)").removeAttr('id').attr('id','ship_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(4)").removeAttr('id').attr('id','garment_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(5)").removeAttr('id').attr('id','color_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(6)").removeAttr('id').attr('id','colorTypeId_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(7)").removeAttr('id').attr('id','batch_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(11)").removeAttr('id').attr('id','order_'+i);
+			$("#tbl_order_details tbody tr:last td:nth-child(10)").removeAttr('id').attr('id','marker_'+i);
+			
+			$('#txtplics_'+i).removeAttr("onDblClick").attr("onDblClick","openmypage_roll("+i+");");
+			
+			$('#cbogmtsitem_'+i).val('');
+			$('#orderCutNo_'+i).val('');
+			$('#updateDetails_'+i).val('');
+			$('#cboorderno_'+i).val('');
+			$('#txtorderqty_'+i).val('');
+			$('#txtshipdate_'+i).val('');
+			$('#cbocolor_'+i).val('');
+			$('#cboColorType_'+i).val('');
+			$('#txtplics_'+i).val('');
+			$('#rollData_'+i).val('');
+			$('#txtmarkerqty_'+i).val('');
+			$('#cboorderno_'+i).val('');
+			$('#txttotallay_'+i).val('');
+			$('#txtlaybalanceqty_'+i).val('');
+			$('#txtshipdate_'+i).addClass("datepicker");
+			$("#cbobatch_"+i+" option[value!='0']").remove();
+			$('#cboorderno_'+i).attr('disabled',false);
+			$('#cbogmtsitem_'+i).attr('disabled',false);
+			$('#cbocolor_'+i).attr('disabled',false);
+			
+			$('#increase_'+i).removeAttr("value").attr("value","+");
+			$('#decrease_'+i).removeAttr("value").attr("value","-");
+			$('#increase_'+i).removeAttr("onclick").attr("onclick","add_break_down_tr("+i+");");
+			$('#decrease_'+i).removeAttr("onclick").attr("onclick","fn_deleteRow("+i+");");
+			$('#increase_'+i).attr("onkeydown","add_break_down_tr("+i+");");
+			set_all_onclick();
+		}
+   	}
+	   
+	function fn_deleteRow(rowNo) 
+	{ 
+		if($('#tbl_order_details').val()!=2)
+		{
+			var numRow = $('#tbl_order_details tbody tr').length; 
+			var k=rowNo-1;
+			if(numRow==rowNo && rowNo!=1)
+				{
+					var updateIdDtls=$('#updateIdDtls_'+rowNo).val();
+					var txt_deleted_id=$('#txt_deleted_id').val();
+					var selected_id='';
+					if(updateIdDtls!='')
+						{
+							if(txt_deleted_id=='') selected_id=updateIdDtls; else selected_id=txt_deleted_id+','+updateIdDtls;
+							$('#txt_deleted_id').val( selected_id );
+						}
+					$('#tbl_order_details tbody tr:last').remove();
+				}
+			else
+				{
+				 return false;
+				}
+		}
+  	}
+	
+	function openmypage_jobNo(id)
+	{
+		    var cbo_company_id = $('#cbo_company_name').val();
+			if(form_validation('cbo_company_name','Company Name')==false)
+			   {
+				return;
+			   }
+			var title = 'Search Job No';	
+			var page_link = 'requires/cut_and_lay_roll_wise_entry_controller.php?cbo_company_id='+cbo_company_id+'&action=job_search_popup';
+			emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=1030px,height=400px,center=1,resize=0,scrolling=0','../');
+			emailwindow.onclose=function()
+			 {
+				var theform=this.contentDoc.forms[0]//("search_order_frm"); //Access the form inside the modal window
+				var job_no=(this.contentDoc.getElementById("hidden_job_no").value).split('_');
+				$('#txt_buyer_name').val(job_no[1]);
+				$('#txt_job_year').val(job_no[2]);
+		        document.getElementById('txt_job_no').value=job_no[0];
+				load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller',job_no[0]+'**'+cbo_company_id, 'load_drop_down_order', 'order_id' );
+				var $job_name=job_no[0];
+				release_freezing();
+			 }
+	}
+	
+  	function change_order(value)
+	{
+		if(form_validation('cbo_company_name','Company Name')==false)
+		{
+			return;
+		}
+		
+		var txt_job=$("#txt_job_no").val();
+		var cbo_company_id = $('#cbo_company_name').val();
+		if(txt_job.length<5)
+		{
+			load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller',txt_job+'**'+value+'**'+cbo_company_id, 'load_drop_down_job', 'job_change_id' );
+			load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller',txt_job+'**'+value+'**'+cbo_company_id, 'load_drop_down_buyer', 'buyer_id' );
+		}
+		var txt_job=$("#txt_job_no").val();
+		load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller',txt_job+'**'+cbo_company_id, 'load_drop_down_order', 'order_id' );
+	//load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller',value+'**'+txt_year+'**'+cbo_company_id, 'load_drop_down_buyer', 'buyer_id' );
+	  
+  	}
+	
+
+	function change_data(value,id)
+    { 
+	
+	    var id=id.split('_');
+		var ship_id='ship_'+id[1];
+		var order_qty_id='order_'+id[1];
+		var gmt_id='garment_'+id[1];
+		
+		$('#orderCutNo_'+id[1]).val();
+
+		var bundle_bo_creation = $('#bundle_bo_creation').val();
+		if(bundle_bo_creation == 3)
+		{
+			if(id[1]*1-1*1 !=0)
+			{
+				var prev_id = id[1]*1-1*1;
+				var prev_order = $('#cboorderno_'+prev_id).val();
+				var current_order = $('#cboorderno_'+id[1]).val();
+				if(prev_order != current_order)
+				{
+					alert('Order no can not mix. If you want to mix please change the variable setting.');
+					$('#cboorderno_'+id[1]).val('');
+					return;
+				}
+			}
+		}
+		
+		load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller', value+"_"+ship_id, 'load_drop_down_ship', ship_id);
+		load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller', value+"_"+gmt_id, 'load_drop_down_order_garment', gmt_id);
+		var gmt_value=$("#cbogmtsitem_"+id[1]).val();
+		if(gmt_value!=0)
+		{
+		 var gmt_id="cbogmtsitem_"+id[1];
+		  change_color(gmt_id,gmt_value);	
+		}
+    }
+
+	function change_color(id,value)
+	 {
+	
+		var id=id.split('_');
+		var color_id='color_'+id[1];
+		var order_id=$('#cboorderno_'+id[1]).val();
+		load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller', order_id+"_"+value+"_"+id[1], 'load_drop_down_color', color_id);
+		var color_value=$("#cbocolor_"+id[1]).val();
+		if(color_value!=0)
+			{
+			  var color_id="cbogmtsitem_"+id[1];
+			  change_marker(color_id,color_value);	
+			}
+	}
+	
+	function change_marker(id,value)
+	{
+		id=id.split('_');
+		var order_id_no='order_'+id[1];
+		marker_id='marker_'+id[1];
+		var order_id=$('#cboorderno_'+id[1]).val();
+		var gmt_id=$('#cbogmtsitem_'+id[1]).val();
+		var txt_job_no=$("#txt_job_no").val();
+		var ship_date=$("#txtshipdate_"+id[1]).val();
+		var gmt_value=$("#cbogmtsitem_"+id[1]).val();
+		var color_value=$("#cbocolor_"+id[1]).val();
+		var row_num=$('#tbl_order_details tbody tr').length;
+		
+	/*	for(var i=1;i<=row_num;i++)
+		{
+			if(row_num!=1 && id[1]!=i)
+			{
+				if(order_id==$('#cboorderno_'+i).val() && gmt_value==$('#cbogmtsitem_'+i).val() && color_value==$('#cbocolor_'+i).val() && ship_date==$('#txtshipdate_'+i).val())
+				{
+					   alert(" Order number,Ship date,Gmt Item,Color are same");
+					   $("#cbocolor_"+id[1]).val("");
+					   return;
+				}
+			}
+		}*/
+		
+		get_php_form_data( order_id+"_"+gmt_id+"_"+value+"_"+id[1], "load_drop_down_order_qty", "requires/cut_and_lay_roll_wise_entry_controller" );
+		load_drop_down('requires/cut_and_lay_roll_wise_entry_controller', order_id+"_"+value+"_"+id[1], 'load_drop_down_batch', 'batch_'+id[1]);
+		
+		load_drop_down('requires/cut_and_lay_roll_wise_entry_controller', order_id+"_"+gmt_value+"_"+value+"_"+id[1], 'load_drop_down_color_type', 'cboColorType_'+id[1]);
+		var length=$("#cbobatch_"+id[1]+" option").length;
+		if(length==2)
+		{
+			$('#cbobatch_'+id[1]).val($('#cbobatch_'+id[1]+' option:last').val());
+		}
+	}
+	
+	function batch_match(id,value)
+	{
+		id=id.split('_');
+		var order_id=$('#cboorderno_'+id[1]).val();
+		var ship_date=$("#txtshipdate_"+id[1]).val();
+		var gmt_value=$("#cbogmtsitem_"+id[1]).val();
+		var color_value=$("#cbocolor_"+id[1]).val();
+		var batch_id=$("#cbobatch_"+id[1]).val();
+		var row_num=$('#tbl_order_details tbody tr').length;
+		
+		for(var i=1;i<=row_num;i++)
+		{
+			if(row_num!=1 && id[1]!=i)
+			{
+				if(order_id==$('#cboorderno_'+i).val() && gmt_value==$('#cbogmtsitem_'+i).val() && color_value==$('#cbocolor_'+i).val() && ship_date==$('#txtshipdate_'+i).val() && batch_id==$('#cbobatch_'+i).val())
+				{
+					   alert(" Order number,Ship date,Gmt Item,Color,Batch are same");
+					   $("#cbobatch_"+id[1]).val("");
+					   return;
+				}
+			}
+		}
+		
+	}
+	
+	function openmypage_sizeNo(id)
+	{
+		$('#'+id).attr("onkeydown","openmypage_sizeNo(id);");
+		var job_id = $('#txt_job_no').val();
+		var size_wise_repeat_cut_no = $('#size_wise_repeat_cut_no').val();
+		var bundle_bo_creation = $('#bundle_bo_creation').val();
+		var cbo_company_id = $('#cbo_company_name').val();
+		var id=id.split('_');
+		var size=id[1];
+		var mst_id = $('#update_id').val();
+		var details_id= $('#updateDetails_'+size).val();
+		var rollData=$('#rollData_'+size).val();
+		
+		if(details_id=="" && mst_id=="")
+		{
+		   alert("Please save first");return;	
+		}
+		if(details_id=="" && mst_id!="")
+		{
+		   alert("Please Update first");return;	
+		}
+
+		var order_id= $('#cboorderno_'+size).val();
+		var marker_quantity = $('#txtmarkerqty_'+size).val();
+		var order_quantity = $('#txtorderqty_'+size).val();
+		var total_lay_qty = $('#txttotallay_'+size).val();
+		var total_lay_balance = $('#txtlaybalanceqty_'+size).val();
+		var piles = $('#txtplics_'+size).val();
+		var cutting_no = $('#txt_cutting_no').val();
+		var cbo_color_id = $('#cbocolor_'+size).val();
+		var cbo_color_type = $('#cboColorType_'+size).val();
+		var cbo_gmt_id = $('#cbogmtsitem_'+size).val();
+		$("#tr_"+size).css({"background-color":"yellow"});
+	//	$("#tbl_order_details tbody tr_"+size).css({"background-color":"red"});
+		var title = 'Size Ratio Form';
+		
+		var page_link = 'requires/cut_and_lay_roll_wise_entry_controller.php?cbo_company_id='+cbo_company_id+'&job_id='+job_id+'&mst_id='+mst_id+'&details_id='+details_id+'&cbo_gmt_id='+cbo_gmt_id+'&cbo_color_id='+cbo_color_id+'&size='+size+'&txt_piles='+piles+'&cutting_no='+cutting_no+'&order_id='+order_id+'&marker_quantity='+marker_quantity+'&order_quantity='+order_quantity+'&total_lay_qty='+total_lay_qty+'&total_lay_balance='+total_lay_balance+'&rollData='+rollData+'&size_wise_repeat_cut_no='+size_wise_repeat_cut_no+'&bundle_bo_creation='+bundle_bo_creation+'&cbo_color_type='+cbo_color_type+'&action=size_popup';
+		//alert(page_link)
+		emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=850px,height=500px,center=1,resize=0,scrolling=0','../../');
+		emailwindow.onclose=function()
+		 { 
+			var sysNumber=this.contentDoc.getElementById("hidden_marker_no_x").value;
+			var marker_no=sysNumber.split('**');
+			$('#txtmarkerqty_'+marker_no[0]).val(marker_no[1]);
+			$('#txtorderqty_'+marker_no[0]).val(marker_no[2]);
+			$('#txttotallay_'+marker_no[0]).val(marker_no[3]);
+			$('#txtlaybalanceqty_'+marker_no[0]).val(marker_no[4]);
+			//freeze_window(5);
+			$("#tr_"+marker_no[0]).css({"background-color":"white"});
+			//release_freezing();
+		 }
+	 }
+
+		
+function fnc_cut_lay_info( operation )
+{      
+	<?
+		if($_SESSION['logic_erp']['mandatory_field'][77]!="")
+		{
+			$mandatory_field_arr= json_encode( $_SESSION['logic_erp']['mandatory_field'][77] );
+			echo "var mandatory_field_arr= ". $mandatory_field_arr . ";\n";
+	
+			// condition for txt internal File No
+			$temp_mandatory_field_arr = $_SESSION['logic_erp']['mandatory_field'][77];
+			$temp_mandatory_message_arr = $_SESSION['logic_erp']['mandatory_message'][77];
+			///unset($temp_mandatory_message_arr[3]);
+		}	
+
+	?>
+		if('<? echo implode('*',$temp_mandatory_field_arr); ?>') 
+		{			
+			if (form_validation('<? echo implode('*',$temp_mandatory_field_arr); ?>','<? echo implode('*',$temp_mandatory_message_arr); ?>')==false) {return;}
+		}
+
+		if(operation==2)
+	  	{
+			show_msg('13');
+			return;
+		}
+		
+		if(form_validation('cbo_company_name*txt_job_no*txt_entry_date*txt_end_date*cbo_location_name','Company Name*Job No*Plan Start Date*Plan End Date*Location')==false)
+	  	{
+			return;
+		}
+        var row_num=$('#tbl_order_details tbody tr').length;
+		var tna_order_id="";
+		for(var r=1; r<=row_num; r++)
+		{
+			if(tna_order_id=="") tna_order_id=$("#cboorderno_"+r).val();
+			else                 tna_order_id=tna_order_id+","+$("#cboorderno_"+r).val();
+			
+		}
+	    var cut_start_date=$("#txt_entry_date").val();
+		var cut_finish_date=$("#txt_end_date").val();
+		var company_name=$("#cbo_company_name").val();
+		var tna_data=cut_start_date+"**"+cut_finish_date+"**"+tna_order_id+"**"+company_name;
+		
+		var tna_date=return_ajax_request_value(tna_data, "tna_date_status", "requires/cut_and_lay_roll_wise_entry_controller");
+		if(tna_date!=2)
+		{
+			tna_date=trim(tna_date).split("##");
+			if(tna_date[0]==0)
+			{
+				var new_table="Cutting Plane date range has been crossed \nTNA date range\n";
+				new_table+="Po Number TNA Start Date TNA End Date\n";
+				var tna_order=(tna_date[1]).split("**");
+				var tna_start=tna_date[2].split("**");
+				var tna_end=tna_date[3].split("**");
+				for(var p=0; p<tna_order.length;p++)
+				{
+					new_table+=tna_order[p]+"            "+tna_start[p]+"             "+tna_end[p]+"\n";
+				}
+				new_table+="Maximum TNA Date-"+tna_date[4]+"\n Minimum TNA Date-"+tna_date[5];
+				r=confirm(new_table);
+				if(r==false)
+				{
+				  $("#txt_entry_date").val(tna_date[4]);
+				  $("#txt_end_date").val(tna_date[5]);
+				  return;	
+				}
+			}
+		 }
+        var data1="action=save_update_delete&operation="+operation+"&row_num="+row_num+get_submitted_data_string('update_id*update_tbl_id*txt_job_no*txt_batch_no*cbo_company_name*cbo_floor_name*cbo_location_name*txt_cutting_no*txt_table_no*txt_entry_date*txt_marker_length*txt_marker_width*txt_fabric_width*txt_gsm*txt_cutting_no*txt_in_time_hours*txt_in_time_minuties*txt_out_time_hours*txt_out_time_minuties*txt_end_date*cbo_width_dia*txt_marker_cons*roll_maintained',"../../");
+		//alert(row_num)
+		var batch_controll=$('#txt_batch_no_mandatory').val(); 
+	    var data2='';
+		for(var i=1; i<=row_num; i++)
+		{
+			if(batch_controll==2)
+			{
+				if(form_validation('cboorderno_'+i+'*cbocolor_'+i+'*cboColorType_'+i+'*txtplics_'+i,'Order No*Color*Color Type*Plies')==false)
+				{
+					return;
+				}
+			}
+			else
+			{
+				if(form_validation('cboorderno_'+i+'*cbocolor_'+i+'*cboColorType_'+i+'*cbobatch_'+i+'*txtplics_'+i,'Order No*Color*Color Type*Batch*Plies')==false)
+				{
+					return;
+				}
+			}
+			
+			data2+=get_submitted_data_string('updateDetails_'+i+'*cboorderno_'+i+'*cbogmtsitem_'+i+'*txtshipdate_'+i+'*cbocolor_'+i+'*cboColorType_'+i+'*txtplics_'+i+'*txtorderqty_'+i+'*orderCutNo_'+i+'*orderCutNo_'+i+'*rollData_'+i+'*cbobatch_'+i,"../../",2);
+		}
+	     var data=data1+data2;
+		//alert(data1);orderCutNo_1
+		freeze_window(operation);
+		http.open("POST","requires/cut_and_lay_roll_wise_entry_controller.php",true);
+		http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		http.send(data);
+		http.onreadystatechange = fnc_cut_lay_info_reponse;
+	}
+
+
+function fnc_cut_lay_info_reponse()
+{
+	if(http.readyState == 4) 
+	{
+		//alert(http.responseText);
+		//release_freezing();return;
+		var reponse=trim(http.responseText).split('**');
+		if(reponse[0]==200)
+		{
+			alert("Update Restricted.This information found in Cutting Qc Page Which System Id "+reponse[1]+".");
+		}
+		else if(reponse[0]==786)
+		{
+			alert("Projected PO is not allowed to production. Please check variable settings."); return;
+		}		
+		else if(reponse[0]==11)
+		{
+			alert(reponse[1]); release_freezing(); return;
+		}
+		show_msg(trim(reponse[0]));
+		if(reponse[0]==0 || reponse[0]==1)
+			{
+				document.getElementById('update_id').value=reponse[1];
+				document.getElementById('update_tbl_id').value=reponse[3];
+				document.getElementById('txt_cutting_no').value=reponse[2];
+				/*var details_id=reponse[4].split('_');
+				for(var i=1;i<=details_id.length;i++)
+					{
+						var data=details_id[i-1].split("#");
+						document.getElementById('updateDetails_'+i).value=data[0];	
+						//document.getElementById('orderCutNo_'+i).value=data[1];	
+					}*/
+				$("#cbo_company_name").attr("disabled",true);
+				$("#txt_job_no").attr("disabled",true);
+				show_list_view( reponse[1], 'order_details_list', 'cut_details_container', 'requires/cut_and_lay_roll_wise_entry_controller', '' ) ;
+				set_button_status(1, permission, 'fnc_cut_lay_info',1,1);
+			}
+		//set_button_status(1, permission, 'fnc_cut_lay_info');
+		release_freezing();
+	}
+} 
+
+function clear_tr()
+{
+ var row_num=$('#tbl_order_details tbody tr').length;
+   for(var j=1;j<=row_num;j++)
+   {
+	   if(j!=1)
+	   {
+	     $('#tbl_order_details tbody tr:last').remove();   
+	   }
+   }
+   $("#cbo_company_name").attr("disabled",false);
+   $("#txt_job_no").attr("disabled",false);
+}
+
+function open_cutting_popup()
+{ 
+	if( form_validation('cbo_company_name','Company Name')==false)
+	{
+		return;
+	} 
+	var company_id=$("#cbo_company_name").val();
+	var page_link='requires/cut_and_lay_roll_wise_entry_controller.php?action=cutting_number_popup&company_id='+company_id; 
+	var title="Search Cutting Number Popup";
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=1000px,height=420px,center=1,resize=0,scrolling=0',' ../');
+	emailwindow.onclose=function()
+	{
+		var sysNumber = this.contentDoc.getElementById("update_mst_id"); 
+		var sysNumber=sysNumber.value.split('_');
+		get_php_form_data( sysNumber[0], "load_php_mst_form", "requires/cut_and_lay_roll_wise_entry_controller" );
+		show_list_view( sysNumber[0], 'order_details_list', 'cut_details_container', 'requires/cut_and_lay_roll_wise_entry_controller', '' ) ;
+		$("#cbo_company_name").attr("disabled",true);
+		$("#txt_job_no").attr("disabled",true);
+		$("#txt_job_year").attr("disabled",true);
+		set_button_status(0, permission, 'fnc_cut_lay_info');
+ 	}
+}
+
+function openmypage_roll(row_no)
+{
+	if(form_validation('cbo_company_name*cboorderno_'+row_no+'*cbocolor_'+row_no,'Company*Order No*Color')==false)
+	{
+		return;
+	}
+	
+	var roll_maintained=$('#roll_maintained').val();
+	var order_no=$('#cboorderno_'+row_no).val();
+	var color=$('#cbocolor_'+row_no).val();
+	var rollData=$('#rollData_'+row_no).val();
+	
+	var title = 'Plies Entry Roll Wise Form';	
+	var page_link = 'requires/cut_and_lay_roll_wise_entry_controller.php?roll_maintained='+roll_maintained+'&order_no='+order_no+'&color='+color+'&rollData='+rollData+'&action=roll_popup';
+	emailwindow=dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=650px,height=410px,center=1,resize=1,scrolling=0','../');
+	emailwindow.onclose=function()
+	{
+		var theform=this.contentDoc.forms[0]//("search_order_frm"); //Access the form inside the modal window
+		var plies=this.contentDoc.getElementById("hide_plies").value; //Access form field with id="emailfield"
+		var data=this.contentDoc.getElementById("hide_data").value; //Access form field with id="emailfield"
+		
+		$('#txtplics_'+row_no).val(plies);
+		$('#rollData_'+row_no).val(data);
+	}
+}
+
+function fnc_move_cursor(val,id, field_id,lnth,max_val)
+{
+	var str_length=val.length;
+	
+	if(str_length==lnth)
+	{
+		$('#'+field_id).select();
+		$('#'+field_id).focus();
+	}
+	
+	if(val>max_val)
+	{
+		document.getElementById(id).value=max_val;
+	}
+}
+	
+
+function fnc_intime_populate(val2,val1)
+{
+	var tot_row=$('#emp_tab tr').length;
+	var intimeho=document.getElementById(val1).value;
+	
+	if(val2== '')
+	{
+		val2='00';
+	}
+	for(var i=1; i<=tot_row; i++)
+	{
+		if($("#txtintimehours_"+i).val()== '')
+		{
+			$("#txtintimehours_"+i).val(intimeho);
+			$("#txtintimeminuties_"+i).val(val2);
+		}
+	}
+}  
+	
+function fnc_outtime_populate(val2,val1)
+{
+	var tot_row=$('#emp_tab tr').length;
+	var outtimeho=document.getElementById(val1).value;
+	
+	if(val2== '')
+	{
+		val2='00';
+	}
+	
+	for(var i=1; i<=tot_row; i++)
+	{
+		if($("#txtouttimehours_"+i).val()== '')
+		{
+			$("#txtouttimehours_"+i).val(outtimeho);
+			$("#txtouttimeminuties_"+i).val(val2);
+		}
+	}
+}
+
+// for report lay chart
+ function generate_report_lay_chart(data,action)
+	{
+		if(form_validation('txt_cutting_no','Cutting Number')==false)
+			   {
+				return;
+			   }
+		window.open("requires/cut_and_lay_roll_wise_entry_controller.php?data=" + data+'&action='+action, true );
+	}
+	
+</script>
+</head>
+<body onLoad="set_hotkey()">
+<div style="width:1200px;" align="center">
+	<? echo load_freeze_divs ("../../",$permission);  ?>
+    <form name="cutandlayentry_1" id="cutandlayentry_1">
+        <fieldset style="width:1080px;">
+            <legend>Cut & Lay Entry</legend>
+            <table  width="1070" cellspacing="2" cellpadding="0" border="0">
+                <tr>
+                    <td colspan="4" align="right"><b>Cutting Number</b></td>
+                    <td colspan="4">
+                    <input type="text" name="txt_cutting_no" id="txt_cutting_no" class="text_boxes" style="width:130px" placeholder="Double Click To Search" onDblClick="open_cutting_popup();" onKeyDown="if (event.keyCode == 13) document.getElementById(this.id).ondblclick();" readonly />
+                    <input type="hidden" name="update_id"  id="update_id"  />
+                    </td>
+                </tr>
+                <tr>
+                    <td width="110" class="must_entry_caption"> Company Name</td>              <!-- 11-00030  -->
+                    <td width="160"><? echo create_drop_down( "cbo_company_name", 140, "select comp.id,comp.company_name from lib_company comp where comp.status_active=1 and comp.is_deleted=0 $company_cond  order by comp.company_name","id,company_name", 1, "-- Select Company --", $selected, "load_drop_down( 'requires/cut_and_lay_roll_wise_entry_controller', this.value, 'load_drop_down_location', 'location_td'); get_php_form_data(this.value,'roll_maintained','requires/cut_and_lay_roll_wise_entry_controller'); get_php_form_data(this.value,'size_wise_repeat_cut_no','requires/cut_and_lay_entry_controller');" ); ?></td>
+                    <td width="120" class="must_entry_caption">Location </td>
+                    <td width="160" id="location_td"><? echo create_drop_down("cbo_location_name", 140,$blank_array,"",1, "-- Select Location --", $selected,""); ?></td>
+                    <td width="110">Floor</td>
+                    <td width="160" id="floor_td"><? echo create_drop_down( "cbo_floor_name", 140,"select id,floor_name from lib_prod_floor where production_process=1  and status_active =1 and is_deleted=0","id,floor_name", 1, "-- Select Floor --", $selected, "" ); ?></td>
+                    <td width="80" class="<?=$_SESSION['logic_erp']['mandatory_field'][77][1] != 'txt_table_no' ?'':'must_entry_caption' ;?>" >Table No </td>
+                    <td><input style="width:120px;" type="text" class="text_boxes_numeric" autocomplete="off" name="txt_table_no" id="txt_table_no" /></td>
+                </tr>
+                <tr>
+                    <td>CAD Marker length</td>
+                    <td><input style="width:130px;" type="text" class="text_boxes" autocomplete="off" name="txt_marker_length" id="txt_marker_length" /></td>
+                    <td>CAD Marker Width</td>           
+                    <td><input style="width:130px;" type="text" class="text_boxes_numeric" autocomplete="off"  name="txt_marker_width" id="txt_marker_width" /></td>
+                    <td>CAD Fabric Width </td>         
+                    <td><input type="text" name="txt_fabric_width" id="txt_fabric_width" class="text_boxes_numeric" style="width:130px" /></td>
+                    <td>CAD GSM</td>
+                    <td><input style="width:120px;" type="text" class="text_boxes_numeric" autocomplete="off" name="txt_gsm" id="txt_gsm" /></td>
+                </tr>
+                <tr>
+                    <td class="must_entry_caption">Job No</td>
+                    <td id="job_change_id">
+                    <input style="width:130px;" type="text"  onDblClick="openmypage_jobNo()" class="text_boxes" autocomplete="off" placeholder="Browse" name="txt_job_no" id="txt_job_no" onKeyDown="if (event.keyCode == 13) document.getElementById(this.id).ondblclick()" readonly />
+                    </td>
+                    <td>Year</td>
+                    <td><? echo create_drop_down( "txt_job_year", 140, $year,"", 1, "-- Select year --", $selected, "change_order(this.value)",""); ?></td>
+                    <td>Batch</td>
+                    <td><input style="width:130px;" type="text" class="text_boxes" autocomplete="off" name="txt_batch_no" id="txt_batch_no" /></td> 
+                    <td>Buyer</td>
+                    <td id="buyer_id"><? echo create_drop_down( "txt_buyer_name", 130,"select id, buyer_name from  lib_buyer","id,buyer_name", 1, "", $selected, "" ,1); ?></td>
+                </tr>
+                <tr>
+                    <td class="must_entry_caption">Plan Start Date</td>
+                    <td>
+                        <input style="width:130px;" type="text" class="datepicker" autocomplete="off"  name="txt_entry_date" id="txt_entry_date"  />
+                        <input type="hidden" name="update_job_no"  id="update_job_no"  />
+                        <input type="hidden" name="update_tbl_id"  id="update_tbl_id"  />
+                        <input type="hidden" name="roll_maintained" id="roll_maintained" readonly>
+                        <input type="hidden" name="bundle_bo_creation" id="bundle_bo_creation" readonly>
+                        <input type="hidden" name="size_wise_repeat_cut_no" id="size_wise_repeat_cut_no" readonly>
+                    </td>
+                    <td>Start Time</td>           
+                    <td>
+                        <input type="text" name="txt_in_time_hours" id="txt_in_time_hours" class="text_boxes_numeric" placeholder="HH"  style="width:30px;"  onKeyUp="fnc_move_cursor(this.value,'txt_in_time_hours','txt_in_time_minuties',2,23);" /> :
+                        <input type="text" name="txt_in_time_minuties" id="txt_in_time_minuties" class="text_boxes_numeric" placeholder="MM"  style="width:30px;" onKeyUp="fnc_move_cursor(this.value,'txt_in_time_minuties','txt_in_time_seconds',2,59)" onBlur="fnc_intime_populate(this.value,'txt_in_time_hours')" />
+                    </td>
+                    <td class="must_entry_caption">Plan End Date</td>
+                    <td><input style="width:130px;" type="text" class="datepicker" autocomplete="off" name="txt_end_date" id="txt_end_date" /></td>
+                    <td>End Time</td>         
+                    <td>
+                        <input type="text" name="txt_out_time_hours" id="txt_out_time_hours" class="text_boxes_numeric" placeholder="HH"  style="width:30px;"  onKeyUp="fnc_move_cursor(this.value,'txt_out_time_hours','txt_out_time_minuties',2,23);" /> :
+                        <input type="text" name="txt_out_time_minuties" id="txt_out_time_minuties" class="text_boxes_numeric" placeholder="MM"  style="width:30px;"  onKeyUp="fnc_move_cursor(this.value,'txt_out_time_minuties','txt_out_time_seconds',2,59)" onBlur="fnc_outtime_populate(this.value,'txt_out_time_hours')"/> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Width/Dia Type</td>
+                    <td><? echo create_drop_down( "cbo_width_dia", 140, $fabric_typee,"", 1, "-- Select --", "", "",$disabled,"" ); ?></td>
+                    <td>CAD Marker Cons/Dzn</td>
+                    <td><input style="width:130px;" type="text"  class="text_boxes_numeric" autocomplete="off" name="txt_marker_cons" id="txt_marker_cons" /></td> 
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </fieldset>
+        <br>
+        <fieldset style="width:1180px;">
+            <legend>Cut and Lay details</legend>
+            <table cellpadding="0" cellspacing="0" width="1170" class="rpt_table" border="1" rules="all" id="tbl_order_details">
+                <thead>
+                    <th width="100" class="must_entry_caption">Order No</th>
+                    <th width="70">Order Cut No</th>
+                    <th width="80">Ship Date</th>
+                    <th width="100">Gmt Item</th>
+                    <th width="100" class="must_entry_caption">Color</th>
+                    <th width="100" class="must_entry_caption">Color Type</th>
+                    <th width="100" class="must_entry_caption">Batch</th>
+                    <th width="70" class="must_entry_caption">Plies</th>
+                    <th width="60">Size Ratio</th>
+                    <th width="70">Marker Qty</th>
+                    <th width="70">Order Qty</th>
+                    <th width="70">Total Lay Qty</th>
+                    <th width="70">Lay balance Qty</th>
+                    <th>&nbsp;</th>
+                </thead>
+                <tbody id="cut_details_container">
+                    <tr id="tr_1">
+                        <td id="order_id"><? echo create_drop_down( "cboorderno_1", 100, $blank_array,"", 1, "-- Select Item --", $selected, "","");//create_drop_down( "cboorderno_1", 100, "select id,job_no_mst,po_number from  wo_po_break_down where  status_active=1","id,po_number", 1, "select order", $selected, ""); ?></td>
+                        <td id="cutNo_1"><input style="width:60px;" class="text_boxes_numeric" type="text" name="orderCutNo_1" id="orderCutNo_1" placeholder="" /></td>                             
+                        <td id="ship_1"><input style="width:70px;" type="text" class="datepicker" autocomplete="off" name="txtshipdate_1" id="txtshipdate_1" placeholder="Display" disabled readonly/></td>                              
+                        <td id="garment_1"><? echo create_drop_down( "cbogmtsitem_1", 100, $blank_array,"", 1, "-- Select Item --", $selected, "",""); ?></td>
+                        <td id="color_1"><? echo create_drop_down( "cbocolor_1", 100, $blank_array,"", 1, "select color", $selected, ""); ?></td>                            
+						<td align="center" id="colorTypeId_1">
+							<?
+							echo create_drop_down( "cboColorType_1", 100, $blank_array,"", 1, "--Select--", $selected, "","",0 );
+							?>
+						</td>
+                        <td id="batch_1"><? echo create_drop_down( "cbobatch_1", 100, $blank_array,"", 1, "select Batch", $selected, ""); ?></td>
+                        <td>
+                            <input type="text" name="txtplics_1"  id="txtplics_1" class="text_boxes_numeric" style="width:60px" placeholder="Double Click" onDblClick="openmypage_roll(1)" readonly />
+                            <input type="hidden" name="hiddenorder_1"  id="hiddenorder_1"  />
+                            <input type="hidden" name="updateDetails_1"  id="updateDetails_1"  />
+                            <input type="hidden" name="rollData_1" id="rollData_1" class="text_boxes" readonly />
+                        </td>
+                        <td><input type="text" name="txtsizeratio_1"  id="txtsizeratio_1" class="text_boxes_numeric"  onDblClick="openmypage_sizeNo(this.id);"  placeholder="Browse" style="width:60px" /></td>
+                        <td id="marker_1"><input type="text" name="txtmarkerqty_1"  id="txtmarkerqty_1" class="text_boxes_numeric"  placeholder="Display" style="width:60px"  readonly/></td>
+                        <td id="order_1"><input type="text" name="txtorderqty_1" id="txtorderqty_1" class="text_boxes_numeric" placeholder="Display" style="width:60px" readonly/></td>
+                        <td><input type="text" name="txttotallay_1" id="txttotallay_1" class="text_boxes_numeric" placeholder="Display" style="width:60px" readonly/></td>
+                        <td><input type="text" name="txtlaybalanceqty_1" id="txtlaybalanceqty_1" class="text_boxes_numeric" placeholder="Display" style="width:60px" readonly/></td>
+                        <td>
+                            <input type="button" id="increase_1" name="increase_1" style="width:30px" class="formbuttonplasminus" value="+" onClick="add_break_down_tr(1);" onKeyDown="if (event.keyCode == 13) document.getElementById(this.id).onclick();" />
+                            <input type="button" id="decrease_1" name="decrease_1" style="width:30px" class="formbuttonplasminus" value="-" onClick="fn_deleteRow(1);" />
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td align="center" colspan="14">
+                            <input type="hidden" name="txt_batch_no_mandatory" id="txt_batch_no_mandatory" readonly>
+                            <? echo load_submit_buttons( $permission, "fnc_cut_lay_info", 0,0,"reset_form('cutandlayentry_1','','','','clear_tr()')",1); ?>
+                            <input type="button" id="btn_cost_print" name="btn_cost_print"   style="width:100px;"  class="formbutton" value="Lay Chart"  onClick="generate_report_lay_chart($('#txt_cutting_no').val()+'*'+$('#txt_job_no').val(),'cut_lay_entry_report_print');"/>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </fieldset> 
+    </form>
+	</div>
+</body>
+<script src="../../includes/functions_bottom.js" type="text/javascript"></script>
+<script>$("#cbo_location_name").val(0);</script>
+</html>

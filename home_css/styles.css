@@ -1,0 +1,333 @@
+.gr-search-panel,.gr-search-panel,.gr-search-panel { border: 1px solid #287fdf; background: -moz-linear-gradient(top, #287fdf, #df8827); background: -webkit-linear-gradient(top, #287fdf, #df8827); background: -o-linear-gradient(top, #287fdf, #df8827); background: -ms-linear-gradient(top, #287fdf, #df8827); background: linear-gradient(top, #287fdf, #df8827); font-weight: normal; color: #000;  }
+.gr-search-panel a, .gr-search-panel a:link, .gr-search-panel a:visited { color: #ffffff; text-decoration: none;  }
+
+
+.gr-search-panel-lc-style {
+	margin-top:3px;
+	margin-left:20px; 
+	margin-right:15px; 
+	border-bottom: 2px solid #CCC; 
+	background: linear-gradient(to right, #4076B2 40%,#4076B2 20%,#598EC8 40%,#598EC8 100%);
+	font-weight: normal; 
+	color: #fff;
+	padding:7px 2px;
+	cursor:pointer; 
+}
+.gr-search-panel-lc-style:hover {
+	border-bottom: 2px solid #1E64A1;
+	transition:1.2s ;
+	opacity: 0.8;
+	background: linear-gradient(to right, #4076B2 100%,#4076B2 100%);
+}
+
+/* Graph button */
+
+.gpanel{width: 140px;}
+.gpanel2{width: 164px;}
+
+.gpanel2 ,.gpanel{
+  height: 40px;
+  margin-right: 5px;
+  border-bottom: 5px solid #D7D8DA;
+  float: left;
+  padding: 5px;
+  color: #fff;
+  font-family: "Lato",sans-serif;
+  font-size: 11px;
+}
+.gpanel2 img ,.gpanel img{
+  padding: 0;
+  float: left;
+  margin: 0;
+  text-align: center;
+  padding-right: 20px;
+   padding-left: 5px;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: .3s ease-in-out;
+  transition: .3s ease-in-out;
+}
+
+
+.gpanel2:hover ,.gpanel:hover{border-bottom: 5px solid #1E64A1;transition:1.2s ;opacity: 0.8;}
+.gpanel2 img:hover ,.gpanel img:hover{-webkit-transform: scale(1.3);transform: scale(1.3);}
+
+
+/* ------------------------------------------------------------------------- */
+
+.panel-1{
+  background: linear-gradient(to right, #799203 40%,#799203 20%,#90AB10 40%,#90AB10 100%);
+}
+.panel-1:hover{
+	background: linear-gradient(to right, #799203 100%,#90AB10 100%);
+}
+
+.panel-2{
+  background: linear-gradient(to right, #799203 40%,#799203 20%,#90AB10 40%,#90AB10 100%);
+}
+.panel-2:hover{
+  background: linear-gradient(to right, #799203 40%,#799203 20%,#90AB10 40%,#90AB10 100%);
+}
+
+
+.panel-3{
+  background: linear-gradient(to right, #4076B2 40%,#4076B2 20%,#598EC8 40%,#598EC8 100%);
+}
+.panel-3:hover{
+  background: linear-gradient(to right, #4076B2 100%,#598EC8 100%);
+}
+
+.panel-4{
+  background: linear-gradient(to right, #117461 40%,#117461 20%,#2AB097 40%,#2AB097 100%);
+}
+.panel-4:hover{
+  background: linear-gradient(to right, #117461 100%,#2AB097 100%);
+}
+
+.panel-5{
+  background: linear-gradient(to right, #78448A 40%,#78448A 20%,#905BA3 40%,#905BA3 100%);
+}
+.panel-5:hover{
+  background: linear-gradient(to right, #78448A 40%,#78448A 20%,#905BA3 40%,#905BA3 100%);
+}
+.panel-6{
+  background: linear-gradient(to right, #274056 40%,#274056 20%,#3E586F 40%,#3E586F 100%);
+}
+.panel-6:hover{
+  background: linear-gradient(to right, #274056 40%,#274056 20%,#3E586F 40%,#3E586F 100%);
+}
+.panel-7{
+  background: linear-gradient(to right, #fd5244 40%,#fd5244 20%,#e3493d 40%,#e3493d 100%);
+}
+.panel-7:hover{
+  background: linear-gradient(to right, #fd5211 100%,#fd5211 100%);
+}
+
+.panel-8{
+  background: linear-gradient(to right, #3C3A91 40%,#3C3A91 20%,#5452A8 40%,#5452A8 100%);
+}
+.panel-8:hover{
+  background: linear-gradient(to right, #3C3999 100%,#3C3A22 100%);
+}
+
+.panel-9{
+  background: linear-gradient(to right, #1A5197 40%,#1A5197 20%,#3571BD 40%,#3571BD 100%);
+}
+.panel-9:hover{
+  background: linear-gradient(to right, #1A5197 100%,#357111 100%);
+}
+
+.panel-10{
+  background: linear-gradient(to right, #691543 40%,#691543 20%,#9B2E69 40%,#9B2E69 100%);
+}
+.panel-10:hover{
+  background: linear-gradient(to right, #691543 100%,#9B2E69 100%);
+}
+
+
+.panel-11{
+  background: linear-gradient(to right, #001543 40%,#001543 20%,#002E69 40%,#002E69 100%);
+}
+.panel-11:hover{
+	background: linear-gradient(to right, #001543 100%,#9B2E69 100%);
+}
+
+
+.panel-12{
+  background: linear-gradient(to right, #691543 40%,#691543 20%,#9B2E69 40%,#9B2E69 100%);
+}
+.panel-12:hover{
+	background: linear-gradient(to right, #691543 100%,#9B2E69 100%);
+}
+
+
+.panel-13{
+  background: linear-gradient(to right, #131543 40%,#131543 20%,#132E69 40%,#132E69 100%);
+}
+.panel-13:hover{
+	background: linear-gradient(to right, #131543 100%,#9B2E69 100%);
+}
+
+.panel-14{
+  background: linear-gradient(to right, #551543 40%,#551543 20%,#552E69 40%,#552E69 100%);
+}
+.panel-14:hover{
+	background: linear-gradient(to right, #551543 100%,#9B2E69 100%);
+}
+
+.panel-15{
+  background: linear-gradient(to right, #691543 40%,#691543 20%,#9B2E69 40%,#9B2E69 100%);
+}
+.panel-15:hover{
+	background: linear-gradient(to right, #691543 100%,#9B2E69 100%);
+}
+
+.panel-16{
+  background: linear-gradient(to right, #691543 40%,#691543 20%,#9B2E69 40%,#9B2E69 100%);
+}
+.panel-16:hover{
+	background: linear-gradient(to right, #691543 100%,#9B2E69 100%);
+}
+
+.panel-17{
+  background: linear-gradient(to right, #171543 40%,#171543 20%,#172E69 40%,#172E69 100%);
+}
+.panel-17:hover{
+	background: linear-gradient(to right, #171543 100%,#9B2E69 100%);
+}
+
+.panel-18{
+  background: linear-gradient(to right, #181543 40%,#181543 20%,#182E69 40%,#182E69 100%);
+}
+.panel-18:hover{
+	background: linear-gradient(to right, #181543 100%,#9B2E69 100%);
+}
+
+
+.panel-19{
+  background: linear-gradient(to right, #800A11 40%,#A52A2A 20%,#CD3D22 40%,#CD3D22 100%);
+}
+.panel-19:hover{
+background: linear-gradient(to right, #800A11 100%,#811A00 100%);
+}
+
+.panel-20{
+  background: linear-gradient(to right, #811A11 40%,#A52A2A 20%,#CD3D22 40%,#CD3D22 100%);
+}
+.panel-20:hover{
+background: linear-gradient(to right, #811A11 100%,#811A11 100%);
+}
+
+.panel-21{
+  background: linear-gradient(to right, #991A11 40%,#992A2A 20%,#993D22 40%,#993D22 100%);
+}
+.panel-21:hover{
+background: linear-gradient(to right, #991A11 100%,#811A11 100%);
+}
+
+.panel-22{
+  background: linear-gradient(to right, #991A11 40%,#992A2A 20%,#993D22 40%,#993D22 100%);
+}
+.panel-22:hover{
+background: linear-gradient(to right, #991A11 100%,#811A11 100%);
+}
+
+.panel-23{
+  background: linear-gradient(to right, #751A11 40%,#752A2A 20%,#753D22 40%,#753D22 100%);
+}
+.panel-23:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+.panel-24{
+  background: linear-gradient(to right, #751A33 40%,#752A33 20%,#753D33 40%,#753D33 100%);
+}
+.panel-24:hover{
+background: linear-gradient(to right, #751A33 100%,#811A11 100%);
+}
+
+
+.panel-25{
+  background: linear-gradient(to right, #811A88 40%,#A52A88 20%,#CD3D88 40%,#CD3D88 100%);
+}
+.panel-25:hover{
+background: linear-gradient(to right, #811A88 100%,#811A11 100%);
+}
+
+
+.panel-26{
+  background: linear-gradient(to right, #811A11 40%,#A52A2A 20%,#CD3D22 40%,#CD3D22 100%);
+}
+.panel-26:hover{
+	background: linear-gradient(to right, #811A11 100%,#811A11 100%);
+}
+
+.panel-27{
+  background: linear-gradient(to right, #751A11 40%,#752A2A 20%,#753D22 40%,#753D22 100%);
+}
+.panel-27:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+.panel-28{
+  background: linear-gradient(to right, #811A11 40%,#A52A2A 20%,#CD3D22 40%,#CD3D22 100%);
+}
+.panel-28:hover{
+	background: linear-gradient(to right, #811A11 100%,#811A11 100%);
+}
+.panel-29{
+  background: linear-gradient(to right, #751A11 40%,#A5332A 20%,#CD3322 40%,#811A11 100%);
+}
+.panel-29:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+.panel-30{
+  background: linear-gradient(to right, #751A11 40%,#A5332A 20%,#CD3322 40%,#811A11 100%);
+}
+.panel-30:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+
+.panel-31{
+  background: linear-gradient(to right, #751A11 40%,#A5332A 20%,#CD3322 40%,#811A11 100%);
+}
+.panel-31:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+.panel-32{
+  background: linear-gradient(to right, #813311 40%,#A5332A 20%,#CD3322 40%,#CD3322 100%);
+}
+.panel-32:hover{
+background: linear-gradient(to right, #813311 100%,#811A11 100%);
+}
+
+.panel-33{
+  background: linear-gradient(to right, #751A11 40%,#A5332A 20%,#CD3322 40%,#811A11 100%);
+}
+.panel-33:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+
+.panel-34{
+  background: linear-gradient(to right, #751A11 40%,#A5332A 20%,#CD3322 40%,#811A11 100%);
+}
+.panel-34:hover{
+	background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+
+.panel-35{
+  background: linear-gradient(to right, #751A11 40%,#A5332A 20%,#CD3322 40%,#811A11 100%);
+}
+.panel-35:hover{
+	background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+.panel-36{
+  background: linear-gradient(to right, #221A11 40%,#22332A 20%,#223322 40%,#221A11 100%);
+}
+.panel-36:hover{
+	background: linear-gradient(to right, #111A11 100%,#111A11 100%);
+}
+
+.panel-37{
+  background: linear-gradient(to right, #441A11 40%,#44332A 20%,#443322 40%,#441A11 100%);
+}
+.panel-37:hover{
+background: linear-gradient(to right, #331A11 100%,#331A11 100%);
+}
+
+.panel-38{
+  background: linear-gradient(to right, #751A44 40%,#A5332A 20%,#CD3344 40%,#811A44 100%);
+}
+.panel-38:hover{
+background: linear-gradient(to right, #751A11 100%,#811A11 100%);
+}
+
+
+
+
+

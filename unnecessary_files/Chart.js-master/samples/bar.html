@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Bar Chart</title>
+		<script src="../Chart.js"></script>
+	</head>
+	<body>
+		<div style="width: 50%">
+			<canvas id="canvas" height="350" width="500"></canvas>
+		</div>
+
+	<?
+							$month_prev=add_month(date("Y-m-d",time()),-3);
+							$month_next=add_month(date("Y-m-d",time()),8);
+							
+							$start_yr=date("Y",strtotime($month_prev));
+							$end_yr=date("Y",strtotime($month_next));
+							
+							$manufacturing_company=return_field_value("group_concat(comp.id)","lib_company as comp", "comp.core_business=1 and comp.status_active=1 and comp.is_deleted=0 $company_cond");
+							//$exFactory_arr=return_library_array( "select po_break_down_id, sum(ex_factory_qnty) as ex_factory_qnty from pro_ex_factory_mst where status_active=1 and is_deleted=0 group by po_break_down_id", "po_break_down_id", "ex_factory_qnty");
+							$exFactory_arr=array();
+							$data_arr=sql_select( "select po_break_down_id, country_id, sum(ex_factory_qnty) as ex_factory_qnty from pro_ex_factory_mst where status_active=1 and is_deleted=0 group by po_break_down_id, country_id");
+							foreach($data_arr as $row)
+							{
+								$exFactory_arr[$row[csf('po_break_down_id')]][$row[csf('country_id')]]=$row[csf('ex_factory_qnty')];
+							}
+							
+							for($e=0;$e<=11;$e++)
+							{
+								$tmp=add_month(date("Y-m-d",strtotime($month_prev)),$e);
+								$yr_mon_part[$e]=date("Y-m",strtotime($tmp));
+							}
+							$i=1; $totConfQty=0; $totProjQty=0; $totExFactoryQty=0; $grandTotQty=0;
+							foreach($yr_mon_part as $key=>$val)
+							{
+								if ($i%2==0) $bgcolor="#E9F3FF"; else $bgcolor="#FFFFFF";
+								
+								//$sql="select group_concat(b.id) as po_id, sum(CASE WHEN b.is_confirmed=1 THEN b.po_quantity*a.total_set_qnty END) AS 'confPoQty', sum(CASE WHEN b.is_confirmed=2 THEN b.po_quantity*a.total_set_qnty END) AS 'projPoQty' from wo_po_details_master as a, wo_po_break_down as b where a.job_no=b.job_no_mst and a.is_deleted=0 and a.status_active=1 and b.is_deleted=0 and b.status_active=1 and b.pub_shipment_date like '".$val."-%"."'";
+								
+								$sql="select b.id as po_id, a.country_id, sum(CASE WHEN b.is_confirmed=1 THEN a.order_quantity ELSE 0 END) AS 'confpoqty', sum(CASE WHEN b.is_confirmed=2 THEN a.order_quantity ELSE 0 END) AS 'projpoqty' from wo_po_color_size_breakdown as a, wo_po_break_down as b, wo_po_details_master as c where a.po_break_down_id=b.id and b.job_no_mst=c.job_no and c.company_name in($manufacturing_company) and a.is_deleted=0 and a.status_active=1 and b.is_deleted=0 and b.status_active=1 and c.is_deleted=0 and c.status_active=1 and a.country_ship_date like '".$val."-%"."' group by b.id, a.country_id";
+								//echo $sql ;die;
+								$result=sql_select($sql);
+								/*$projPoQty=$result[0]['projPoQty'];
+								$confPoQty=$result[0]['confPoQty'];
+								$totQty=$projPoQty+$confPoQty;
+								$exFactoryQty=0;
+								$po_id=explode(",",$result[0]['po_id']);
+								foreach($po_id as $id)
+								{
+									$exFactoryQty+=$exFactory_arr[$id];
+								}*/
+								
+								$confPoQty=0; $projPoQty=0; $exFactoryQty=0;
+								foreach($result as $row)
+								{ 
+									$confPoQty+=$row[csf('confpoqty')]; 
+									$projPoQty+=$row[csf('projpoqty')];
+									$exFactoryQty+=$exFactory_arr[$row[csf('po_id')]][$row[csf('country_id')]];
+								}
+								
+								$totQty=$projPoQty+$confPoQty;
+								$perc=($exFactoryQty/$totQty)*100;
+								
+								echo '<tr bgcolor="'.$bgcolor.'" onClick="change_color('."'tr_".$i."','".$bgcolor."'".')" id="tr_'.$i.'">';
+								echo '<td>'.date("M",strtotime($val))."'".date("y",strtotime($val)).'</td>
+										<td align="right">'.number_format($projPoQty,0).'</td>
+										<td align="right">'.number_format($confPoQty,0).'</td>
+										<td align="right">'.number_format($totQty,0).'</td>
+										<td align="right">'.number_format($exFactoryQty,0).'</td>
+										<td align="right">'.number_format($perc,2).'</td>';
+								echo '</tr>';
+								
+								$totProjQty+=$projPoQty;
+								$totConfQty+=$confPoQty;  
+								$totExFactoryQty+=$exFactoryQty; 
+								$grandTotQty+=$totQty;
+								
+								$i++;
+							}
+						?>
+	<script>
+	//var randomScalingFactor = function(){ return Math.round(Math.random()*200)};
+	var randomScalingFactor=50;
+	var randomScalingFactor1=150;
+	var randomScalingFactor2=250;
+	var randomScalingFactor3=350;
+	var randomScalingFactor4=250;
+	var randomScalingFactor5=550;
+	var randomScalingFactor6=350;
+	var barChartData = {
+		labels : ["January","February","March","April","May","June","July","August","September","October","November","December"],
+		datasets : [
+			{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				//data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				data : [randomScalingFactor,randomScalingFactor1,randomScalingFactor2,randomScalingFactor3,randomScalingFactor4,randomScalingFactor5,randomScalingFactor6,randomScalingFactor2,randomScalingFactor3,randomScalingFactor4,randomScalingFactor5,randomScalingFactor6]
+			},
+			{
+				fillColor : "rgba(151,187,205,0.5)",
+				strokeColor : "rgba(151,187,205,0.8)",
+				highlightFill : "rgba(151,187,205,0.75)",
+				highlightStroke : "rgba(151,187,205,1)",
+				//data : [randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor(),randomScalingFactor()]
+				data : [randomScalingFactor6,randomScalingFactor5,randomScalingFactor4,randomScalingFactor3,randomScalingFactor2,randomScalingFactor1,randomScalingFactor,randomScalingFactor2,randomScalingFactor3,randomScalingFactor4,randomScalingFactor5,randomScalingFactor6]
+			}
+		]
+
+	}
+	
+	/*var data = {
+	labels: ["January", "February", "March", "April", "May", "June", "July"],
+	datasets: [
+			{
+				label: "My First dataset",
+				fillColor: "rgba(220,220,220,0.5)",
+				strokeColor: "rgba(220,220,220,0.8)",
+				highlightFill: "rgba(220,220,220,0.75)",
+				highlightStroke: "rgba(220,220,220,1)",
+				data: [65, 59, 80, 81, 56, 55, 40]
+			},
+			{
+				label: "My Second dataset",
+				fillColor: "rgba(151,187,205,0.5)",
+				strokeColor: "rgba(151,187,205,0.8)",
+				highlightFill: "rgba(151,187,205,0.75)",
+				highlightStroke: "rgba(151,187,205,1)",
+				data: [28, 48, 40, 19, 86, 27, 90]
+			}
+		]
+	};*/
+	window.onload = function(){
+		var ctx = document.getElementById("canvas").getContext("2d");
+		window.myBar = new Chart(ctx).Bar(barChartData, {
+			responsive : true
+		});
+	}
+
+	</script>
+	</body>
+</html>

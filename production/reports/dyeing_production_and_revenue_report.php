@@ -1,0 +1,168 @@
+<?
+/*-------------------------------------------- Comments -----------------------
+Purpose			: 	This Form Will Create Daily Dyeing Production And Revenue Report.
+Functionality	:	
+JS Functions	:
+Created by		:	Md. Abu Sayed
+Creation date 	: 	29.06.2022
+Updated by 		: 		
+Update date		: 		   
+QC Performed BY	:		
+QC Date			:	
+Comments		:
+*/
+
+session_start();
+if ($_SESSION['logic_erp']['user_id'] == "") header("location:login.php");
+require_once('../../includes/common.php');
+extract($_REQUEST);
+$_SESSION['page_permission'] = $permission;
+//--------------------------------------------------------------------------------------------------------------------
+echo load_html_head_contents("Daily Dyeing Production And Revenue Report", "../../", 1, 1, '', 1, 1);
+?>
+<script>
+    if ($('#index_page', window.parent.document).val() != 1) window.location.href = "../../logout.php";
+    var permission = '<? echo $permission; ?>';
+
+    function fn_report_generated(presentationType)
+	{
+        if (form_validation('cbo_company_name', 'Comapny Name') == false)
+		{
+            return;
+        }
+
+        var txt_sales_no = $("#txt_sales_no").val();
+
+        var txt_date_from = $("#txt_date_from").val();
+        var txt_date_to = $("#txt_date_to").val();
+
+        if(txt_sales_no ==""  )
+        {
+            if(txt_date_from =="" && txt_date_to =="")
+            {
+                alert("Please select either date range or sales order");
+                return;
+            }
+        }
+      
+        var data = "action=report_generate" + get_submitted_data_string('cbo_company_name*txt_sales_no*txt_date_from*txt_date_to', "../../") + '&presentationType=' + presentationType;
+        //alert(data);
+        freeze_window(3);
+        http.open("POST", "requires/dyeing_production_and_revenue_report_controller.php", true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        http.send(data);
+        http.onreadystatechange = fn_report_generated_reponse;
+    }
+
+    function fn_report_generated_reponse()
+	{
+        if (http.readyState == 4)
+		{
+            var response = trim(http.responseText).split("####");
+            $('#report_container2').html(response[0]);
+            document.getElementById('report_container').innerHTML = '<a href="' + response[1] + '" style="text-decoration:none" ><input type="button" value="Convert To Excel" name="excel" id="excel" class="formbutton" style="width:120px"/></a>&nbsp;&nbsp;&nbsp;<input type="button" onClick="new_window()" value="Html Preview" name="Print" class="formbutton" style="width:100px"/>';
+
+            //append_report_checkbox('table_header_1',1);
+            // $("input:checkbox").hide();
+            var company_id = $("#cbo_company_name").val();
+            get_php_form_data( company_id, 'company_wise_report_button_setting','requires/dyeing_production_and_revenue_report_controller' );
+            show_msg('3');
+            release_freezing();
+        }
+    }
+
+  
+
+    function openmypage_sales_no()
+	{
+        if (form_validation('cbo_company_name', 'Company Name') == false)
+		{
+            return;
+        }
+
+        var companyID = $("#cbo_company_name").val();
+        var page_link = 'requires/dyeing_production_and_revenue_report_controller.php?action=job_no_search_popup&companyID=' + companyID;
+        var title = 'Sales No Search';
+
+        emailwindow = dhtmlmodal.open('EmailBox', 'iframe', page_link, title, 'width=890px,height=390px,center=1,resize=1,scrolling=0', '../');
+        emailwindow.onclose = function () {
+            var theform = this.contentDoc.forms[0];
+            var sales_no = this.contentDoc.getElementById("hide_job_no").value.split("_");
+            //var job_no=this.contentDoc.getElementById("hide_job_no").value;
+            //var job_id=this.contentDoc.getElementById("hide_job_id").value;
+
+            $('#txt_sales_no').val(sales_no[1]);
+            //$('#hide_job_id').val(order_id);
+        }
+    }
+
+    function new_window()
+	{
+        document.getElementById('scroll_body').style.overflow = "auto";
+        document.getElementById('scroll_body').style.maxHeight = "none";
+
+        var w = window.open("Surprise", "#");
+        var d = w.document.open();
+        d.write('<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd">' +
+            '<html><head><title></title><link rel="stylesheet" type="text/css" href="../../css/style_common.css" media="print" /></head><body>' + document.getElementById('report_container2').innerHTML + '</body</html>');
+        d.close();
+       
+        document.getElementById('scroll_body').style.overflowY = "scroll";
+        document.getElementById('scroll_body').style.maxHeight = "330px";
+    }
+	
+</script>
+</head>
+<body onLoad="set_hotkey();">
+
+
+    <div style="width:100%;" align="center">
+		<? echo load_freeze_divs("../../", ''); ?>
+        <form name="buyerWiseDailyYarnStock_1" id="buyerWiseDailyYarnStock_1" autocomplete="off" > 
+        <h3 style="width:760px;" align="left" id="accordion_h1" class="accordion_h" onClick="accordion_menu(this.id,'content_search_panel','')">-Search Panel</h3>
+        <div id="content_search_panel">
+            <fieldset style="width:760px;">
+                <table class="rpt_table" width="100%" cellpadding="0" cellspacing="0" border="1" rules="all" align="center">
+                    <thead>
+                        <th class="must_entry_caption">Company Name</th>
+                        <th>Sales Order</th>
+                        <th>Date</th>
+                        <th><input type="reset" name="res" id="res" value="Reset" style="width:100px" class="formbutton" onClick="reset_form('buyerWiseDailyYarnStock_1','report_container*report_container2','','','','');" /></th>
+                    </thead>
+                    <tbody>
+                    <tr class="general">
+                        <td>
+							<?
+							echo create_drop_down("cbo_company_name", 130, "select comp.id, comp.company_name from lib_company comp where comp.status_active=1 and comp.is_deleted=0 $company_cond order by comp.company_name", "id,company_name", 1, "- Select Company -", $selected, ""); 
+							?>
+                        </td>
+
+                        <td>
+                            <input type="text" name="txt_sales_no" id="txt_sales_no" class="text_boxes" onDblClick="openmypage_sales_no();" style="width:130px" placeholder=" Write/Browse" autocomplete="off">
+                        </td>
+                        <td align="center">
+                            <input type="text" name="txt_date_from" id="txt_date_from" value="" class="datepicker" style="width:80px" placeholder="From Date"/>&nbsp;
+                            <input type="text" name="txt_date_to" id="txt_date_to" value="" class="datepicker" style="width:80px" placeholder="To Date"/>
+                        </td>
+                        <td>
+                            <input type="button" id="show_button" class="formbutton" style="width:60px" value="Show"
+                                   onClick="fn_report_generated(1)"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="8" align="center"><? echo load_month_buttons(1); ?></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+    <div id="report_container" align="center"></div>
+    <div id="report_container2" align="left"></div>
+</form>
+</body>
+<script>
+   // set_multiselect('cbo_knitting_status', '0', '0', '', '');
+</script>
+<script src="../../includes/functions_bottom.js" type="text/javascript"></script>
+</html>

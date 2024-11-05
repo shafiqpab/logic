@@ -1,0 +1,355 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url(../fonts/Segoe/UI.ttf);
+    src: url(../fonts/Segoe/UI/Bold.ttf);
+    src: url(../fonts/Segoe/UI/Bold/Italic.ttf);
+    src: url(../fonts/Segoe/UI/Italic.ttf)
+}
+
+.login_body{
+    margin:0;
+    padding: 0;
+    background-image: url(../images/logic/lgoin_pg_bg.png);
+    background-position: 0px -40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+}
+.container{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding:0;
+}
+.login_fieldset_block{
+    width:100%;
+    height: 69%;
+    overflow: hidden;
+    padding:0 0 10px 0px;
+    position: relative;
+    clear: both;
+}
+
+.login_form_block{
+    background-color: rgba(06,27,58, .80);
+    width: 400px;
+    height: calc(60vh);
+    border: 1px solid rgba(255,255,255,0.95);
+    position: relative;
+    top: 35px;
+    right: 11%;
+    float: right;
+    text-align: center;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+.logic_logo_block{
+
+}
+.logic_logo{
+    margin: 0 auto;
+    padding-top: 30px;
+}
+
+.login_form{
+
+}
+.user_block, .password_block{
+    margin-top: 20px;
+    overflow: hidden;
+}
+.password_block{
+
+}
+.user_lable{
+    width: 30%;
+    float: left;
+    margin: 0px;
+    overflow: hidden; 
+    padding: 5px;
+    text-align: right;  
+}
+.lable, .reset_label{
+    text-align: right;
+    padding: 5px 10px 5px 5px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+}
+.user_input{
+    width: 67%;
+    float: left;
+    overflow: hidden;
+    margin:0;
+    padding: 0px;
+}
+.user_name, .reset_user_name{
+    padding: 5px 5px 5px 30px;
+    background-color: rgba(06,27,58, .75);
+    border: 1px solid rgba(255,255,255,0.95);
+    border-radius: 4px;
+    display: block;
+    width: 75%;
+    color: #fff;
+    background-image: url(../images/logic/human.png);
+    background-position: 4px center;
+    background-repeat: no-repeat;
+    height: 28px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.password_lable{
+    width: 30%;
+    float: left;
+    margin: 0px;
+    overflow: hidden;
+    padding: 5px;
+    text-align: right;   
+}
+.password_input{
+    width: 67%;
+    float: left;
+    overflow: hidden;
+    margin:0;
+    padding: 0px;
+}
+.password{
+    padding: 5px 5px 5px 30px;
+    background-color: rgba(06,27,58, .75);
+    border: 1px solid rgba(255,255,255,0.95);
+    border-radius: 4px;
+    display: block;
+    width: 75%;
+    color: #fff;
+    background-image: url(../images/logic/lock.png);
+    background-position: 4px center;
+    background-repeat: no-repeat;
+    height: 28px;
+    font-size: 16px;
+    font-weight: 600;
+}
+.button_block{
+    margin-top: 25px;
+    width: 67%;
+    float: right;
+}
+.login_button{
+    width: 50%;
+    float: left;
+    margin: 0;
+    text-align: left;
+}
+.login{
+    padding: 7px;
+    border: 1px solid rgba(255,255,255,0.85);
+    background-color: rgba(230,40,69,0.98);
+    border-radius: 5px;
+    background-image: url(../images/logic/log_in.png);
+    background-repeat: no-repeat;
+    background-position: 5px center;
+    font-weight: bold;
+    color: #fff;
+    width: 100px;
+    font-size: 18px;
+    padding-left: 30px;
+    text-align: left;
+    cursor: pointer;
+}
+.forgot:hover{
+    text-decoration: underline;
+    color: rgba(236, 93, 11, 0.98);
+}
+.forgot_link{
+    width: 50%;
+    float: left;
+    margin: 0;
+    text-align: left;
+}
+.forgot{
+    font-size: 13px;
+    color: #cfe349;
+    cursor: pointer;
+}
+.produc_block{
+    height: calc(18vh);
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    clear: both;
+    top: 20px;
+}
+.product_details_block{
+    height: 27px;
+    background-color: rgba(0,17,37,0.55);
+    padding: 10px;    
+    position: relative;
+    top: 0px;
+    clear: both;
+}
+.left_arrow{
+    width: 2%;
+    display: block;
+    float: left;
+    background-image: url(../images/logic/left_arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 32px;
+}
+.prod_details_heading{
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    color: #fff;
+    width: 96%;
+    float: left;
+}
+.right_arrow{
+    width: 2%;
+    display: block;
+    float: right;
+    background-image: url(../images/logic/right_arrow.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 32px;
+}
+.product_list_box{
+    width: 30%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    height: calc(10vh);
+}
+.prod_list_ul{
+    list-style-type: none;
+    padding: 5px 0 0 25px;
+    text-align: left;
+    margin: 0;
+}
+.prod_list_li{
+    padding: 5px 0;
+    padding-left: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.prod_list_li span{
+    background-image: url(../images/logic/list_bg.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    padding-left: 32px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+}
+.login_footer{
+    height: 5%;
+    background-image: linear-gradient(rgba(182,218,230,0.9), rgba(255,255,255,1));
+    position: fixed;
+    bottom: 0!important;
+    width:100%;
+    left: 0;
+}
+.phone_no{
+    width: 15%;
+    float: left;
+    vertical-align: middle;
+    background-image: url(../images/logic/phone.png);
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+    font-size: 15px;
+    line-height: 25px;
+    padding-top: 5px;
+    font-weight: bold;
+    height: 35px;
+    text-align: left;
+    padding-left: 37px;
+}
+.email_address{
+    width: 15%;
+    float: left;
+    vertical-align: middle;
+    background-image: url(../images/logic/envelop.png);
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+    font-size: 15px;
+    line-height: 25px;
+    padding-top: 5px;
+    font-weight: bold;
+    height: 35px;
+    text-align: left;
+    padding-left: 37px;
+
+}
+.email_address a{
+    color: black;
+    cursor: pointer;
+    text-decoration: none;
+}
+.email_address a:hover{
+    text-decoration: underline;
+    color: rgba(236, 93, 11, 0.98);
+}
+.website{
+    width: 18%;
+    float: left;
+    vertical-align: middle;
+    background-image: url(../images/logic/globe.png);
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+    font-size: 15px;
+    line-height: 25px;
+    padding-top: 5px;
+    font-weight: bold;
+    height: 35px;
+    text-align: left;
+    padding-left: 37px;
+    
+}
+.website a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.website a:hover{
+    text-decoration: underline;
+    color: rgba(236, 93, 11, 0.98);
+}
+.location{
+    width: 40%;
+    float: left;
+    vertical-align: middle;
+    background-image: url(../images/logic/lcation.png);
+    background-repeat: no-repeat;
+    background-position: 5px 7px;
+    font-size: 15px;
+    line-height: 25px;
+    padding-top: 5px;
+    font-weight: bold;
+    height: 35px;
+    text-align: left;
+    padding-left: 37px;
+
+}
+#tr_reset_user{
+    width: 100%;
+    clear: both;
+    margin: 10px auto;
+    padding: 20px 5px;
+}
+#tr_reset_user lable{
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display:block;
+    float: left;
+    width: 32%;
+}
+.reset_user_name{
+    width: 53%;
+}

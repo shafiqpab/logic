@@ -1,0 +1,32 @@
+    <script src="RGraph.common.core.js" ></script>
+    <script src="RGraph.pie.js" ></script>
+    
+    <canvas id="cvs" width="120" height="110">[No canvas support]</canvas> 
+	<canvas id="cvs2" width="120" height="110">[No canvas support]</canvas>	
+	
+    
+    <script>
+        window.onload = function ()
+        {
+            var donut = new RGraph.Pie('cvs', [60,80,60]);
+            donut.Set('chart.variant', 'donut');
+            donut.Set('chart.labels', ['Yes','Luis','Olga']);
+            donut.Set('chart.strokestyle', 'transparent');
+            donut.Set('chart.exploded', 3);
+            donut.Draw();
+        
+		
+		var donut = new RGraph.Pie('cvs2', [60,80,60]);
+            donut.Set('chart.variant', 'donut');
+            donut.Set('chart.labels', ['Yes','Luis','Olga']);
+            donut.Set('chart.strokestyle', 'transparent');
+            donut.Set('chart.exploded', 3);
+            donut.Draw();
+		
+		}
+		
+   </script>		
+		
+	
+
+

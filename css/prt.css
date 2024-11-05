@@ -1,0 +1,33 @@
+
+		@page {
+			size: A4 landscape; /* can use also 'landscape' for orientation */
+			margin: 0.3in;
+			border: thin solid black;
+			padding: 1em;
+			
+			@bottom-center {
+				content: element(footer);
+			}
+			
+			@top-center {
+				content: element(header);
+			}
+		}
+			
+		#page-header {
+			display: block;
+			position: running(header);
+		}
+		
+		#page-footer {
+			display: block;
+			position: running(footer);
+		}
+		
+		.page-number:before {
+			content: counter(page); 
+		}
+		
+		.page-count:before {
+			content: counter(pages);  
+		}

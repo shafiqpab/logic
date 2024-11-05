@@ -1,0 +1,83 @@
+<!DOCTYPE html> 
+<html> 
+    
+<head> 
+    <title>
+        How to dynamically set the height of 
+        a div element using jQuery?
+    </title>
+    <script src=
+"https://code.jquery.com/jquery-1.12.4.min.js">
+    </script>
+    
+    <style> 
+        #div1 { 
+            height: 50px; 
+            width: 300px; 
+            border: 2px solid black;  
+        } 
+    
+        h1 { 
+            color: green; 
+        } 
+        .box{
+            background: green;
+            border: 1px solid #ccc;
+            color: white;
+        }
+    </style> 
+</head> 
+    
+<body> 
+    <center> 
+        <h1>GeeksforGeeks</h1> 
+        <h3>Dynamically set the height of
+        a div element using jQuery</h3> 
+    
+        <div id="div1" class="box"> 
+            Dynamically set content height of
+            a div on GeeksforGeek.<br>
+            GeeksforGeeks is 
+            a computer science portal which 
+            helps students to learn various  
+            programming language and master 
+            data structures and algorithms.  
+            There are various courses available 
+            to learn new skills. 
+        </div> 
+        <br> 
+        <form>
+            <input type="text" class="geeks1">
+            <button type="button" class="geeks2">
+                Set Height
+            </button>
+        </form>
+    
+        <p id="p1"></p>
+        <p id="p2"></p>
+    </center> 
+    
+    <script> 
+        $(document).ready(function(){
+            $(".geeks2").click(function(){
+                  
+                var demo ="Previous-height: "+ 
+                           $("#div1").height(); 
+                           + "px";
+                $("#p1").text(demo);
+                  
+                var newHeight = $(".geeks1").val();
+                $(".box").height(newHeight);
+                  
+                demo = "New-height: "+ 
+                           $("#div1").height(); 
+                           + "px";
+                $("#p2").text(demo);
+            });
+        });
+    </script> 
+</body> 
+    
+</html>
+
+Output:

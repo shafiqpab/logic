@@ -1,0 +1,214 @@
+
+	
+		//$('#'+desttd).attr('plan_group', podtl[0]);
+		//$('#'+desttd).attr('title','Plan Start Date:: '+podtl[15]+' ,Plan End Date:: '+actenddate);
+		//$('#'+desttd).attr('start_td_id',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).html( day_qnty[i]+"<br><font color='#0000FF'>"+'1250'+"</font>");// ('compinc',podtl[12]);
+		//$('#'+desttd).attr('plan_id',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).attr('line_id',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).attr('start_date',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).attr('plan_qnty',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).attr('duration',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).attr('plan_end_date',$('#'+cleartid).attr('name'));
+		//$('#'+desttd).attr('onclick','event_select(this.id)');
+		//$('#'+desttd).addClass('verticalStripes1_plan')
+		//$('#'+desttd).css('border-radius', '70% 0 0 70%');
+		
+		// One issue to be addressed, so that copied off day to working day
+		 
+		 /* $('#'+cleartid).each(function() {
+		  $.each(this.attributes, function(i, attrib){
+			 if(attrib!=undefined)
+			 {
+				 if( attrib.name!='class'&& attrib.name!='id' )
+				 {
+					 $('#'+desttd).removeAttr(attrib.name);
+					 $('#'+desttd).attr(attrib.name,attrib.value);
+					 $('#'+cleartid).removeAttr(attrib.name);
+				 }
+			 }
+		  });
+		});
+		*/
+		/*
+		$('#'+desttd).attr('comptarg',$('#'+cleartid).attr('comptarg'));
+		$('#'+desttd).attr('compid',$('#'+cleartid).attr('comptarg'));
+		//$('#'+desttd).attr('plan_id','0');
+		//$('#'+desttd).attr('start_date','');
+		$('#'+desttd).attr('end_hr','');
+		//$('#'+desttd).attr('duration','');
+		$('#'+desttd).attr('isedited','0');
+		$('#'+desttd).attr('is_partial','0');
+		$('#'+desttd).attr('isnew','1');
+		$('#'+ desttd).removeAttr('onclick');
+		$('#'+ desttd).attr('onclick','event_select(this.id)');
+		
+		$('#'+desttd).attr('plan_group','1');
+		$('#'+desttd).attr('compstart','1');
+		//$('#'+desttd).attr('start_td_id','1');
+		$('#'+desttd).attr('compinc','1');
+		$('#'+desttd).attr('podtls','1');
+		$('#'+desttd).attr('po_id','1');
+		$('#'+desttd).attr('line_id','1');
+		$('#'+desttd).attr('plan_qnty','1');
+		$('#'+desttd).attr('upd_id','1');
+		$('#'+desttd).attr('plan_end_date','1');
+		$('#'+desttd).attr('off_day_plan','1');
+		$('#'+desttd).attr('upd_id','0');
+		 */
+
+.top_header
+{
+	font-size:13px;
+	height:22px;
+	background-color:#C8E4C2;
+	color:#000000;
+	text-align:center;
+	border:1px solid; border-color:#CC3333; height:30px
+	display: block ;
+}
+
+#tbl_footer tr td
+{
+	border:1px dotted; border-color:#0066FF; height:30px
+}
+
+.top_headerss
+{ 
+	color: #000 ;
+	background-color: #C8E4C2 ;
+	border-right: 2px inset #CCCCCC ;
+	border-bottom: 5px outset #CCCCCC ;
+	height:30px;
+	vertical-align:middle; 
+	text-align:center;
+}
+
+.top_headerss_off
+{ 
+	color: #000 ;
+	background-color:#FFFFB9;
+	border-right: 2px inset #CCCCCC ;
+	border-bottom: 5px outset #CCCCCC ;
+	height:30px;
+	vertical-align:middle; 
+	text-align:center;
+}
+
+.left_header
+{ 
+	color: #000 ;
+	background-color: #C8E4C2 ;
+	border-right: 5px outset #CCCCCC ;
+	border-bottom: 2px inset #CCCCCC ;
+	display: block ;
+	height:30px;
+	vertical-align:middle;
+	padding-left:10px;
+}
+
+.verticalStripes1
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+	border:1px solid; border-color:#DDDDDD; height:30px;
+}
+
+.verticalStripes_off
+{
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	user-select: none;
+	border:1px solid; border-color:#DDDDDD; height:30px;
+	background-color:#FFFFB9;
+}
+ 
+#footer {
+    position: absolute;
+	width:70%; height:50px; background-color:#33CC33; display:none;
+}
+ 
+#selection_line_vert
+{
+    position: absolute;
+    z-index: 10;
+    top: -25px;
+    width: 1px;
+    height: 100%;
+    background-color: steelblue;
+}
+
+#selection_line_hor
+{
+    position: absolute;
+    z-index: 10;
+    top: -25px;
+    width: 100%;
+    height: 1px;
+    background-color: steelblue;
+	margin-left:170px;
+}
+
+.plan_crossed_bar {
+    width:200px;
+    height:50px;
+    border:0px solid black;
+    position:relative;
+	background:#9C8AE3;
+	border-radius:10px;
+	margin-top:2px;
+	display:none;
+}
+ 
+.now_moving
+{
+	background: repeating-linear-gradient(45deg, #FF0000, white 1px, #FF0000 5px, #FF0000 7px) top left fixed;
+}
+
+.testdiv {
+    width:200px;
+    height:50px;
+    border:0px solid black;
+    position:relative;
+	background:#0AE7E1;
+	border-radius:10px;
+	margin-top:2px;
+	display:none;
+}
+
+.testdiv_freeze {
+    width:200px;
+    height:50px;
+    border:0px solid black;
+    position:relative;
+	background:#0AE7E1;
+	border-radius:10px;
+	margin-top:2px;
+	display:none;
+}
+
+.progress{
+    z-index;1;
+    width:0px;
+    height:70%;
+	margin-top:2px;
+    position:absolute;
+    background:#70BC3D; 
+    left:0px;
+    top:0px;
+	border-radius:10px;
+}
+.plan_foot_header td
+{
+	background-color:#CCC;
+	font-weight:bold;
+	font-size:12px;
+	color:#FF0000;
+}

@@ -1,0 +1,766 @@
+<?php
+header('Content-type:text/html; charset=utf-8');
+session_start();
+if( $_SESSION['logic_erp']['user_id'] == "" ) header("location:login.php");
+
+include('../../../includes/common.php');
+
+$data=$_REQUEST['data'];
+$action=$_REQUEST['action'];
+
+/*$fr_product_type=array(
+1=>"LS TEE",
+2=>"SS TEE",
+3=>"POLO",
+4=>"POLO",
+5=>"TANK TOP",
+6=>"LS TEE",
+7=>"Hoodies",
+8=>"Y-NECK TEE",
+9=>"TANK TOP",
+10=>"LS TEE",
+11=>"High Neck/Turtle Neck",
+12=>"Scarf",
+14=>"Jacket",
+15=>"Jacket",
+16=>"Night Wear",
+17=>"DRESS",
+18=>"DRESS",
+19=>"DRESS",
+20=>"LONG PANT",
+21=>"Short Pant",
+22=>"LONG PANT",
+23=>"LONG PANT",
+24=>"Romper Short Sleeve",
+25=>"Romper Long Sleeve",
+26=>"Romper Sleeveless",
+27=>"Romper",
+28=>"Legging",
+29=>"SHORT PANT",
+30=>"Long Skirt",
+31=>"Jump Suit",
+32=>"Cap",
+33=>"Tanktop Pyjama",
+34=>"Jump Suit",
+35=>"LONG PANT",
+36=>"Bag",
+37=>"Bra",
+38=>"Panty",
+39=>"Hoody T-Shirt",
+40=>"TANK TOP",
+41=>"TANK TOP",
+42=>"SHORT PANT",
+43=>"SHORT PANT",
+44=>"SHORT PANT",
+45=>"SHORT PANT",
+46=>"Panty",
+47=>"Panty",
+48=>"Panty",
+49=>"Panty",
+50=>"Panty",
+51=>"Bikini",
+52=>"Lingerie",
+53=>"JACKET",
+54=>"Panty",
+60=>"Tube",
+61=>"Tube",
+62=>"Tube",
+63=>"Tube",
+64=>"Tube",
+65=>"Tube",
+66=>"Tube",
+67=>"LONG PANT",
+68=>"Sports Ware",
+69=>"TANK TOP",
+70=>"LONG PANT",
+71=>"LONG PANT",
+72=>"Bolero",
+73=>"TANK TOP",
+74=>"DRESS"
+);*/
+
+$fr_product_type=array(
+1=>"LS TEE",
+2=>"SS TEE",
+3=>"POLO",
+4=>"POLO",
+5=>"TANK TOP",
+6=>"SS TEE",
+7=>"Hoody T-Shirt",
+8=>"Y-NECK TEE",
+9=>"VEST",
+10=>"SS TEE",
+11=>"LS TEE",
+12=>"Scarf",
+14=>"JACKET",
+15=>"JACKET",
+16=>"DRESS",
+17=>"FROCK",
+18=>"DRESS",
+19=>"DRESS",
+20=>"LONG PANT",
+21=>"SHORT PANT",
+22=>"LONG PANT",
+23=>"LONG PANT",
+24=>"JUMP SUIT",
+25=>"JUMP SUIT",
+26=>"VEST",
+27=>"JUMP SUIT",
+28=>"LEGGING",
+29=>"LEGGING",
+30=>"Long Skirt",
+31=>"Jump Suit",
+32=>"Cap",
+33=>"Top Btm Set",
+34=>"Top Btm Set",
+35=>"LONG PANT",
+36=>"Bag",
+37=>"Bag",
+38=>"PANTY",
+39=>"JACKET",
+40=>"VEST",
+41=>"TANK TOP",
+42=>"SHORT PANT",
+43=>"SHORT PANT",
+44=>"SHORT PANT",
+45=>"SHORT PANT",
+46=>"PANTY",
+47=>"SHORT PANT",
+48=>"SHORT PANT",
+49=>"SHORT PANT",
+50=>"SHORT PANT",
+51=>"PANTY",
+52=>"PANTY",
+53=>"PANTY",
+54=>"PANTY",
+60=>"Socks",
+61=>"Socks",
+62=>"Socks",
+63=>"Socks",
+64=>"Socks",
+65=>"Socks",
+66=>"Socks",
+67=>"LONG PANT",
+68=>"Sports Ware",
+69=>"SS TEE",
+70=>"LONG PANT",
+71=>"SHORT PANT",
+72=>"Bra",
+73=>"SS TEE",
+74=>"DRESS"
+);
+
+$group_unit_array=array(
+10 => '',
+    9 => 1,
+    1 => 1,
+    2 => 1,
+    3 => 1,
+    4 => 2,
+    5 => 2,
+    6 => 2,
+    7 => 2,
+    8 => '',
+    18 => '',
+    12 => '',
+    11 => '',
+    13 =>'',
+    14 => '',
+    15 =>'',
+    16 => ''
+);
+
+$line_array=array( 67 => 1,
+ 7 => 10,
+    15 => 11,
+    16 => 12,
+    59 => 13,
+    18 => 14,
+    19 => 15,
+    20 => 16,
+    21 => 17,
+    22 => 18,
+    23 => 19,
+    61 => 2,
+    68 => 20,
+    8 => 21,
+    9 => 22,
+    17 => 23,
+    11 => 24,
+    10 => 25,
+    12 => 26,
+    13 => 27,
+    14 => 28,
+    45 => 29,
+    62 => 3,
+    46 => 30,
+    47 => 31,
+    48 => 32,
+    49 => 33,
+    50 => 34,
+    51 => 35,
+    63 => 36,
+    37 => 37,
+    36 => 38,
+    34 => 39,
+    1 => 4,
+    35 => 40, 
+    33 => 41,
+    57 => 42,
+    32 => 43,
+    31 => 44,
+    56 => 45,
+    52 => 46,
+    54 => 47,
+    55 => 48,
+    70 => 49,
+    2 => 5,
+    24 => 50,
+    25 => 51,
+    60 => 52,
+    26 => 53,
+    27 => 54,
+    28 => 55,
+    29 => 56,
+    30 => 57,
+    38 => 58,
+    58 =>0,
+    39 => 59,
+    3 => 6,
+    40 => 60
+);
+	/*,
+    41 => 61,
+    42 => 62,
+    43 => 63,
+    53 => 64,
+    65 => 64,
+    44 => 65,
+    66 => 65,
+    64 => 66,
+    71 => 67,
+    72 => 68,
+    4 => 7,
+    5 => 8,
+    6 => 9,
+    69 => 0
+	*/
+
+if ($action=="save_update_delete")
+{
+	$process = array( &$_POST );
+	extract(check_magic_quote_gpc( $process )); 
+	
+	foreach (glob("frfiles/"."*.*") as $filename)
+	{			
+		@unlink($filename);
+	}
+    $zip = new ZipArchive();			// Load zip library	
+	$filename = str_replace(".sql",".zip",'frfiles/fr_files.sql');			// Zip name
+	if($zip->open($filename, ZIPARCHIVE::CREATE)!==TRUE)
+	{		// Opening zip file to load files
+		$error .=  "* Sorry ZIP creation failed at this time<br/>"; echo $error;
+	} 
+	 
+	header('Content-Type: text/csv; charset=utf-8');
+	if ( $cbo_fr_integrtion==0 )
+	{
+		$color_lib=return_library_array("select id,color_name from lib_color","id","color_name");
+		$floor_name=return_library_array("select id,floor_name from  lib_prod_floor","id","floor_name");
+		$line_name=return_library_array("select id,line_name from lib_sewing_line","id","line_name");
+		$line_name_res=return_library_array("select id,line_number from prod_resource_mst","id","line_number");
+		$floor_name_res=return_library_array("select id,floor_id from prod_resource_mst","id","floor_id");
+		 
+		// Customer File
+		$sql=sql_select ( "select id,short_name from lib_buyer" );
+		$file_name="frfiles/CUSTOMER.TXT";
+		$myfile = fopen($file_name, "w") or die("Unable to open file!");
+		$txt .=str_pad("C.CODE",15," ")."\tEND\r\n";
+		foreach($sql as $name)
+		{
+			//if(strlen($name)>6) $txt .=$name."\tEND\r\n"; else 
+			$buyer_name_array[$name[csf("id")]]=$name[csf("short_name")];
+			$txt .=str_pad($name[csf("short_name")],15," ")."\tEND\r\n";
+		}
+		fwrite($myfile, $txt);
+		fclose($myfile); 
+		$txt="";
+		
+		// Products file Data
+		    if( $db_type==0 )
+			{
+				$shipment_date="and c.country_ship_date >= '2014-11-01'";
+			}
+			if($db_type==2)
+			{
+				$shipment_date="and c.country_ship_date >= '01-Oct-2014'";
+			}
+			$shiping_status="and c.shiping_status !=3";
+			
+			$po_arr=array();
+			$ft_data_arr=array();
+			 
+			$sql_po="select a.id,b.id as bid,a.job_no,a.style_ref_no,a.gmts_item_id,d.costing_per,d.sew_smv,e.fab_knit_req_kg,a.buyer_name,b.po_quantity   from wo_po_details_master a, wo_po_break_down b,wo_po_color_size_breakdown c,wo_pre_cost_mst d, wo_pre_cost_sum_dtls e where a.job_no=b.job_no_mst and a.job_no=c.job_no_mst and a.job_no=d.job_no and a.job_no=e.job_no  and b.id=c.po_break_down_id  $shipment_date   and a.is_deleted=0 and a.status_active=1 and b.is_deleted=0 and b.status_active=1 and c.is_deleted=0 and c.status_active=1 order by a.id,b.id";
+			$sql_po_data=sql_select($sql_po);
+			foreach($sql_po_data as $sql_po_row)
+			{
+			$po_arr[po_id][$sql_po_row[csf('id')]]=$sql_po_row[csf('id')];
+			$po_arr[job_no][$sql_po_row[csf('job_no')]]="'".$sql_po_row[csf('job_no')]."'";
+			$po_arr[costing_per][$sql_po_row[csf('job_no')]]=$sql_po_row[csf('costing_per')];
+			
+			$ft_data_arr[$sql_po_row[csf('job_no')]][job_no]=$sql_po_row[csf('job_no')];//P.CODE
+			$ft_data_arr[$sql_po_row[csf('job_no')]][gmts_item_id]=$sql_po_row[csf('gmts_item_id')];//P.TYPE
+			$ft_data_arr[$sql_po_row[csf('job_no')]][style_ref_no]=$sql_po_row[csf('style_ref_no')];//P.DESCRIP
+			$fab_knit_req_kg=0;
+			 
+			$ft_data_arr[$sql_po_row[csf('job_no')]][buyer_name]=$sql_po_row[csf('buyer_name')];
+			$ft_data_arr[$sql_po_row[csf('job_no')]][po_quantity]=$sql_po_row[csf('po_quantity')];
+			$po_break[$sql_po_row[csf('bid')]]=$sql_po_row[csf('bid')];
+			
+			if($sql_po_row[csf('costing_per')]==1)
+			{
+				$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/12;
+			}
+			if($sql_po_row[csf('costing_per')]==2)
+			{
+				$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')];
+			}
+			if($sql_po_row[csf('costing_per')]==3)
+			{
+				$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/24;
+			}
+			if($sql_po_row[csf('costing_per')]==4)
+			{
+				$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/36;
+			}
+			if($sql_po_row[csf('costing_per')]==5)
+			{
+				$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/48;
+			}
+			$ft_data_arr[$sql_po_row[csf('job_no')]][fab_knit_req_kg]=number_format($fab_knit_req_kg,3);//P^CF:5
+			$ft_data_arr[$sql_po_row[csf('job_no')]][cutting]=1;//P^WC:10
+			
+			
+			
+			$ft_data_arr[$sql_po_row[csf('job_no')]][sew_input]=1;//P^WC:35
+			$ft_data_arr[$sql_po_row[csf('job_no')]][sew_output]=$sql_po_row[csf('sew_smv')];//P^WC:140
+			
+			$ft_data_arr[$sql_po_row[csf('job_no')]][poly]=1;//P^WC:160
+			$ft_data_arr[$sql_po_row[csf('job_no')]][shiped]=$sql_po_row[csf('sew_smv')];//P^WC:165
+		
+			}
+			
+			
+			$po_string= implode(",",$po_arr[po_id]);
+			$job_string= implode(",",$po_arr[job_no]);
+			
+		   $job=array_chunk($po_arr[job_no],1000, true);
+		   $job_cond_in="";
+		   $ji=0;
+		   foreach($job as $key=> $value)
+		   {
+			   if($ji==0)
+			   {
+				$job_cond_in="job_no in(".implode(",",$value).")"; 
+				$job_cond_in_mst.=" a.job_no_mst in(".implode(",",$value).")"; 
+			   }
+			   else
+			   {
+					$job_cond_in.=" or job_no in(".implode(",",$value).")"; 
+					$job_cond_in_mst.=" or a.job_no_mst in(".implode(",",$value).")"; 
+			   }
+			   $ji++;
+		   }
+		   
+		   
+		   $sql_fabric_prod=sql_select("select min(id) as id,job_no  from wo_pre_cost_fabric_cost_dtls where $job_cond_in and fabric_source=1 and avg_cons>0  and status_active=1 and is_deleted=0  group by job_no");
+		   foreach($sql_fabric_prod as $row_fabric_prod)
+		   {
+			$ft_data_arr[fab_delivery][$row_fabric_prod[csf('job_no')]]=1;//P^WC:5   
+		   }
+		  $sql_print_embroid=sql_select("select min(id) as id,job_no,emb_name,avg(cons_dzn_gmts) as cons_dzn_gmts  from wo_pre_cost_embe_cost_dtls where $job_cond_in and emb_name in(1,2,3) and cons_dzn_gmts>0  and status_active=1 and is_deleted=0 group by job_no,emb_name");
+		  foreach($sql_print_embroid as $row_print_embroid)
+		  {
+			  if($row_print_embroid[csf('emb_name')]==1)
+			  {
+				$ft_data_arr[$row_print_embroid[csf('job_no')]][dv_printing]=1; //P^WC:15
+				$ft_data_arr[$row_print_embroid[csf('job_no')]][rv_printing]=1; //P^WC:20
+			  }
+			  if($row_print_embroid[csf('emb_name')]==2)
+			  {
+				$ft_data_arr[$row_print_embroid[csf('job_no')]][dv_embrodi]=1; //P^WC:25
+				$ft_data_arr[$row_print_embroid[csf('job_no')]][rv_embrodi]=1; //P^WC:30
+			  }
+			  if($row_print_embroid[csf('emb_name')]==3)
+			  {
+				$ft_data_arr[$row_print_embroid[csf('job_no')]][dv_wash]=1; //P^WC:145
+				$ft_data_arr[$row_print_embroid[csf('job_no')]][rv_wash]=1; //P^WC:150
+			  }
+		  }
+		  
+		  //=================================Item wise Array Srart=====================================
+		   $arr_itemsmv=array();
+		   $sql_itemsmv=sql_select("select job_no,gmts_item_id,set_item_ratio,smv_pcs_precost,smv_set_precost,smv_pcs,embelishment  from wo_po_details_mas_set_details where $job_cond_in");
+		   foreach($sql_itemsmv as $row_itemsmv)
+		   {
+				$arr_itemsmv[$row_itemsmv[csf('job_no')]][$row_itemsmv[csf('gmts_item_id')]]['smv']=$row_itemsmv[csf('smv_pcs')]; 
+				$arr_itemsmv[$row_itemsmv[csf('job_no')]][$row_itemsmv[csf('gmts_item_id')]]['emb']=$row_itemsmv[csf('embelishment')];  
+		   }
+		   $array_fabric_cons_item=array();
+		   $sql_fabric_cons_item=sql_select("select job_no,item_number_id,sum(avg_cons) as  avg_cons	  from wo_pre_cost_fabric_cost_dtls where $job_cond_in  and status_active=1 and is_deleted=0  group by job_no,item_number_id");
+		   foreach($sql_fabric_cons_item as $row_fabric_cons_item)
+		   {
+			   $costingper=$po_arr[costing_per][$row_fabric_cons_item[csf('job_no')]];
+			   $fab_knit_req_kg=0;
+			   if($costingper==1)
+				{
+					$fab_knit_req_kg=$row_fabric_cons_item[csf('avg_cons')]/12;
+				}
+				if($costingper==2)
+				{
+					$fab_knit_req_kg=$row_fabric_cons_item[csf('avg_cons')];
+				}
+				if($costingper==3)
+				{
+					$fab_knit_req_kg=$row_fabric_cons_item[csf('avg_cons')]/24;
+				}
+				if($costingper==4)
+				{
+					$fab_knit_req_kg=$row_fabric_cons_item[csf('avg_cons')]/36;
+				}
+				if($costingper==5)
+				{
+					$fab_knit_req_kg=$row_fabric_cons_item[csf('avg_cons')]/48;
+				}
+			    $array_fabric_cons_item[$row_fabric_cons_item[csf('job_no')]][$row_fabric_cons_item[csf('item_number_id')]]=number_format($fab_knit_req_kg,3);   
+		   }
+		   
+		   $array_fabric_prod_item=array();
+		   $sql_fabric_prod_item=sql_select("select min(id) as id,job_no,item_number_id  from wo_pre_cost_fabric_cost_dtls where $job_cond_in and fabric_source=1 and avg_cons>0  and status_active=1 and is_deleted=0  group by job_no,item_number_id");
+		   foreach($sql_fabric_prod_item as $row_fabric_prod_item)
+		   {
+			$array_fabric_prod_item[$row_fabric_prod_item[csf('job_no')]][$row_fabric_prod_item[csf('item_number_id')]]=1;   
+		   }
+		   //=================================Item wise Array End=====================================
+		
+		// Products file
+		$txt="";
+		$file_name="frfiles/PRODUCTS.TXT";
+		$myfile = fopen($file_name, "w") or die("Unable to open file!");
+	 
+		$txt .=str_pad("P.CODE",40," ")."\t".str_pad("P.TYPE",35," ")."\t".str_pad("P.DESCRIP",50," ")."\t".str_pad("P^CF:5",12," ")."\t".str_pad("P^WC:5",12," ")."\t".str_pad("P^WC:10",12," ")."\t".str_pad("P^WC:15",12," ")."\t".str_pad("P^WC:20",12," ")."\t".str_pad("P^WC:25",12," ")."\t".str_pad("P^WC:30",12," ")."\t".str_pad("P^WC:35",12," ")."\t".str_pad("P^WC:140",12," ")."\t".str_pad("P^WC:145",12," ")."\t".str_pad("P^WC:150",12," ")."\t".str_pad("P^WC:160",12," ")."\t".str_pad("P^WC:165",12," ")."\t".str_pad("P.UDFabrication",12," ")."\t".str_pad("P.UDGSM",12," ")."\t".str_pad("P.UDYarn Count",12," ")."\t".str_pad("P.UDStyle",12," ")."\r\n";
+		
+		foreach($ft_data_arr as $rows)
+		{
+			$gitem=explode(",",$rows[gmts_item_id]);
+			
+			$dt="";
+			$style_ref_arr[$rows[job_no]]=$rows[style_ref_no];
+			if(count($gitem)>1)
+			{
+				$item_array[$rows[job_no]]=1;
+				
+				foreach($gitem as $id)
+				{ 
+					//$new_job_no[$rows[job_no]]=$rows[job_no]
+					//if($dt=="") $dt=$fr_product_type[$id]; else $dt .=",".$fr_product_type[$id];
+					//$array_fabric_cons_item[$row_fabric_cons_item[csf('job_no')]][$row_fabric_cons_item[csf('item_number_id')]]
+					if(trim($rows[job_no])!="") $txt .=str_pad($rows[job_no]."::".$fr_product_type[$id],40," ")."\t".str_pad($fr_product_type[$id],35," ")."\t".str_pad($rows[style_ref_no],50," ")."\t".str_pad($array_fabric_cons_item[$rows[job_no]][$id],12," ")."\t".str_pad($array_fabric_prod_item[$rows[job_no]][$id] == '' ? 0 :$array_fabric_prod_item[$rows[job_no]][$id],12," ")."\t".str_pad("1",12," ")."\t".str_pad($rows[dv_printing] == '' ? 0 : $rows[dv_printing],12," ")."\t".str_pad($rows[rv_printing] == '' ? 0 : $rows[rv_printing],12," ")."\t".str_pad($rows[dv_embrodi] == '' ? 0 :$rows[dv_embrodi],12," ")."\t".str_pad($rows[rv_embrodi] == '' ? 0 :$rows[rv_embrodi],12," ")."\t".str_pad("1",12," ")."\t".str_pad($arr_itemsmv[$rows[job_no]][$id]['smv'] == '' ? 0 :$arr_itemsmv[$rows[job_no]][$id]['smv'],12," ")."\t".str_pad($rows[dv_wash] == '' ? 0 :$rows[dv_wash],12," ")."\t".str_pad($rows[rv_wash] == '' ? 0 :$rows[rv_wash],12," ")."\t".str_pad($rows[poly] == '' ? 0 :$rows[poly],12," ")."\t".str_pad("1",12," ")."\t".str_pad("",12," ")."\t".str_pad("",12," ")."\t".str_pad("",12," ")."\t".str_pad("",12," ")."\r\n";
+				}
+			}
+			else
+			{
+				if(trim($rows[job_no])!="") $txt .=str_pad($rows[job_no],40," ")."\t".str_pad($fr_product_type[$rows[gmts_item_id]],35," ")."\t".str_pad($rows[style_ref_no],50," ")."\t".str_pad($array_fabric_cons_item[$rows[job_no]][$rows[gmts_item_id]],12," ")."\t".str_pad($array_fabric_prod_item[$rows[job_no]][$rows[gmts_item_id]] == '' ? 0 :$array_fabric_prod_item[$rows[job_no]][$rows[gmts_item_id]],12," ")."\t".str_pad("1",12," ")."\t".str_pad($rows[dv_printing] == '' ? 0 : $rows[dv_printing],12," ")."\t".str_pad($rows[rv_printing] == '' ? 0 : $rows[rv_printing],12," ")."\t".str_pad($rows[dv_embrodi] == '' ? 0 :$rows[dv_embrodi],12," ")."\t".str_pad($rows[rv_embrodi] == '' ? 0 :$rows[rv_embrodi],12," ")."\t".str_pad("1",12," ")."\t".str_pad($arr_itemsmv[$rows[job_no]][$rows[gmts_item_id]]['smv'] == '' ? 0 :$arr_itemsmv[$rows[job_no]][$rows[gmts_item_id]]['smv'],12," ")."\t".str_pad($rows[dv_wash] == '' ? 0 :$rows[dv_wash],12," ")."\t".str_pad($rows[rv_wash] == '' ? 0 :$rows[rv_wash],12," ")."\t".str_pad($rows[poly] == '' ? 0 :$rows[poly],12," ")."\t".str_pad("1",12," ")."\t".str_pad("",12," ")."\t".str_pad("",12," ")."\t".str_pad("",12," ")."\t".str_pad("",12," ")."\r\n";
+			}
+		}
+		fwrite($myfile, $txt);
+		fclose($myfile); 
+		$txt="";
+		
+		// Orders file
+		$sewing_qnty=sql_select("SELECT po_break_down_id,country_id,sum(production_quantity) AS production_quantity,item_number_id 	  from pro_garments_production_mst where production_type ='5' and is_deleted=0 and status_active=1 and po_break_down_id in (".implode(",",$po_break).") group by po_break_down_id,item_number_id,country_id ");
+		foreach($sewing_qnty as $row_sew)
+		{
+			$sew_qty_arr[$row_sew[csf('po_break_down_id')]][$row_sew[csf('item_number_id')]][$row_sew[csf('country_id')]][sewing_qnty]=$row_sew[csf('production_quantity')];
+		}
+	 	
+		$sql=sql_select ( "SELECT group_concat(b.id) as id, b.item_number_id,a.job_no_mst,a.po_number, b.country_ship_date,sum(b.plan_cut_qnty) as plan_cut_qnty,sum(order_quantity) as order_quantity, a.is_confirmed, min(b.shiping_status) as shiping_status,country_id,b.po_break_down_id, b.color_number_id,b.is_deleted,b.cutup FROM wo_po_break_down a, wo_po_color_size_breakdown b WHERE $job_cond_in_mst  and  a.id=b.po_break_down_id 
+group by b.po_break_down_id,b.item_number_id,b.cutup,b.color_number_id order by b.id,b.po_break_down_id" ); 
+		
+		$file_name="frfiles/ORDERS.TXT";
+		$myfile = fopen( $file_name, "w" ) or die("Unable to open file!");
+	  	
+		$txt .=str_pad("O.CODE",100," ")."\t".str_pad("O.PROD",40," ")."\t".str_pad("O.CUST",15," ")."\t".str_pad("O^DD:1",15," ")."\t".str_pad("O^DQ:1",15," ")."\t".str_pad("O.DESCRIP",50," ")."\t".str_pad("O.STATUS",15," ")."\t".str_pad("O.COMPLETE",15," ")."\t".str_pad("O.CONTRACT_QTY",15," ")."\t".str_pad("O.EVBASE",15," ")."\t".str_pad("O.UDJob No",15," ")."\t".str_pad("O.UDOPD",15," ")."\t".str_pad("O.UDOrder Code",50," ")."\t".str_pad("O.UDColour",50," ")."\t".str_pad("O.UDOrder",150," ")."\r\n";
+		foreach($sql as $name)
+		{
+			if($name[csf('is_confirmed')]==1) $str="F"; else $str="P";
+			
+			if($name[csf('shiping_status')]==3) $ssts="1"; else $ssts="0"; // Sewing Out
+			if( $item_array[$name[csf("job_no_mst")]]==1) $str_item="::".$fr_product_type[$name[csf('item_number_id')]]; else $str_item=""; 
+			
+			if($name[csf('cutup')]==0)
+			{
+				 $str_po=$name[csf('po_break_down_id')]."::".$color_lib[$name[csf('color_number_id')]]."".$str_item;
+				 $str_po_cut="";
+			}
+			else { $str_po=$name[csf('po_break_down_id')]."::".$color_lib[$name[csf('color_number_id')]]."::".$name[csf('cutup')]."".$str_item;  $str_po_cut=$name[csf('cutup')]."::"; }
+			
+			$nid=explode(",",$name[csf('id')]);
+			foreach($nid as $vid)
+			{
+				$newid_ar[$vid]=$str_po;
+			}
+			
+			if($dtls_id=="") $dtls_id=$name[csf('id')]; else $dtls_id .=",".$name[csf('id')];
+			//$ord_data[$name[csf('po_break_down_id')]][$name[csf('item_number_id')]][$name[csf('color_number_id')]] 
+			
+			$sew_qty_arr[$name[csf('po_break_down_id')]."::".$color_lib[$name[csf('color_number_id')]]."::".$name[csf('cutup')]."::".$str][col_size_id]=$name[csf('id')];
+			$sew_qty_arr[$$name[csf('po_break_down_id')]."::".$color_lib[$name[csf('color_number_id')]]."::".$name[csf('cutup')]."::".$str][order_qty]=$name[csf('order_quantity')];
+			
+			if( $sew_qty_arr[$name[csf('po_break_down_id')]][$name[csf('item_number_id')]][$name[csf('country_id')]][sewing_qnty]>=$name[csf('order_quantity')]) $ssts=1;
+			if( $name[csf('is_deleted')]==1 ) { $str="X";  $ssts="0"; }
+			 
+			
+			$txt .=str_pad($str_po,100," ")."\t".str_pad($name[csf('job_no_mst')]."".$str_item,40," ")."\t".str_pad($buyer_name_array[$ft_data_arr[$name[csf('job_no_mst')]][buyer_name]],15," ")."\t".str_pad(date("d/m/Y",strtotime($name[csf('country_ship_date')])),15," ")."\t".str_pad($name[csf('plan_cut_qnty')],15," ")."\t".str_pad($style_ref_arr[$name[csf('job_no_mst')]],50," ")."\t".str_pad($str,15," ")."\t".str_pad($ssts,15," ")."\t".str_pad($name[csf('order_quantity')],15," ")."\t".str_pad($dtd,15," ")."\t".str_pad($dtd,15," ")."\t".str_pad($dtd,15," ")."\t".str_pad($name[csf('po_number')],50," ")."\t".str_pad($color_lib[$name[csf('color_number_id')]],50," ")."\t".str_pad($name[csf('po_number')]."::".$color_lib[$name[csf('color_number_id')]]."::". $str_po_cut .$fr_product_type[$name[csf('item_number_id')]],150," ")."\r\n";
+		}
+		fwrite($myfile, $txt);
+		fclose($myfile); 
+		$txt="";
+		
+		$file_name="frfiles/UPDNORM.TXT";
+		$myfile = fopen($file_name, "w") or die("Unable to open file!");
+	  	
+		$operation_arra=array(1=>"10",2=>"15",3=>"20",4=>"35",5=>"140",6=>"finish_input",7=>"iron_output",8=>"160",9=>"cutting delivery");
+	  	//U.DATE	U.GROUP_EXTERNAL_ID	U.LINE_EXTERNAL_ID	U.QTY	U.OPN_COMPLETE
+		/*005 Fab Delivery	5
+140 Sewing Output	140
+010 Cutting	10
+025 Deliver to Emb.	25
+030 Receive from Emb.	30
+015 Deliver to Print	15
+020 Receive from Print	20
+145 Deliver to Wash/Emb	145
+150 Receive from Wash/Emb.	150
+160 Poly	160
+165 Final Inspection	165
+035 Sewing Input	35
+*/
+		$txt .=str_pad("U.ORDER",100," ")."\t".str_pad("U.DATE",15," ")."\t".str_pad("U.OPERATION",15," ")."\t".str_pad("U.GROUP_EXTERNAL_ID",22," ")."\t".str_pad("U.LINE_EXTERNAL_ID",22," ")."\t".str_pad("U.QTY",12," ")."\t".str_pad("U.OPN_COMPLETE",22," ")."\r\n";
+		
+		$sewing_qnty=sql_select( "SELECT po_break_down_id,country_id,sum(production_qnty) AS production_quantity,item_number_id,floor_id,sewing_line,color_size_break_down_id,a.production_type,max(a.production_date) as production_date	  from pro_garments_production_mst a, pro_garments_production_dtls b  where a.production_type in (1,2,3,4,5,8) and a.id=b.mst_id  and a.is_deleted=0 and a.status_active=1 and po_break_down_id in (".implode(",",$po_break).") group by color_size_break_down_id,a.production_type,floor_id,sewing_line order by  color_size_break_down_id,production_date asc "); 
+		
+		// echo "0**SELECT po_break_down_id,country_id,sum(production_qnty) AS production_quantity,item_number_id,floor_id,sewing_line,color_size_break_down_id,a.production_type,max(a.production_date) as production_date	  from pro_garments_production_mst a, pro_garments_production_dtls b  where a.production_type in (1,2,3,4,5,8) and a.id=b.mst_id  and a.is_deleted=0 and a.status_active=1 and po_break_down_id in (".implode(",",$po_break).") group by color_size_break_down_id,a.production_type,floor_id,sewing_line order by  production_date desc";
+		//die;//and a.production_type ='5'		
+		//where a.id=b.mst_id and a.production_type ='5' po_break_down_id,item_number_id,floor_id,sewing_line,  group by color_size_break_down_id,sewing_line,,item_number_id,country_id 	
+		//production_date,
+		foreach($sewing_qnty as $row_sew)
+		{
+			//$ssts=1;
+			//if($sew_qty_arr[$row_sew[csf('po_break_down_id')]][$row_sew[csf('item_number_id')]][$row_sew[csf('country_id')]][order_qty]>$row_sew[csf('production_quantity')]) $ssts=0;
+			
+			if($operation_arra[$row_sew[csf("production_type")]]==35 )
+			{
+				$row_sew[csf("floor_id")]=0;
+				$row_sew[csf("sewing_line")]=0;
+			}
+			$production_qty[$newid_ar[$row_sew[csf("color_size_break_down_id")]]][$row_sew[csf("production_type")]][$row_sew[csf("floor_id")]][$row_sew[csf("sewing_line")]][qnty]+=$row_sew[csf("production_quantity")];
+			
+			$production_qty[$newid_ar[$row_sew[csf("color_size_break_down_id")]]][$row_sew[csf("production_type")]][$row_sew[csf("floor_id")]][$row_sew[csf("sewing_line")]][pdate]=$row_sew[csf("production_date")]; 
+		}
+		// echo "0**";
+		// print_r($production_qty); die;
+		foreach($production_qty as $oid=>$prodctn)
+		{
+			foreach($prodctn as $prod_typ=>$prodflr)
+			{
+				foreach($prodflr as $flor=>$lndata)
+				{
+					foreach($lndata as $line=>$sdata)
+					{
+						//foreach($sdata as $sdate=>$data)
+						//{
+							$sdate=date("d/m/Y",strtotime($sdata[pdate]));
+							if($line==0) $line=""; else $line=(int)$line_name_res[$line]; 
+							$flor=$floor_name_res[$line];
+							if($flor==0) $flor="";
+							
+							if(trim($oid)!='')
+								$txt .=str_pad($oid,100," ")."\t".str_pad($sdate,15," ")."\t".str_pad($operation_arra[$prod_typ],15," ")."\t".str_pad($group_unit_array[$flor],22," ")."\t".str_pad($line_array[$line],22," ")."\t".str_pad($sdata[qnty],12," ")."\t".str_pad($ssts,22," ")."\r\n";
+							 
+						//}
+					}
+				}
+			}	
+		}
+		
+		// print_r($production_qty); die;
+		/*foreach($production_qty as $oid=>$prod)
+		{
+			foreach($prod as $flr=>$prodlin)
+			{
+				foreach($prodlin as $lin=>$dat)
+				{
+					//echo $flr."==".$lin."**";
+					//$txt .=str_pad($oid,100," ")."\t".str_pad($sew_floor[$flr],22," ")."\t".str_pad($sew_line[$lin],22," ")."\t".str_pad($dat[qnty],12," ")."\t".str_pad($ssts,22," ")."\r\n";
+					$txt .=str_pad($oid,100," ")."\t".str_pad($flr,22," ")."\t".str_pad($lin,22," ")."\t".str_pad($dat[qnty],12," ")."\t".str_pad($ssts,22," ")."\r\n";
+					 
+				}
+			}	
+			 
+		}*/
+	 
+		fwrite($myfile, $txt);
+		fclose($myfile); 
+		$txt="";
+	}
+	else if ( $cbo_fr_integrtion==1 )
+	{
+		$sql=sql_select ( "select id,short_name from lib_buyer" );
+		$file_name="frfiles/CUSTOMER.TXT";
+		$myfile = fopen($file_name, "w") or die("Unable to open file!");
+		$txt .=str_pad("C.CODE",15," ")."\tEND\r\n";
+		foreach($sql as $name)
+		{
+			//if(strlen($name)>6) $txt .=$name."\tEND\r\n"; else 
+			$txt .=str_pad($name[csf("short_name")],15," ")."\tEND\r\n";
+			
+		}
+		fwrite($myfile, $txt);
+		fclose($myfile); 
+		$txt="";
+	}
+	else if ( $cbo_fr_integrtion==2 )
+	{
+		
+		if($db_type==0)
+		{
+			$shipment_date="and c.country_ship_date >= '2014-11-01'";
+		}
+		if($db_type==2)
+		{
+			$shipment_date="and c.country_ship_date >= '01-Oct-2014'";
+		}
+		$shiping_status="and c.shiping_status !=3";
+		
+		$po_arr=array();
+		$ft_data_arr=array();
+		 
+		$sql_po="select a.id,a.job_no,a.style_ref_no,a.gmts_item_id,d.costing_per,d.sew_smv,e.fab_knit_req_kg   from wo_po_details_master a, wo_po_break_down b,wo_po_color_size_breakdown c,wo_pre_cost_mst d, wo_pre_cost_sum_dtls e where a.job_no=b.job_no_mst and a.job_no=c.job_no_mst and a.job_no=d.job_no and a.job_no=e.job_no  and b.id=c.po_break_down_id  $shipment_date   and a.is_deleted=0 and a.status_active=1 and b.is_deleted=0 and b.status_active=1 and c.is_deleted=0 and c.status_active=1 order by a.id,b.id";
+		$sql_po_data=sql_select($sql_po);
+		foreach($sql_po_data as $sql_po_row)
+		{
+		$po_arr[po_id][$sql_po_row[csf('id')]]=$sql_po_row[csf('id')];
+		$po_arr[job_no][$sql_po_row[csf('job_no')]]="'".$sql_po_row[csf('job_no')]."'";
+		
+		$ft_data_arr[$sql_po_row[csf('job_no')]][job_no]=$sql_po_row[csf('job_no')];//P.CODE
+		$ft_data_arr[$sql_po_row[csf('job_no')]][gmts_item_id]=$sql_po_row[csf('gmts_item_id')];//P.TYPE
+		$ft_data_arr[$sql_po_row[csf('job_no')]][style_ref_no]=$sql_po_row[csf('style_ref_no')];//P.DESCRIP
+		$fab_knit_req_kg=0;
+		if($sql_po_row[csf('costing_per')]==1)
+		{
+			$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/12;
+		}
+		if($sql_po_row[csf('costing_per')]==2)
+		{
+			$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')];
+		}
+		if($sql_po_row[csf('costing_per')]==3)
+		{
+			$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/24;
+		}
+		if($sql_po_row[csf('costing_per')]==4)
+		{
+			$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/36;
+		}
+		if($sql_po_row[csf('costing_per')]==5)
+		{
+			$fab_knit_req_kg=$sql_po_row[csf('fab_knit_req_kg')]/48;
+		}
+		$ft_data_arr[$sql_po_row[csf('job_no')]][fab_knit_req_kg]=number_format($fab_knit_req_kg,3);//P^CF:5
+		$ft_data_arr[$sql_po_row[csf('job_no')]][cutting]=1;//P^WC:10
+		
+		
+		
+		$ft_data_arr[$sql_po_row[csf('job_no')]][sew_input]=1;//P^WC:35
+		$ft_data_arr[$sql_po_row[csf('job_no')]][sew_output]=$sql_po_row[csf('sew_smv')];//P^WC:140
+		
+		$ft_data_arr[$sql_po_row[csf('job_no')]][poly]=1;//P^WC:160
+		$ft_data_arr[$sql_po_row[csf('job_no')]][shiped]=$sql_po_row[csf('sew_smv')];//P^WC:165
+	
+		}
+		
+		
+		$po_string= implode(",",$po_arr[po_id]);
+		$job_string= implode(",",$po_arr[job_no]);
+		
+	   $job=array_chunk($po_arr[job_no],1000, true);
+	   $job_cond_in="";
+	   $ji=0;
+	   foreach($job as $key=> $value)
+	   {
+		   if($ji==0)
+		   {
+			$job_cond_in="job_no in(".implode(",",$value).")"; 
+		   }
+		   else
+		   {
+				$job_cond_in.=" or job_no in(".implode(",",$value).")"; 
+		   }
+		   $ji++;
+	   }
+	   
+	   
+	   $sql_fabric_prod=sql_select("select min(id) as id,job_no  from wo_pre_cost_fabric_cost_dtls where $job_cond_in and fabric_source=1 and avg_cons>0  and status_active=1 and is_deleted=0 group by job_no");
+	   foreach($sql_fabric_prod as $row_fabric_prod)
+	   {
+		$ft_data_arr[fab_delivery][$row_fabric_prod[csf('job_no')]]=1;//P^WC:5   
+	   }
+	  $sql_print_embroid=sql_select("select min(id) as id,job_no,emb_name,avg(cons_dzn_gmts) as cons_dzn_gmts  from wo_pre_cost_embe_cost_dtls where $job_cond_in and emb_name in(1,2,3) and cons_dzn_gmts>0  and status_active=1 and is_deleted=0 group by job_no,emb_name");
+	  foreach($sql_print_embroid as $row_print_embroid)
+	  {
+		  if($row_print_embroid[csf('emb_name')]==1)
+		  {
+			$ft_data_arr[$row_print_embroid[csf('job_no')]][dv_printing]=1; //P^WC:15
+			$ft_data_arr[$row_print_embroid[csf('job_no')]][rv_printing]=1; //P^WC:20
+		  }
+		  if($row_print_embroid[csf('emb_name')]==2)
+		  {
+			$ft_data_arr[$row_print_embroid[csf('job_no')]][dv_embrodi]=1; //P^WC:25
+			$ft_data_arr[$row_print_embroid[csf('job_no')]][rv_embrodi]=1; //P^WC:30
+		  }
+		  if($row_print_embroid[csf('emb_name')]==3)
+		  {
+			$ft_data_arr[$row_print_embroid[csf('job_no')]][dv_wash]=1; //P^WC:145
+			$ft_data_arr[$row_print_embroid[csf('job_no')]][rv_wash]=1; //P^WC:150
+		  }
+	  }
+		//fputcsv($output, array( $rows[job_no],$rows[gmts_item_id],$rows[style_ref_no],$rows[fab_knit_req_kg],$rows[cutting] == '' ? 0 : $rows[cutting],$rows[dv_printing] == '' ? 0 : $rows[dv_printing],$rows[rv_printing] == '' ? 0 : $rows[rv_printing],$rows[dv_embrodi] == '' ? 0 :$rows[dv_embrodi],$rows[rv_embrodi] == '' ? 0 :$rows[rv_embrodi],$rows[sew_input] == '' ? 0 :$rows[sew_input],$rows[sew_output] == '' ? 0 :$rows[sew_output],$rows[dv_wash] == '' ? 0 :$rows[dv_wash],$rows[rv_wash] == '' ? 0 :$rows[rv_wash],$rows[poly] == '' ? 0 :$rows[poly],$rows[shiped] == '' ? 0 :$rows[shiped],'','','',''));
+		 
+		$txt="";
+		$file_name="frfiles/PRODUCTS.TXT";
+		$myfile = fopen($file_name, "w") or die("Unable to open file!");
+		$txt .=str_pad("P.CODE",15," ")."\t".str_pad("P.TYPE",15," ")."\t".str_pad("P.DESCRIP",25," ")."\t".str_pad("P^CF:5",12," ")."\t".str_pad("P^WC:5",12," ")."\t".str_pad("P^WC:10",12," ")."\t".str_pad("P^WC:15",12," ")."\t".str_pad("P^WC:20",12," ")."\t".str_pad("P^WC:25",12," ")."\t".str_pad("P^WC:30",12," ")."\t".str_pad("P^WC:35",12," ")."\t".str_pad("P^WC:140",12," ")."\t".str_pad("P^WC:145",12," ")."\t".str_pad("P^WC:150",12," ")."\t".str_pad("P^WC:160",12," ")."\t".str_pad("P^WC:165",12," ")."\t".str_pad("P.UDFabrication",12," ")."\t".str_pad("P.UDGSM",12," ")."\t".str_pad("P.UDYarn Count",12," ")."\t".str_pad("P.UDStyle",12," ")."\r\n";
+
+		foreach($ft_data_arr as $rows)
+		{
+			$txt .=str_pad($rows[job_no],15," ")."\t".str_pad($rows[gmts_item_id],15," ")."\t".str_pad($rows[style_ref_no],25," ")."\t".str_pad($rows[fab_knit_req_kg],12," ")."\t".str_pad($rows[cutting] == '' ? 0 : $rows[cutting],12," ")."\t".str_pad($rows[dv_printing] == '' ? 0 : $rows[dv_printing],12," ")."\t".str_pad($rows[rv_printing] == '' ? 0 : $rows[rv_printing],12," ")."\t".str_pad($rows[dv_embrodi] == '' ? 0 :$rows[dv_embrodi],12," ")."\t".str_pad($rows[rv_embrodi] == '' ? 0 :$rows[rv_embrodi],12," ")."\t".str_pad($rows[sew_input] == '' ? 0 :$rows[sew_input],12," ")."\t".str_pad($rows[sew_output] == '' ? 0 :$rows[sew_output],12," ")."\t".str_pad($rows[dv_wash] == '' ? 0 :$rows[dv_wash],12," ")."\t".str_pad($rows[rv_wash] == '' ? 0 :$rows[rv_wash],12," ")."\t".str_pad($rows[poly] == '' ? 0 :$rows[poly],12," ")."\t".str_pad($rows[shiped] == '' ? 0 :$rows[shiped],12," ")."\t\t\t\t\t\r\n";
+		}
+		
+		fwrite($myfile, $txt);
+		fclose($myfile); 
+		$txt="";
+	}
+	
+	foreach (glob("frfiles/"."*.TXT") as $filenames)
+	{			
+	   $zip->addFile($filenames);		
+	}
+	$zip->close();
+	echo "0**d";
+	exit();
+}
+
+
+
+
+?>

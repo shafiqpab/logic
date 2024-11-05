@@ -1,0 +1,2 @@
+[09-Dec-2015 14:25:18 Asia/Dhaka] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::num_rows() in /home/picomoni/public_html/ws_android/application/models/Android_model.php on line 88
+[09-Dec-2015 14:32:10 Asia/Dhaka] PHP Fatal error:  Call to undefined method CI_DB_mysqli_driver::row() in /home/picomoni/public_html/ws_android/application/models/Android_model.php on line 89

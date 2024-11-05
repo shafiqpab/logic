@@ -1,0 +1,1776 @@
+Sep 25 03:15:02 localhost run-parts(/etc/cron.daily)[73244]: finished logrotate
+Sep 25 03:15:02 localhost run-parts(/etc/cron.daily)[73228]: starting man-db.cron
+Sep 25 03:15:02 localhost run-parts(/etc/cron.daily)[73260]: finished man-db.cron
+Sep 25 03:15:02 localhost run-parts(/etc/cron.daily)[73228]: starting mlocate
+Sep 25 03:15:02 localhost run-parts(/etc/cron.daily)[73271]: finished mlocate
+Sep 25 03:15:02 localhost anacron[73099]: Job `cron.daily' terminated
+Sep 25 03:20:01 localhost CROND[73316]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 03:30:01 localhost CROND[73404]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 03:35:01 localhost anacron[73099]: Job `cron.weekly' started
+Sep 25 03:35:01 localhost anacron[73099]: Job `cron.weekly' terminated
+Sep 25 03:35:01 localhost anacron[73099]: Normal exit (2 jobs run)
+Sep 25 03:40:01 localhost CROND[73501]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 03:50:01 localhost CROND[73591]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 04:00:01 localhost CROND[73679]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 04:01:01 localhost CROND[73692]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 04:01:01 localhost run-parts(/etc/cron.hourly)[73692]: starting 0anacron
+Sep 25 04:01:01 localhost run-parts(/etc/cron.hourly)[73701]: finished 0anacron
+Sep 25 04:01:01 localhost run-parts(/etc/cron.hourly)[73692]: starting mcelog.cron
+Sep 25 04:01:01 localhost run-parts(/etc/cron.hourly)[73707]: finished mcelog.cron
+Sep 25 04:10:01 localhost CROND[73784]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 04:20:01 localhost CROND[73872]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 04:30:01 localhost CROND[73959]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 04:40:01 localhost CROND[74048]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 04:50:01 localhost CROND[74136]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 05:00:01 localhost CROND[74223]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 05:01:01 localhost CROND[74236]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 05:01:01 localhost run-parts(/etc/cron.hourly)[74236]: starting 0anacron
+Sep 25 05:01:01 localhost run-parts(/etc/cron.hourly)[74245]: finished 0anacron
+Sep 25 05:01:01 localhost run-parts(/etc/cron.hourly)[74236]: starting mcelog.cron
+Sep 25 05:01:01 localhost run-parts(/etc/cron.hourly)[74251]: finished mcelog.cron
+Sep 25 05:10:01 localhost CROND[74340]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 05:20:02 localhost CROND[74439]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 05:30:01 localhost CROND[74529]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 05:40:01 localhost CROND[74628]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 05:50:01 localhost CROND[74728]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 06:00:01 localhost CROND[74815]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 06:01:01 localhost CROND[74828]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 06:01:01 localhost run-parts(/etc/cron.hourly)[74828]: starting 0anacron
+Sep 25 06:01:01 localhost run-parts(/etc/cron.hourly)[74837]: finished 0anacron
+Sep 25 06:01:01 localhost run-parts(/etc/cron.hourly)[74828]: starting mcelog.cron
+Sep 25 06:01:01 localhost run-parts(/etc/cron.hourly)[74843]: finished mcelog.cron
+Sep 25 06:10:01 localhost CROND[74930]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 06:20:01 localhost CROND[75018]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 06:30:01 localhost CROND[75111]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 06:40:01 localhost CROND[75203]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 06:50:01 localhost CROND[75329]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 07:00:01 localhost CROND[75418]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 07:01:01 localhost CROND[75435]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 07:01:01 localhost run-parts(/etc/cron.hourly)[75435]: starting 0anacron
+Sep 25 07:01:01 localhost run-parts(/etc/cron.hourly)[75444]: finished 0anacron
+Sep 25 07:01:01 localhost run-parts(/etc/cron.hourly)[75435]: starting mcelog.cron
+Sep 25 07:01:01 localhost run-parts(/etc/cron.hourly)[75450]: finished mcelog.cron
+Sep 25 07:10:01 localhost CROND[75538]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 07:20:01 localhost CROND[75650]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 07:30:01 localhost CROND[75742]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 07:40:01 localhost CROND[75835]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 07:50:01 localhost CROND[75924]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 08:00:01 localhost CROND[76014]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 08:01:01 localhost CROND[76029]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 08:01:01 localhost CROND[76030]: (root) CMD (/var/www/erp/auto_mail/total_mail.sh)
+Sep 25 08:01:01 localhost run-parts(/etc/cron.hourly)[76029]: starting 0anacron
+Sep 25 08:01:01 localhost run-parts(/etc/cron.hourly)[76041]: finished 0anacron
+Sep 25 08:01:01 localhost run-parts(/etc/cron.hourly)[76029]: starting mcelog.cron
+Sep 25 08:01:01 localhost run-parts(/etc/cron.hourly)[76048]: finished mcelog.cron
+Sep 25 08:10:01 localhost CROND[76136]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 08:20:01 localhost CROND[76223]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 08:30:01 localhost CROND[76310]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 08:40:01 localhost CROND[76399]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 08:50:01 localhost CROND[76486]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 09:00:01 localhost CROND[76572]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 09:01:01 localhost CROND[76585]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 09:01:01 localhost run-parts(/etc/cron.hourly)[76585]: starting 0anacron
+Sep 25 09:01:01 localhost run-parts(/etc/cron.hourly)[76594]: finished 0anacron
+Sep 25 09:01:01 localhost run-parts(/etc/cron.hourly)[76585]: starting mcelog.cron
+Sep 25 09:01:01 localhost run-parts(/etc/cron.hourly)[76600]: finished mcelog.cron
+Sep 25 09:10:01 localhost CROND[76677]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 09:20:01 localhost CROND[76764]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 09:30:01 localhost CROND[76850]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 09:40:01 localhost CROND[76930]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 09:50:01 localhost CROND[77017]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 10:00:01 localhost CROND[77104]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 10:01:01 localhost CROND[77117]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 10:01:01 localhost run-parts(/etc/cron.hourly)[77117]: starting 0anacron
+Sep 25 10:01:01 localhost run-parts(/etc/cron.hourly)[77126]: finished 0anacron
+Sep 25 10:01:01 localhost run-parts(/etc/cron.hourly)[77117]: starting mcelog.cron
+Sep 25 10:01:01 localhost run-parts(/etc/cron.hourly)[77132]: finished mcelog.cron
+Sep 25 10:10:02 localhost CROND[77209]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 10:20:01 localhost CROND[77297]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 10:30:01 localhost CROND[77385]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 10:40:01 localhost CROND[77473]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 10:50:01 localhost CROND[77561]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 11:00:01 localhost CROND[77648]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 11:01:01 localhost CROND[77661]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 11:01:01 localhost run-parts(/etc/cron.hourly)[77661]: starting 0anacron
+Sep 25 11:01:01 localhost run-parts(/etc/cron.hourly)[77670]: finished 0anacron
+Sep 25 11:01:01 localhost run-parts(/etc/cron.hourly)[77661]: starting mcelog.cron
+Sep 25 11:01:01 localhost run-parts(/etc/cron.hourly)[77676]: finished mcelog.cron
+Sep 25 11:10:01 localhost CROND[77753]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 11:20:01 localhost CROND[77840]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 11:30:01 localhost CROND[77928]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 11:40:01 localhost CROND[78016]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 11:50:01 localhost CROND[78103]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 12:00:01 localhost CROND[78190]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 12:01:01 localhost CROND[78204]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 12:01:01 localhost run-parts(/etc/cron.hourly)[78204]: starting 0anacron
+Sep 25 12:01:01 localhost run-parts(/etc/cron.hourly)[78213]: finished 0anacron
+Sep 25 12:01:01 localhost run-parts(/etc/cron.hourly)[78204]: starting mcelog.cron
+Sep 25 12:01:01 localhost run-parts(/etc/cron.hourly)[78219]: finished mcelog.cron
+Sep 25 12:10:01 localhost CROND[78297]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 12:20:02 localhost CROND[78384]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 12:30:01 localhost CROND[78473]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 12:40:01 localhost CROND[78559]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 12:50:01 localhost CROND[78646]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 13:00:01 localhost CROND[78734]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 13:01:01 localhost CROND[78747]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 13:01:01 localhost run-parts(/etc/cron.hourly)[78747]: starting 0anacron
+Sep 25 13:01:01 localhost run-parts(/etc/cron.hourly)[78756]: finished 0anacron
+Sep 25 13:01:01 localhost run-parts(/etc/cron.hourly)[78747]: starting mcelog.cron
+Sep 25 13:01:01 localhost run-parts(/etc/cron.hourly)[78762]: finished mcelog.cron
+Sep 25 13:10:01 localhost CROND[78840]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 13:20:01 localhost CROND[78927]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 13:30:01 localhost CROND[79015]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 13:40:01 localhost CROND[79102]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 13:50:01 localhost CROND[79191]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 14:00:01 localhost CROND[79279]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 14:01:01 localhost CROND[79292]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 14:01:01 localhost run-parts(/etc/cron.hourly)[79292]: starting 0anacron
+Sep 25 14:01:01 localhost run-parts(/etc/cron.hourly)[79301]: finished 0anacron
+Sep 25 14:01:01 localhost run-parts(/etc/cron.hourly)[79292]: starting mcelog.cron
+Sep 25 14:01:01 localhost run-parts(/etc/cron.hourly)[79307]: finished mcelog.cron
+Sep 25 14:10:01 localhost CROND[79385]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 14:20:01 localhost CROND[79471]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 14:30:01 localhost CROND[79559]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 14:40:01 localhost CROND[79646]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 14:50:01 localhost CROND[79733]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 15:00:01 localhost CROND[79819]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 15:01:01 localhost CROND[79834]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 15:01:01 localhost run-parts(/etc/cron.hourly)[79834]: starting 0anacron
+Sep 25 15:01:01 localhost run-parts(/etc/cron.hourly)[79843]: finished 0anacron
+Sep 25 15:01:01 localhost run-parts(/etc/cron.hourly)[79834]: starting mcelog.cron
+Sep 25 15:01:01 localhost run-parts(/etc/cron.hourly)[79849]: finished mcelog.cron
+Sep 25 15:10:01 localhost CROND[79925]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 15:20:01 localhost CROND[80013]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 15:30:01 localhost CROND[80102]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 15:40:01 localhost CROND[80188]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 15:50:01 localhost CROND[80275]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 16:00:01 localhost CROND[80363]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 16:01:01 localhost CROND[80376]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 16:01:01 localhost run-parts(/etc/cron.hourly)[80376]: starting 0anacron
+Sep 25 16:01:01 localhost run-parts(/etc/cron.hourly)[80385]: finished 0anacron
+Sep 25 16:01:01 localhost run-parts(/etc/cron.hourly)[80376]: starting mcelog.cron
+Sep 25 16:01:01 localhost run-parts(/etc/cron.hourly)[80391]: finished mcelog.cron
+Sep 25 16:10:01 localhost CROND[80468]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 16:20:01 localhost CROND[80556]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 16:30:01 localhost CROND[80643]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 16:40:01 localhost CROND[80730]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 16:50:01 localhost CROND[80816]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 17:00:01 localhost CROND[80903]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 17:01:01 localhost CROND[80917]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 17:01:01 localhost run-parts(/etc/cron.hourly)[80917]: starting 0anacron
+Sep 25 17:01:01 localhost run-parts(/etc/cron.hourly)[80926]: finished 0anacron
+Sep 25 17:01:01 localhost run-parts(/etc/cron.hourly)[80917]: starting mcelog.cron
+Sep 25 17:01:01 localhost run-parts(/etc/cron.hourly)[80932]: finished mcelog.cron
+Sep 25 17:10:01 localhost CROND[81009]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 17:20:01 localhost CROND[81096]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 17:30:01 localhost CROND[81183]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 17:40:01 localhost CROND[81270]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 17:50:01 localhost CROND[81357]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 18:00:01 localhost CROND[81443]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 18:01:01 localhost CROND[81456]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 18:01:01 localhost run-parts(/etc/cron.hourly)[81456]: starting 0anacron
+Sep 25 18:01:01 localhost run-parts(/etc/cron.hourly)[81465]: finished 0anacron
+Sep 25 18:01:01 localhost run-parts(/etc/cron.hourly)[81456]: starting mcelog.cron
+Sep 25 18:01:01 localhost run-parts(/etc/cron.hourly)[81471]: finished mcelog.cron
+Sep 25 18:10:01 localhost CROND[81550]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 18:20:01 localhost CROND[81638]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 18:30:01 localhost CROND[81725]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 18:40:01 localhost CROND[81811]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 18:50:01 localhost CROND[81899]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 19:00:02 localhost CROND[81986]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 19:01:01 localhost CROND[81999]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 19:01:01 localhost run-parts(/etc/cron.hourly)[81999]: starting 0anacron
+Sep 25 19:01:01 localhost run-parts(/etc/cron.hourly)[82008]: finished 0anacron
+Sep 25 19:01:01 localhost run-parts(/etc/cron.hourly)[81999]: starting mcelog.cron
+Sep 25 19:01:01 localhost run-parts(/etc/cron.hourly)[82014]: finished mcelog.cron
+Sep 25 19:10:01 localhost CROND[82091]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 19:20:01 localhost CROND[82179]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 19:30:01 localhost CROND[82267]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 19:40:01 localhost CROND[82355]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 19:50:01 localhost CROND[82442]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 20:00:01 localhost CROND[82529]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 20:01:01 localhost CROND[82542]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 20:01:01 localhost run-parts(/etc/cron.hourly)[82542]: starting 0anacron
+Sep 25 20:01:01 localhost run-parts(/etc/cron.hourly)[82551]: finished 0anacron
+Sep 25 20:01:01 localhost run-parts(/etc/cron.hourly)[82542]: starting mcelog.cron
+Sep 25 20:01:01 localhost run-parts(/etc/cron.hourly)[82557]: finished mcelog.cron
+Sep 25 20:10:01 localhost CROND[82635]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 20:20:01 localhost CROND[82722]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 20:30:01 localhost CROND[82811]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 20:40:01 localhost CROND[82898]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 20:50:01 localhost CROND[82985]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 21:00:01 localhost CROND[83065]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 21:01:01 localhost CROND[83078]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 21:01:02 localhost run-parts(/etc/cron.hourly)[83078]: starting 0anacron
+Sep 25 21:01:02 localhost run-parts(/etc/cron.hourly)[83087]: finished 0anacron
+Sep 25 21:01:02 localhost run-parts(/etc/cron.hourly)[83078]: starting mcelog.cron
+Sep 25 21:01:02 localhost run-parts(/etc/cron.hourly)[83093]: finished mcelog.cron
+Sep 25 21:10:01 localhost CROND[83170]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 21:20:01 localhost CROND[83260]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 21:30:01 localhost CROND[83346]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 21:40:01 localhost CROND[83433]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 21:50:01 localhost CROND[83520]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 22:00:01 localhost CROND[83606]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 22:01:01 localhost CROND[83620]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 22:01:01 localhost run-parts(/etc/cron.hourly)[83620]: starting 0anacron
+Sep 25 22:01:01 localhost run-parts(/etc/cron.hourly)[83629]: finished 0anacron
+Sep 25 22:01:01 localhost run-parts(/etc/cron.hourly)[83620]: starting mcelog.cron
+Sep 25 22:01:01 localhost run-parts(/etc/cron.hourly)[83635]: finished mcelog.cron
+Sep 25 22:10:01 localhost CROND[83716]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 22:20:01 localhost CROND[83804]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 22:30:01 localhost CROND[83891]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 22:40:01 localhost CROND[83980]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 22:50:01 localhost CROND[84074]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:00:01 localhost CROND[84164]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:01:01 localhost CROND[84177]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 25 23:01:01 localhost run-parts(/etc/cron.hourly)[84177]: starting 0anacron
+Sep 25 23:01:01 localhost run-parts(/etc/cron.hourly)[84186]: finished 0anacron
+Sep 25 23:01:01 localhost run-parts(/etc/cron.hourly)[84177]: starting mcelog.cron
+Sep 25 23:01:01 localhost run-parts(/etc/cron.hourly)[84192]: finished mcelog.cron
+Sep 25 23:10:01 localhost CROND[84270]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:20:01 localhost CROND[84357]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:30:01 localhost CROND[84445]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:40:01 localhost CROND[84532]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:50:01 localhost CROND[84623]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 25 23:53:01 localhost CROND[84654]: (root) CMD (/usr/lib64/sa/sa2 -A)
+Sep 26 00:00:01 localhost CROND[84723]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 00:01:01 localhost CROND[84737]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 00:01:01 localhost run-parts(/etc/cron.hourly)[84737]: starting 0anacron
+Sep 26 00:01:01 localhost anacron[84747]: Anacron started on 2022-09-26
+Sep 26 00:01:01 localhost run-parts(/etc/cron.hourly)[84749]: finished 0anacron
+Sep 26 00:01:01 localhost anacron[84747]: Normal exit (0 jobs run)
+Sep 26 00:01:01 localhost run-parts(/etc/cron.hourly)[84737]: starting mcelog.cron
+Sep 26 00:01:01 localhost run-parts(/etc/cron.hourly)[84755]: finished mcelog.cron
+Sep 26 00:10:01 localhost CROND[84832]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 00:20:01 localhost CROND[84929]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 00:30:01 localhost CROND[85017]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 00:40:01 localhost CROND[85125]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 00:50:01 localhost CROND[85230]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 01:00:01 localhost CROND[85341]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 01:01:01 localhost CROND[85354]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 01:01:01 localhost run-parts(/etc/cron.hourly)[85354]: starting 0anacron
+Sep 26 01:01:01 localhost anacron[85364]: Anacron started on 2022-09-26
+Sep 26 01:01:01 localhost run-parts(/etc/cron.hourly)[85366]: finished 0anacron
+Sep 26 01:01:01 localhost anacron[85364]: Normal exit (0 jobs run)
+Sep 26 01:01:01 localhost run-parts(/etc/cron.hourly)[85354]: starting mcelog.cron
+Sep 26 01:01:01 localhost run-parts(/etc/cron.hourly)[85372]: finished mcelog.cron
+Sep 26 01:10:01 localhost CROND[85456]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 01:20:01 localhost CROND[85545]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 01:30:01 localhost CROND[85636]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 01:40:01 localhost CROND[85732]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 01:50:01 localhost CROND[85838]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 02:00:01 localhost CROND[85928]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 02:01:01 localhost CROND[85942]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 02:01:01 localhost run-parts(/etc/cron.hourly)[85942]: starting 0anacron
+Sep 26 02:01:01 localhost anacron[85952]: Anacron started on 2022-09-26
+Sep 26 02:01:01 localhost run-parts(/etc/cron.hourly)[85954]: finished 0anacron
+Sep 26 02:01:01 localhost anacron[85952]: Normal exit (0 jobs run)
+Sep 26 02:01:01 localhost run-parts(/etc/cron.hourly)[85942]: starting mcelog.cron
+Sep 26 02:01:01 localhost run-parts(/etc/cron.hourly)[85960]: finished mcelog.cron
+Sep 26 02:10:01 localhost CROND[86040]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 02:20:01 localhost CROND[86145]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 02:30:01 localhost CROND[86239]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 02:40:01 localhost CROND[86354]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 02:50:01 localhost CROND[86453]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 03:00:01 localhost CROND[86544]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 03:01:01 localhost CROND[86558]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 03:01:01 localhost run-parts(/etc/cron.hourly)[86558]: starting 0anacron
+Sep 26 03:01:01 localhost anacron[86568]: Anacron started on 2022-09-26
+Sep 26 03:01:01 localhost run-parts(/etc/cron.hourly)[86570]: finished 0anacron
+Sep 26 03:01:01 localhost anacron[86568]: Will run job `cron.daily' in 39 min.
+Sep 26 03:01:02 localhost anacron[86568]: Jobs will be executed sequentially
+Sep 26 03:01:02 localhost run-parts(/etc/cron.hourly)[86558]: starting mcelog.cron
+Sep 26 03:01:02 localhost run-parts(/etc/cron.hourly)[86576]: finished mcelog.cron
+Sep 26 03:10:01 localhost CROND[86677]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 03:20:01 localhost CROND[86808]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 03:30:01 localhost CROND[86915]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 03:40:01 localhost CROND[87006]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 03:40:02 localhost anacron[86568]: Job `cron.daily' started
+Sep 26 03:40:02 localhost run-parts(/etc/cron.daily)[87010]: starting logrotate
+Sep 26 03:40:02 localhost run-parts(/etc/cron.daily)[87018]: finished logrotate
+Sep 26 03:40:02 localhost run-parts(/etc/cron.daily)[87010]: starting man-db.cron
+Sep 26 03:40:02 localhost run-parts(/etc/cron.daily)[87029]: finished man-db.cron
+Sep 26 03:40:02 localhost run-parts(/etc/cron.daily)[87010]: starting mlocate
+Sep 26 03:40:02 localhost run-parts(/etc/cron.daily)[87040]: finished mlocate
+Sep 26 03:40:02 localhost anacron[86568]: Job `cron.daily' terminated
+Sep 26 03:40:02 localhost anacron[86568]: Normal exit (1 job run)
+Sep 26 03:50:01 localhost CROND[87130]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 04:00:01 localhost CROND[87226]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 04:01:01 localhost CROND[87242]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 04:01:01 localhost run-parts(/etc/cron.hourly)[87242]: starting 0anacron
+Sep 26 04:01:01 localhost run-parts(/etc/cron.hourly)[87251]: finished 0anacron
+Sep 26 04:01:01 localhost run-parts(/etc/cron.hourly)[87242]: starting mcelog.cron
+Sep 26 04:01:01 localhost run-parts(/etc/cron.hourly)[87257]: finished mcelog.cron
+Sep 26 04:10:01 localhost CROND[87338]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 04:20:01 localhost CROND[87437]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 04:30:01 localhost CROND[87537]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 04:40:01 localhost CROND[87630]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 04:50:01 localhost CROND[87744]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 05:00:01 localhost CROND[87837]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 05:01:01 localhost CROND[87851]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 05:01:01 localhost run-parts(/etc/cron.hourly)[87851]: starting 0anacron
+Sep 26 05:01:01 localhost run-parts(/etc/cron.hourly)[87860]: finished 0anacron
+Sep 26 05:01:01 localhost run-parts(/etc/cron.hourly)[87851]: starting mcelog.cron
+Sep 26 05:01:01 localhost run-parts(/etc/cron.hourly)[87866]: finished mcelog.cron
+Sep 26 05:10:01 localhost CROND[87959]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 05:20:02 localhost CROND[88056]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 05:30:01 localhost CROND[88168]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 05:40:01 localhost CROND[88264]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 05:50:01 localhost CROND[88361]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 06:00:01 localhost CROND[88486]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 06:01:01 localhost CROND[88499]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 06:01:01 localhost run-parts(/etc/cron.hourly)[88499]: starting 0anacron
+Sep 26 06:01:01 localhost run-parts(/etc/cron.hourly)[88508]: finished 0anacron
+Sep 26 06:01:01 localhost run-parts(/etc/cron.hourly)[88499]: starting mcelog.cron
+Sep 26 06:01:01 localhost run-parts(/etc/cron.hourly)[88514]: finished mcelog.cron
+Sep 26 06:10:01 localhost CROND[88600]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 06:20:01 localhost CROND[88708]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 06:30:01 localhost CROND[88810]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 06:40:01 localhost CROND[88915]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 06:50:01 localhost CROND[89044]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 07:00:01 localhost CROND[89156]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 07:01:01 localhost CROND[89172]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 07:01:01 localhost run-parts(/etc/cron.hourly)[89172]: starting 0anacron
+Sep 26 07:01:01 localhost run-parts(/etc/cron.hourly)[89181]: finished 0anacron
+Sep 26 07:01:01 localhost run-parts(/etc/cron.hourly)[89172]: starting mcelog.cron
+Sep 26 07:01:01 localhost run-parts(/etc/cron.hourly)[89187]: finished mcelog.cron
+Sep 26 07:10:01 localhost CROND[89268]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 07:20:01 localhost CROND[89365]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 07:30:02 localhost CROND[89464]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 07:40:01 localhost CROND[89555]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 07:50:01 localhost CROND[89654]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 08:00:01 localhost CROND[89738]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 08:01:01 localhost CROND[89754]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 08:01:01 localhost CROND[89755]: (root) CMD (/var/www/erp/auto_mail/total_mail.sh)
+Sep 26 08:01:01 localhost run-parts(/etc/cron.hourly)[89754]: starting 0anacron
+Sep 26 08:01:01 localhost run-parts(/etc/cron.hourly)[89766]: finished 0anacron
+Sep 26 08:01:01 localhost run-parts(/etc/cron.hourly)[89754]: starting mcelog.cron
+Sep 26 08:01:01 localhost run-parts(/etc/cron.hourly)[89772]: finished mcelog.cron
+Sep 26 08:10:01 localhost CROND[89863]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 08:20:01 localhost CROND[89950]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 08:30:01 localhost CROND[90036]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 08:40:01 localhost CROND[90122]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 08:50:01 localhost CROND[90211]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 09:00:01 localhost CROND[90298]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 09:01:01 localhost CROND[90311]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 09:01:01 localhost run-parts(/etc/cron.hourly)[90311]: starting 0anacron
+Sep 26 09:01:01 localhost run-parts(/etc/cron.hourly)[90320]: finished 0anacron
+Sep 26 09:01:01 localhost run-parts(/etc/cron.hourly)[90311]: starting mcelog.cron
+Sep 26 09:01:01 localhost run-parts(/etc/cron.hourly)[90326]: finished mcelog.cron
+Sep 26 09:10:01 localhost CROND[90403]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 09:20:01 localhost CROND[90490]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 09:30:01 localhost CROND[90577]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 09:40:01 localhost CROND[90663]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 09:50:01 localhost CROND[90755]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 10:00:01 localhost CROND[90842]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 10:01:01 localhost CROND[90856]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 10:01:01 localhost run-parts(/etc/cron.hourly)[90856]: starting 0anacron
+Sep 26 10:01:01 localhost run-parts(/etc/cron.hourly)[90865]: finished 0anacron
+Sep 26 10:01:01 localhost run-parts(/etc/cron.hourly)[90856]: starting mcelog.cron
+Sep 26 10:01:01 localhost run-parts(/etc/cron.hourly)[90871]: finished mcelog.cron
+Sep 26 10:10:01 localhost CROND[90948]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 10:20:01 localhost CROND[91034]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 10:30:01 localhost CROND[91121]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 10:40:02 localhost CROND[91207]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 10:50:01 localhost CROND[91294]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 11:00:01 localhost CROND[91382]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 11:01:01 localhost CROND[91395]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 11:01:01 localhost run-parts(/etc/cron.hourly)[91395]: starting 0anacron
+Sep 26 11:01:01 localhost run-parts(/etc/cron.hourly)[91404]: finished 0anacron
+Sep 26 11:01:01 localhost run-parts(/etc/cron.hourly)[91395]: starting mcelog.cron
+Sep 26 11:01:01 localhost run-parts(/etc/cron.hourly)[91410]: finished mcelog.cron
+Sep 26 11:10:01 localhost CROND[91487]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 11:20:01 localhost CROND[91573]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 11:30:01 localhost CROND[91661]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 11:40:01 localhost CROND[91749]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 11:50:01 localhost CROND[91837]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 12:00:01 localhost CROND[91924]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 12:01:01 localhost CROND[91937]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 12:01:01 localhost run-parts(/etc/cron.hourly)[91937]: starting 0anacron
+Sep 26 12:01:01 localhost run-parts(/etc/cron.hourly)[91946]: finished 0anacron
+Sep 26 12:01:01 localhost run-parts(/etc/cron.hourly)[91937]: starting mcelog.cron
+Sep 26 12:01:01 localhost run-parts(/etc/cron.hourly)[91952]: finished mcelog.cron
+Sep 26 12:10:01 localhost CROND[92028]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 12:20:01 localhost CROND[92115]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 12:30:01 localhost CROND[92202]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 12:40:01 localhost CROND[92289]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 12:50:01 localhost CROND[92377]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 13:00:02 localhost CROND[92463]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 13:01:01 localhost CROND[92477]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 13:01:01 localhost run-parts(/etc/cron.hourly)[92477]: starting 0anacron
+Sep 26 13:01:01 localhost run-parts(/etc/cron.hourly)[92486]: finished 0anacron
+Sep 26 13:01:01 localhost run-parts(/etc/cron.hourly)[92477]: starting mcelog.cron
+Sep 26 13:01:01 localhost run-parts(/etc/cron.hourly)[92492]: finished mcelog.cron
+Sep 26 13:10:01 localhost CROND[92570]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 13:20:01 localhost CROND[92657]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 13:30:01 localhost CROND[92744]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 13:40:01 localhost CROND[92831]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 13:50:01 localhost CROND[92919]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 14:00:01 localhost CROND[93006]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 14:01:01 localhost CROND[93019]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 14:01:01 localhost run-parts(/etc/cron.hourly)[93019]: starting 0anacron
+Sep 26 14:01:01 localhost run-parts(/etc/cron.hourly)[93028]: finished 0anacron
+Sep 26 14:01:01 localhost run-parts(/etc/cron.hourly)[93019]: starting mcelog.cron
+Sep 26 14:01:01 localhost run-parts(/etc/cron.hourly)[93034]: finished mcelog.cron
+Sep 26 14:10:01 localhost CROND[93111]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 14:20:01 localhost CROND[93198]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 14:30:01 localhost CROND[93286]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 14:40:01 localhost CROND[93372]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 14:50:01 localhost CROND[93461]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 15:00:01 localhost CROND[93549]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 15:01:01 localhost CROND[93562]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 15:01:01 localhost run-parts(/etc/cron.hourly)[93562]: starting 0anacron
+Sep 26 15:01:01 localhost run-parts(/etc/cron.hourly)[93571]: finished 0anacron
+Sep 26 15:01:01 localhost run-parts(/etc/cron.hourly)[93562]: starting mcelog.cron
+Sep 26 15:01:01 localhost run-parts(/etc/cron.hourly)[93577]: finished mcelog.cron
+Sep 26 15:10:01 localhost CROND[93654]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 15:20:01 localhost CROND[93740]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 15:30:01 localhost CROND[93827]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 15:40:01 localhost CROND[93914]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 15:50:01 localhost CROND[94002]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 16:00:01 localhost CROND[94088]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 16:01:01 localhost CROND[94102]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 16:01:01 localhost run-parts(/etc/cron.hourly)[94102]: starting 0anacron
+Sep 26 16:01:01 localhost run-parts(/etc/cron.hourly)[94111]: finished 0anacron
+Sep 26 16:01:01 localhost run-parts(/etc/cron.hourly)[94102]: starting mcelog.cron
+Sep 26 16:01:01 localhost run-parts(/etc/cron.hourly)[94117]: finished mcelog.cron
+Sep 26 16:10:01 localhost CROND[94193]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 16:20:01 localhost CROND[94280]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 16:30:01 localhost CROND[94369]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 16:40:01 localhost CROND[94457]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 16:50:01 localhost CROND[94544]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 17:00:01 localhost CROND[94631]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 17:01:01 localhost CROND[94644]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 17:01:01 localhost run-parts(/etc/cron.hourly)[94644]: starting 0anacron
+Sep 26 17:01:01 localhost run-parts(/etc/cron.hourly)[94653]: finished 0anacron
+Sep 26 17:01:01 localhost run-parts(/etc/cron.hourly)[94644]: starting mcelog.cron
+Sep 26 17:01:01 localhost run-parts(/etc/cron.hourly)[94659]: finished mcelog.cron
+Sep 26 17:10:01 localhost CROND[94736]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 17:20:01 localhost CROND[94822]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 17:30:02 localhost CROND[94909]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 17:40:01 localhost CROND[94997]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 17:50:01 localhost CROND[95083]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 18:00:01 localhost CROND[95170]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 18:01:01 localhost CROND[95184]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 18:01:01 localhost run-parts(/etc/cron.hourly)[95184]: starting 0anacron
+Sep 26 18:01:01 localhost run-parts(/etc/cron.hourly)[95193]: finished 0anacron
+Sep 26 18:01:01 localhost run-parts(/etc/cron.hourly)[95184]: starting mcelog.cron
+Sep 26 18:01:01 localhost run-parts(/etc/cron.hourly)[95199]: finished mcelog.cron
+Sep 26 18:10:01 localhost CROND[95278]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 18:20:01 localhost CROND[95364]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 18:30:01 localhost CROND[95452]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 18:40:01 localhost CROND[95540]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 18:50:01 localhost CROND[95627]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 19:00:01 localhost CROND[95714]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 19:01:01 localhost CROND[95727]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 19:01:01 localhost run-parts(/etc/cron.hourly)[95727]: starting 0anacron
+Sep 26 19:01:01 localhost run-parts(/etc/cron.hourly)[95736]: finished 0anacron
+Sep 26 19:01:01 localhost run-parts(/etc/cron.hourly)[95727]: starting mcelog.cron
+Sep 26 19:01:01 localhost run-parts(/etc/cron.hourly)[95742]: finished mcelog.cron
+Sep 26 19:10:01 localhost CROND[95819]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 19:20:01 localhost CROND[95898]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 19:30:01 localhost CROND[95985]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 19:40:01 localhost CROND[96072]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 19:50:01 localhost CROND[96160]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 20:00:01 localhost CROND[96247]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 20:01:01 localhost CROND[96260]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 20:01:01 localhost run-parts(/etc/cron.hourly)[96260]: starting 0anacron
+Sep 26 20:01:01 localhost run-parts(/etc/cron.hourly)[96269]: finished 0anacron
+Sep 26 20:01:01 localhost run-parts(/etc/cron.hourly)[96260]: starting mcelog.cron
+Sep 26 20:01:01 localhost run-parts(/etc/cron.hourly)[96275]: finished mcelog.cron
+Sep 26 20:10:01 localhost CROND[96352]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 20:20:01 localhost CROND[96438]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 20:30:01 localhost CROND[96525]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 20:40:01 localhost CROND[96613]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 20:50:01 localhost CROND[96700]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 21:00:01 localhost CROND[96787]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 21:01:01 localhost CROND[96800]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 21:01:01 localhost run-parts(/etc/cron.hourly)[96800]: starting 0anacron
+Sep 26 21:01:01 localhost run-parts(/etc/cron.hourly)[96809]: finished 0anacron
+Sep 26 21:01:01 localhost run-parts(/etc/cron.hourly)[96800]: starting mcelog.cron
+Sep 26 21:01:01 localhost run-parts(/etc/cron.hourly)[96815]: finished mcelog.cron
+Sep 26 21:10:01 localhost CROND[96892]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 21:20:01 localhost CROND[96980]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 21:30:01 localhost CROND[97068]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 21:40:01 localhost CROND[97155]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 21:50:01 localhost CROND[97243]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 22:00:01 localhost CROND[97330]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 22:01:01 localhost CROND[97343]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 22:01:01 localhost run-parts(/etc/cron.hourly)[97343]: starting 0anacron
+Sep 26 22:01:01 localhost run-parts(/etc/cron.hourly)[97352]: finished 0anacron
+Sep 26 22:01:01 localhost run-parts(/etc/cron.hourly)[97343]: starting mcelog.cron
+Sep 26 22:01:01 localhost run-parts(/etc/cron.hourly)[97358]: finished mcelog.cron
+Sep 26 22:10:01 localhost CROND[97434]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 22:20:01 localhost CROND[97524]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 22:30:01 localhost CROND[97612]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 22:40:01 localhost CROND[97699]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 22:50:01 localhost CROND[97789]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:00:01 localhost CROND[97878]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:01:01 localhost CROND[97891]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 26 23:01:01 localhost run-parts(/etc/cron.hourly)[97891]: starting 0anacron
+Sep 26 23:01:01 localhost run-parts(/etc/cron.hourly)[97900]: finished 0anacron
+Sep 26 23:01:01 localhost run-parts(/etc/cron.hourly)[97891]: starting mcelog.cron
+Sep 26 23:01:01 localhost run-parts(/etc/cron.hourly)[97906]: finished mcelog.cron
+Sep 26 23:10:01 localhost CROND[97987]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:20:01 localhost CROND[98074]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:30:01 localhost CROND[98167]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:40:01 localhost CROND[98254]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:50:01 localhost CROND[98347]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 26 23:53:01 localhost CROND[98379]: (root) CMD (/usr/lib64/sa/sa2 -A)
+Sep 27 00:00:01 localhost CROND[98451]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 00:01:01 localhost CROND[98464]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 00:01:01 localhost run-parts(/etc/cron.hourly)[98464]: starting 0anacron
+Sep 27 00:01:01 localhost anacron[98474]: Anacron started on 2022-09-27
+Sep 27 00:01:01 localhost run-parts(/etc/cron.hourly)[98476]: finished 0anacron
+Sep 27 00:01:01 localhost anacron[98474]: Normal exit (0 jobs run)
+Sep 27 00:01:01 localhost run-parts(/etc/cron.hourly)[98464]: starting mcelog.cron
+Sep 27 00:01:01 localhost run-parts(/etc/cron.hourly)[98482]: finished mcelog.cron
+Sep 27 00:10:01 localhost CROND[98559]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 00:20:01 localhost CROND[98654]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 00:30:01 localhost CROND[98741]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 00:40:01 localhost CROND[98832]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 00:50:01 localhost CROND[98926]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 01:00:01 localhost CROND[99018]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 01:01:01 localhost CROND[99031]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 01:01:01 localhost run-parts(/etc/cron.hourly)[99031]: starting 0anacron
+Sep 27 01:01:01 localhost anacron[99041]: Anacron started on 2022-09-27
+Sep 27 01:01:01 localhost run-parts(/etc/cron.hourly)[99043]: finished 0anacron
+Sep 27 01:01:01 localhost anacron[99041]: Normal exit (0 jobs run)
+Sep 27 01:01:01 localhost run-parts(/etc/cron.hourly)[99031]: starting mcelog.cron
+Sep 27 01:01:01 localhost run-parts(/etc/cron.hourly)[99049]: finished mcelog.cron
+Sep 27 01:10:01 localhost CROND[99131]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 01:20:01 localhost CROND[99221]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 01:30:02 localhost CROND[99314]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 01:40:01 localhost CROND[99404]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 01:50:01 localhost CROND[99503]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 02:00:01 localhost CROND[99595]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 02:01:01 localhost CROND[99608]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 02:01:01 localhost run-parts(/etc/cron.hourly)[99608]: starting 0anacron
+Sep 27 02:01:01 localhost anacron[99618]: Anacron started on 2022-09-27
+Sep 27 02:01:01 localhost run-parts(/etc/cron.hourly)[99620]: finished 0anacron
+Sep 27 02:01:01 localhost anacron[99618]: Normal exit (0 jobs run)
+Sep 27 02:01:01 localhost run-parts(/etc/cron.hourly)[99608]: starting mcelog.cron
+Sep 27 02:01:01 localhost run-parts(/etc/cron.hourly)[99626]: finished mcelog.cron
+Sep 27 02:10:01 localhost CROND[99729]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 02:20:01 localhost CROND[99854]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 02:30:01 localhost CROND[99946]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 02:40:01 localhost CROND[100048]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 02:50:01 localhost CROND[100152]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:00:01 localhost CROND[100244]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:01:01 localhost CROND[100257]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 03:01:01 localhost run-parts(/etc/cron.hourly)[100257]: starting 0anacron
+Sep 27 03:01:01 localhost anacron[100267]: Anacron started on 2022-09-27
+Sep 27 03:01:01 localhost run-parts(/etc/cron.hourly)[100269]: finished 0anacron
+Sep 27 03:01:01 localhost anacron[100267]: Will run job `cron.daily' in 49 min.
+Sep 27 03:01:01 localhost anacron[100267]: Jobs will be executed sequentially
+Sep 27 03:01:01 localhost run-parts(/etc/cron.hourly)[100257]: starting mcelog.cron
+Sep 27 03:01:01 localhost run-parts(/etc/cron.hourly)[100275]: finished mcelog.cron
+Sep 27 03:10:01 localhost CROND[100356]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:20:01 localhost CROND[100452]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:30:01 localhost CROND[100546]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:40:01 localhost CROND[100637]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:50:01 localhost CROND[100725]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 03:50:01 localhost anacron[100267]: Job `cron.daily' started
+Sep 27 03:50:01 localhost run-parts(/etc/cron.daily)[100729]: starting logrotate
+Sep 27 03:50:01 localhost run-parts(/etc/cron.daily)[100737]: finished logrotate
+Sep 27 03:50:01 localhost run-parts(/etc/cron.daily)[100729]: starting man-db.cron
+Sep 27 03:50:02 localhost run-parts(/etc/cron.daily)[100748]: finished man-db.cron
+Sep 27 03:50:02 localhost run-parts(/etc/cron.daily)[100729]: starting mlocate
+Sep 27 03:50:02 localhost run-parts(/etc/cron.daily)[100759]: finished mlocate
+Sep 27 03:50:02 localhost anacron[100267]: Job `cron.daily' terminated
+Sep 27 03:50:02 localhost anacron[100267]: Normal exit (1 job run)
+Sep 27 04:00:01 localhost CROND[100858]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 04:01:01 localhost CROND[100871]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 04:01:01 localhost run-parts(/etc/cron.hourly)[100871]: starting 0anacron
+Sep 27 04:01:01 localhost run-parts(/etc/cron.hourly)[100880]: finished 0anacron
+Sep 27 04:01:01 localhost run-parts(/etc/cron.hourly)[100871]: starting mcelog.cron
+Sep 27 04:01:01 localhost run-parts(/etc/cron.hourly)[100886]: finished mcelog.cron
+Sep 27 04:10:01 localhost CROND[100965]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 04:20:01 localhost CROND[101055]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 04:30:01 localhost CROND[101146]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 04:40:01 localhost CROND[101252]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 04:50:01 localhost CROND[101346]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 05:00:01 localhost CROND[101449]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 05:01:01 localhost CROND[101464]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 05:01:01 localhost run-parts(/etc/cron.hourly)[101464]: starting 0anacron
+Sep 27 05:01:01 localhost run-parts(/etc/cron.hourly)[101473]: finished 0anacron
+Sep 27 05:01:01 localhost run-parts(/etc/cron.hourly)[101464]: starting mcelog.cron
+Sep 27 05:01:01 localhost run-parts(/etc/cron.hourly)[101479]: finished mcelog.cron
+Sep 27 05:10:01 localhost CROND[101573]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 05:20:01 localhost CROND[101662]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 05:30:01 localhost CROND[101765]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 05:40:01 localhost CROND[101861]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 05:50:01 localhost CROND[101954]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 06:00:01 localhost CROND[102048]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 06:01:01 localhost CROND[102061]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 06:01:01 localhost run-parts(/etc/cron.hourly)[102061]: starting 0anacron
+Sep 27 06:01:01 localhost run-parts(/etc/cron.hourly)[102070]: finished 0anacron
+Sep 27 06:01:01 localhost run-parts(/etc/cron.hourly)[102061]: starting mcelog.cron
+Sep 27 06:01:01 localhost run-parts(/etc/cron.hourly)[102076]: finished mcelog.cron
+Sep 27 06:10:01 localhost CROND[102173]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 06:20:01 localhost CROND[102262]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 06:30:01 localhost CROND[102357]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 06:40:01 localhost CROND[102456]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 06:50:01 localhost CROND[102591]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 07:00:01 localhost CROND[102683]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 07:01:01 localhost CROND[102696]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 07:01:01 localhost run-parts(/etc/cron.hourly)[102696]: starting 0anacron
+Sep 27 07:01:01 localhost run-parts(/etc/cron.hourly)[102705]: finished 0anacron
+Sep 27 07:01:01 localhost run-parts(/etc/cron.hourly)[102696]: starting mcelog.cron
+Sep 27 07:01:01 localhost run-parts(/etc/cron.hourly)[102711]: finished mcelog.cron
+Sep 27 07:10:01 localhost CROND[102806]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 07:13:57 localhost crontab[102930]: (root) BEGIN EDIT (root)
+Sep 27 07:14:51 localhost crontab[102930]: (root) REPLACE (root)
+Sep 27 07:14:51 localhost crontab[102930]: (root) END EDIT (root)
+Sep 27 07:15:00 localhost crond[67399]: (CRON) INFO (Shutting down)
+Sep 27 07:15:00 localhost crond[102978]: (CRON) INFO (RANDOM_DELAY will be scaled with factor 75% if used.)
+Sep 27 07:15:00 localhost crond[102978]: (CRON) INFO (running with inotify support)
+Sep 27 07:15:00 localhost crond[102978]: (CRON) INFO (@reboot jobs will be run at computer's startup.)
+Sep 27 07:20:01 localhost CROND[103054]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 07:30:01 localhost CROND[103142]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 07:40:01 localhost CROND[103236]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 07:50:01 localhost CROND[103331]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 08:00:01 localhost CROND[103419]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 08:01:02 localhost CROND[103435]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 08:01:02 localhost CROND[103436]: (root) CMD (/var/www/erp/auto_mail/total_mail.sh)
+Sep 27 08:01:02 localhost run-parts(/etc/cron.hourly)[103435]: starting 0anacron
+Sep 27 08:01:02 localhost run-parts(/etc/cron.hourly)[103447]: finished 0anacron
+Sep 27 08:01:02 localhost run-parts(/etc/cron.hourly)[103435]: starting mcelog.cron
+Sep 27 08:01:02 localhost run-parts(/etc/cron.hourly)[103454]: finished mcelog.cron
+Sep 27 08:10:01 localhost CROND[103544]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 08:20:01 localhost CROND[103639]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 08:30:01 localhost CROND[103726]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 08:40:01 localhost CROND[103813]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 08:50:01 localhost CROND[103899]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 09:00:01 localhost CROND[103989]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 09:01:01 localhost CROND[104006]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 09:01:01 localhost run-parts(/etc/cron.hourly)[104006]: starting 0anacron
+Sep 27 09:01:01 localhost run-parts(/etc/cron.hourly)[104015]: finished 0anacron
+Sep 27 09:01:01 localhost run-parts(/etc/cron.hourly)[104006]: starting mcelog.cron
+Sep 27 09:01:01 localhost run-parts(/etc/cron.hourly)[104021]: finished mcelog.cron
+Sep 27 09:10:01 localhost CROND[104101]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 09:20:01 localhost CROND[104194]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 09:30:01 localhost CROND[104286]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 09:40:01 localhost CROND[104377]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 09:50:01 localhost CROND[104464]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 10:00:01 localhost CROND[104550]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 10:01:01 localhost CROND[104564]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 10:01:01 localhost run-parts(/etc/cron.hourly)[104564]: starting 0anacron
+Sep 27 10:01:01 localhost run-parts(/etc/cron.hourly)[104573]: finished 0anacron
+Sep 27 10:01:01 localhost run-parts(/etc/cron.hourly)[104564]: starting mcelog.cron
+Sep 27 10:01:01 localhost run-parts(/etc/cron.hourly)[104579]: finished mcelog.cron
+Sep 27 10:10:01 localhost CROND[104657]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 10:20:01 localhost CROND[104743]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 10:30:01 localhost CROND[104830]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 10:40:01 localhost CROND[104919]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 10:50:01 localhost CROND[105009]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 11:00:01 localhost CROND[105095]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 11:01:01 localhost CROND[105108]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 11:01:01 localhost run-parts(/etc/cron.hourly)[105108]: starting 0anacron
+Sep 27 11:01:01 localhost run-parts(/etc/cron.hourly)[105117]: finished 0anacron
+Sep 27 11:01:01 localhost run-parts(/etc/cron.hourly)[105108]: starting mcelog.cron
+Sep 27 11:01:01 localhost run-parts(/etc/cron.hourly)[105123]: finished mcelog.cron
+Sep 27 11:10:01 localhost CROND[105202]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 11:20:01 localhost CROND[105289]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 11:30:01 localhost CROND[105376]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 11:40:01 localhost CROND[105464]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 11:50:01 localhost CROND[105551]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 12:00:01 localhost CROND[105638]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 12:01:01 localhost CROND[105651]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 12:01:01 localhost run-parts(/etc/cron.hourly)[105651]: starting 0anacron
+Sep 27 12:01:01 localhost run-parts(/etc/cron.hourly)[105660]: finished 0anacron
+Sep 27 12:01:01 localhost run-parts(/etc/cron.hourly)[105651]: starting mcelog.cron
+Sep 27 12:01:01 localhost run-parts(/etc/cron.hourly)[105666]: finished mcelog.cron
+Sep 27 12:10:01 localhost CROND[105744]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 12:12:01 localhost CROND[105766]: (root) CMD (wget http://192.168.45.20/hrm/auto_mail/upcoming_birthday_controller.php)
+Sep 27 12:20:01 localhost CROND[105842]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 12:30:01 localhost CROND[105931]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 12:40:01 localhost CROND[106019]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 12:50:01 localhost CROND[106106]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 13:00:01 localhost CROND[106193]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 13:01:01 localhost CROND[106206]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 13:01:01 localhost run-parts(/etc/cron.hourly)[106206]: starting 0anacron
+Sep 27 13:01:01 localhost run-parts(/etc/cron.hourly)[106215]: finished 0anacron
+Sep 27 13:01:01 localhost run-parts(/etc/cron.hourly)[106206]: starting mcelog.cron
+Sep 27 13:01:01 localhost run-parts(/etc/cron.hourly)[106221]: finished mcelog.cron
+Sep 27 13:10:01 localhost CROND[106298]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 13:20:01 localhost CROND[106385]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 13:30:01 localhost CROND[106472]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 13:40:01 localhost CROND[106559]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 13:50:01 localhost CROND[106646]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 14:00:01 localhost CROND[106733]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 14:01:01 localhost CROND[106746]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 14:01:01 localhost run-parts(/etc/cron.hourly)[106746]: starting 0anacron
+Sep 27 14:01:01 localhost run-parts(/etc/cron.hourly)[106755]: finished 0anacron
+Sep 27 14:01:01 localhost run-parts(/etc/cron.hourly)[106746]: starting mcelog.cron
+Sep 27 14:01:01 localhost run-parts(/etc/cron.hourly)[106761]: finished mcelog.cron
+Sep 27 14:10:01 localhost CROND[106839]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 14:20:01 localhost CROND[106926]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 14:30:01 localhost CROND[107013]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 14:40:01 localhost CROND[107099]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 14:50:01 localhost CROND[107186]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 15:00:01 localhost CROND[107273]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 15:01:01 localhost CROND[107287]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 15:01:01 localhost run-parts(/etc/cron.hourly)[107287]: starting 0anacron
+Sep 27 15:01:01 localhost run-parts(/etc/cron.hourly)[107296]: finished 0anacron
+Sep 27 15:01:01 localhost run-parts(/etc/cron.hourly)[107287]: starting mcelog.cron
+Sep 27 15:01:01 localhost run-parts(/etc/cron.hourly)[107302]: finished mcelog.cron
+Sep 27 15:10:01 localhost CROND[107378]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 15:20:01 localhost CROND[107466]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 15:30:01 localhost CROND[107553]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 15:40:01 localhost CROND[107641]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 15:50:01 localhost CROND[107728]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 16:00:01 localhost CROND[107816]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 16:01:01 localhost CROND[107829]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 16:01:01 localhost run-parts(/etc/cron.hourly)[107829]: starting 0anacron
+Sep 27 16:01:01 localhost run-parts(/etc/cron.hourly)[107838]: finished 0anacron
+Sep 27 16:01:01 localhost run-parts(/etc/cron.hourly)[107829]: starting mcelog.cron
+Sep 27 16:01:01 localhost run-parts(/etc/cron.hourly)[107844]: finished mcelog.cron
+Sep 27 16:10:01 localhost CROND[107922]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 16:20:01 localhost CROND[108008]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 16:30:01 localhost CROND[108095]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 16:40:01 localhost CROND[108182]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 16:50:01 localhost CROND[108269]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 17:00:01 localhost CROND[108357]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 17:01:01 localhost CROND[108370]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 17:01:01 localhost run-parts(/etc/cron.hourly)[108370]: starting 0anacron
+Sep 27 17:01:01 localhost run-parts(/etc/cron.hourly)[108379]: finished 0anacron
+Sep 27 17:01:01 localhost run-parts(/etc/cron.hourly)[108370]: starting mcelog.cron
+Sep 27 17:01:01 localhost run-parts(/etc/cron.hourly)[108385]: finished mcelog.cron
+Sep 27 17:10:01 localhost CROND[108461]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 17:20:01 localhost CROND[108548]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 17:30:01 localhost CROND[108635]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 17:40:01 localhost CROND[108714]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 17:50:01 localhost CROND[108801]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 18:00:01 localhost CROND[108889]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 18:01:01 localhost CROND[108902]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 18:01:01 localhost run-parts(/etc/cron.hourly)[108902]: starting 0anacron
+Sep 27 18:01:01 localhost run-parts(/etc/cron.hourly)[108911]: finished 0anacron
+Sep 27 18:01:01 localhost run-parts(/etc/cron.hourly)[108902]: starting mcelog.cron
+Sep 27 18:01:01 localhost run-parts(/etc/cron.hourly)[108917]: finished mcelog.cron
+Sep 27 18:10:01 localhost CROND[108997]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 18:20:01 localhost CROND[109084]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 18:30:01 localhost CROND[109170]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 18:40:01 localhost CROND[109257]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 18:50:01 localhost CROND[109343]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 19:00:01 localhost CROND[109431]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 19:01:01 localhost CROND[109445]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 19:01:01 localhost run-parts(/etc/cron.hourly)[109445]: starting 0anacron
+Sep 27 19:01:01 localhost run-parts(/etc/cron.hourly)[109454]: finished 0anacron
+Sep 27 19:01:01 localhost run-parts(/etc/cron.hourly)[109445]: starting mcelog.cron
+Sep 27 19:01:01 localhost run-parts(/etc/cron.hourly)[109460]: finished mcelog.cron
+Sep 27 19:10:01 localhost CROND[109538]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 19:20:01 localhost CROND[109624]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 19:30:01 localhost CROND[109712]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 19:40:01 localhost CROND[109799]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 19:50:01 localhost CROND[109886]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 20:00:01 localhost CROND[109973]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 20:01:01 localhost CROND[109986]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 20:01:01 localhost run-parts(/etc/cron.hourly)[109986]: starting 0anacron
+Sep 27 20:01:01 localhost run-parts(/etc/cron.hourly)[109995]: finished 0anacron
+Sep 27 20:01:01 localhost run-parts(/etc/cron.hourly)[109986]: starting mcelog.cron
+Sep 27 20:01:01 localhost run-parts(/etc/cron.hourly)[110001]: finished mcelog.cron
+Sep 27 20:10:01 localhost CROND[110078]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 20:20:01 localhost CROND[110165]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 20:30:01 localhost CROND[110252]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 20:40:01 localhost CROND[110338]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 20:50:01 localhost CROND[110427]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 21:00:01 localhost CROND[110515]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 21:01:01 localhost CROND[110528]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 21:01:01 localhost run-parts(/etc/cron.hourly)[110528]: starting 0anacron
+Sep 27 21:01:01 localhost run-parts(/etc/cron.hourly)[110537]: finished 0anacron
+Sep 27 21:01:01 localhost run-parts(/etc/cron.hourly)[110528]: starting mcelog.cron
+Sep 27 21:01:01 localhost run-parts(/etc/cron.hourly)[110543]: finished mcelog.cron
+Sep 27 21:10:01 localhost CROND[110620]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 21:20:01 localhost CROND[110706]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 21:30:01 localhost CROND[110793]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 21:40:01 localhost CROND[110880]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 21:50:01 localhost CROND[110968]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 22:00:01 localhost CROND[111054]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 22:01:01 localhost CROND[111067]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 22:01:01 localhost run-parts(/etc/cron.hourly)[111067]: starting 0anacron
+Sep 27 22:01:01 localhost run-parts(/etc/cron.hourly)[111076]: finished 0anacron
+Sep 27 22:01:01 localhost run-parts(/etc/cron.hourly)[111067]: starting mcelog.cron
+Sep 27 22:01:01 localhost run-parts(/etc/cron.hourly)[111082]: finished mcelog.cron
+Sep 27 22:10:01 localhost CROND[111159]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 22:20:01 localhost CROND[111247]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 22:30:01 localhost CROND[111338]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 22:40:01 localhost CROND[111425]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 22:50:01 localhost CROND[111513]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:00:01 localhost CROND[111600]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:01:01 localhost CROND[111613]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 27 23:01:01 localhost run-parts(/etc/cron.hourly)[111613]: starting 0anacron
+Sep 27 23:01:01 localhost run-parts(/etc/cron.hourly)[111622]: finished 0anacron
+Sep 27 23:01:01 localhost run-parts(/etc/cron.hourly)[111613]: starting mcelog.cron
+Sep 27 23:01:01 localhost run-parts(/etc/cron.hourly)[111628]: finished mcelog.cron
+Sep 27 23:10:01 localhost CROND[111705]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:20:01 localhost CROND[111793]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:30:01 localhost CROND[111880]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:40:01 localhost CROND[111972]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:50:01 localhost CROND[112064]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 27 23:53:01 localhost CROND[112098]: (root) CMD (/usr/lib64/sa/sa2 -A)
+Sep 28 00:00:01 localhost CROND[112178]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 00:01:01 localhost CROND[112196]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 00:01:01 localhost run-parts(/etc/cron.hourly)[112196]: starting 0anacron
+Sep 28 00:01:01 localhost anacron[112206]: Anacron started on 2022-09-28
+Sep 28 00:01:01 localhost run-parts(/etc/cron.hourly)[112208]: finished 0anacron
+Sep 28 00:01:01 localhost anacron[112206]: Normal exit (0 jobs run)
+Sep 28 00:01:01 localhost run-parts(/etc/cron.hourly)[112196]: starting mcelog.cron
+Sep 28 00:01:01 localhost run-parts(/etc/cron.hourly)[112214]: finished mcelog.cron
+Sep 28 00:10:01 localhost CROND[112302]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 00:20:01 localhost CROND[112391]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 00:30:01 localhost CROND[112479]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 00:40:01 localhost CROND[112573]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 00:50:01 localhost CROND[112669]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 01:00:01 localhost CROND[112758]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 01:01:01 localhost CROND[112771]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 01:01:01 localhost run-parts(/etc/cron.hourly)[112771]: starting 0anacron
+Sep 28 01:01:01 localhost anacron[112781]: Anacron started on 2022-09-28
+Sep 28 01:01:01 localhost run-parts(/etc/cron.hourly)[112783]: finished 0anacron
+Sep 28 01:01:01 localhost anacron[112781]: Normal exit (0 jobs run)
+Sep 28 01:01:01 localhost run-parts(/etc/cron.hourly)[112771]: starting mcelog.cron
+Sep 28 01:01:01 localhost run-parts(/etc/cron.hourly)[112789]: finished mcelog.cron
+Sep 28 01:10:01 localhost CROND[112868]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 01:20:01 localhost CROND[112957]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 01:30:01 localhost CROND[113050]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 01:40:01 localhost CROND[113142]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 01:50:01 localhost CROND[113249]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 02:00:01 localhost CROND[113340]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 02:01:01 localhost CROND[113353]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 02:01:01 localhost run-parts(/etc/cron.hourly)[113353]: starting 0anacron
+Sep 28 02:01:01 localhost anacron[113363]: Anacron started on 2022-09-28
+Sep 28 02:01:01 localhost run-parts(/etc/cron.hourly)[113365]: finished 0anacron
+Sep 28 02:01:01 localhost anacron[113363]: Normal exit (0 jobs run)
+Sep 28 02:01:01 localhost run-parts(/etc/cron.hourly)[113353]: starting mcelog.cron
+Sep 28 02:01:01 localhost run-parts(/etc/cron.hourly)[113371]: finished mcelog.cron
+Sep 28 02:10:01 localhost CROND[113448]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 02:20:01 localhost CROND[113541]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 02:30:01 localhost CROND[113629]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 02:40:01 localhost CROND[113717]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 02:50:02 localhost CROND[113815]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 03:00:01 localhost CROND[113904]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 03:01:01 localhost CROND[113917]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 03:01:01 localhost run-parts(/etc/cron.hourly)[113917]: starting 0anacron
+Sep 28 03:01:01 localhost anacron[113927]: Anacron started on 2022-09-28
+Sep 28 03:01:01 localhost run-parts(/etc/cron.hourly)[113929]: finished 0anacron
+Sep 28 03:01:01 localhost anacron[113927]: Will run job `cron.daily' in 34 min.
+Sep 28 03:01:01 localhost anacron[113927]: Jobs will be executed sequentially
+Sep 28 03:01:01 localhost run-parts(/etc/cron.hourly)[113917]: starting mcelog.cron
+Sep 28 03:01:01 localhost run-parts(/etc/cron.hourly)[113935]: finished mcelog.cron
+Sep 28 03:10:01 localhost CROND[114013]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 03:20:01 localhost CROND[114103]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 03:30:01 localhost CROND[114193]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 03:35:01 localhost anacron[113927]: Job `cron.daily' started
+Sep 28 03:35:01 localhost run-parts(/etc/cron.daily)[114239]: starting logrotate
+Sep 28 03:35:01 localhost run-parts(/etc/cron.daily)[114247]: finished logrotate
+Sep 28 03:35:01 localhost run-parts(/etc/cron.daily)[114239]: starting man-db.cron
+Sep 28 03:35:01 localhost run-parts(/etc/cron.daily)[114258]: finished man-db.cron
+Sep 28 03:35:01 localhost run-parts(/etc/cron.daily)[114239]: starting mlocate
+Sep 28 03:35:01 localhost run-parts(/etc/cron.daily)[114269]: finished mlocate
+Sep 28 03:35:01 localhost anacron[113927]: Job `cron.daily' terminated
+Sep 28 03:35:01 localhost anacron[113927]: Normal exit (1 job run)
+Sep 28 03:40:01 localhost CROND[114322]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 03:50:01 localhost CROND[114418]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 04:00:01 localhost CROND[114508]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 04:01:01 localhost CROND[114521]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 04:01:01 localhost run-parts(/etc/cron.hourly)[114521]: starting 0anacron
+Sep 28 04:01:01 localhost run-parts(/etc/cron.hourly)[114530]: finished 0anacron
+Sep 28 04:01:01 localhost run-parts(/etc/cron.hourly)[114521]: starting mcelog.cron
+Sep 28 04:01:01 localhost run-parts(/etc/cron.hourly)[114536]: finished mcelog.cron
+Sep 28 04:10:01 localhost CROND[114616]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 04:20:01 localhost CROND[114716]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 04:30:01 localhost CROND[114805]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 04:40:01 localhost CROND[114895]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 04:50:01 localhost CROND[114983]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 05:00:01 localhost CROND[115063]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 05:01:01 localhost CROND[115079]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 05:01:01 localhost run-parts(/etc/cron.hourly)[115079]: starting 0anacron
+Sep 28 05:01:01 localhost run-parts(/etc/cron.hourly)[115088]: finished 0anacron
+Sep 28 05:01:01 localhost run-parts(/etc/cron.hourly)[115079]: starting mcelog.cron
+Sep 28 05:01:01 localhost run-parts(/etc/cron.hourly)[115094]: finished mcelog.cron
+Sep 28 05:10:01 localhost CROND[115174]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 05:20:01 localhost CROND[115260]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 05:30:01 localhost CROND[115350]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 05:40:01 localhost CROND[115447]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 05:50:01 localhost CROND[115551]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 06:00:01 localhost CROND[115643]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 06:01:01 localhost CROND[115658]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 06:01:01 localhost run-parts(/etc/cron.hourly)[115658]: starting 0anacron
+Sep 28 06:01:01 localhost run-parts(/etc/cron.hourly)[115667]: finished 0anacron
+Sep 28 06:01:01 localhost run-parts(/etc/cron.hourly)[115658]: starting mcelog.cron
+Sep 28 06:01:01 localhost run-parts(/etc/cron.hourly)[115673]: finished mcelog.cron
+Sep 28 06:10:01 localhost CROND[115764]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 06:20:01 localhost CROND[115857]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 06:30:01 localhost CROND[115958]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 06:40:01 localhost CROND[116066]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 06:50:01 localhost CROND[116273]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 07:00:01 localhost CROND[116364]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 07:01:01 localhost CROND[116377]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 07:01:01 localhost run-parts(/etc/cron.hourly)[116377]: starting 0anacron
+Sep 28 07:01:01 localhost run-parts(/etc/cron.hourly)[116386]: finished 0anacron
+Sep 28 07:01:01 localhost run-parts(/etc/cron.hourly)[116377]: starting mcelog.cron
+Sep 28 07:01:01 localhost run-parts(/etc/cron.hourly)[116392]: finished mcelog.cron
+Sep 28 07:10:01 localhost CROND[116472]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 07:20:01 localhost CROND[116563]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 07:30:01 localhost CROND[116650]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 07:40:01 localhost CROND[116739]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 07:50:01 localhost CROND[116826]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 08:00:01 localhost CROND[116917]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 08:01:01 localhost CROND[116932]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 08:01:01 localhost CROND[116933]: (root) CMD (/var/www/erp/auto_mail/total_mail.sh)
+Sep 28 08:01:01 localhost run-parts(/etc/cron.hourly)[116932]: starting 0anacron
+Sep 28 08:01:01 localhost run-parts(/etc/cron.hourly)[116944]: finished 0anacron
+Sep 28 08:01:01 localhost run-parts(/etc/cron.hourly)[116932]: starting mcelog.cron
+Sep 28 08:01:01 localhost run-parts(/etc/cron.hourly)[116951]: finished mcelog.cron
+Sep 28 08:10:01 localhost CROND[117040]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 08:20:01 localhost CROND[117128]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 08:30:01 localhost CROND[117214]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 08:40:01 localhost CROND[117303]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 08:50:01 localhost CROND[117389]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 09:00:01 localhost CROND[117480]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 09:01:01 localhost CROND[117493]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 09:01:01 localhost run-parts(/etc/cron.hourly)[117493]: starting 0anacron
+Sep 28 09:01:01 localhost run-parts(/etc/cron.hourly)[117502]: finished 0anacron
+Sep 28 09:01:01 localhost run-parts(/etc/cron.hourly)[117493]: starting mcelog.cron
+Sep 28 09:01:01 localhost run-parts(/etc/cron.hourly)[117508]: finished mcelog.cron
+Sep 28 09:10:01 localhost CROND[117586]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 09:20:01 localhost CROND[117675]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 09:30:01 localhost CROND[117764]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 09:40:01 localhost CROND[117854]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 09:50:01 localhost CROND[117942]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 10:00:01 localhost CROND[118043]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 10:01:01 localhost CROND[118056]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 10:01:01 localhost run-parts(/etc/cron.hourly)[118056]: starting 0anacron
+Sep 28 10:01:01 localhost run-parts(/etc/cron.hourly)[118065]: finished 0anacron
+Sep 28 10:01:01 localhost run-parts(/etc/cron.hourly)[118056]: starting mcelog.cron
+Sep 28 10:01:01 localhost run-parts(/etc/cron.hourly)[118071]: finished mcelog.cron
+Sep 28 10:10:01 localhost CROND[118148]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 10:20:01 localhost CROND[118236]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 10:30:01 localhost CROND[118324]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 10:40:01 localhost CROND[118411]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 10:50:01 localhost CROND[118497]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 11:00:01 localhost CROND[118589]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 11:01:01 localhost CROND[118603]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 11:01:01 localhost run-parts(/etc/cron.hourly)[118603]: starting 0anacron
+Sep 28 11:01:01 localhost run-parts(/etc/cron.hourly)[118612]: finished 0anacron
+Sep 28 11:01:01 localhost run-parts(/etc/cron.hourly)[118603]: starting mcelog.cron
+Sep 28 11:01:01 localhost run-parts(/etc/cron.hourly)[118618]: finished mcelog.cron
+Sep 28 11:10:01 localhost CROND[118695]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 11:20:01 localhost CROND[118784]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 11:30:01 localhost CROND[118872]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 11:40:01 localhost CROND[118959]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 11:50:01 localhost CROND[119047]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 12:00:01 localhost CROND[119133]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 12:01:01 localhost CROND[119146]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 12:01:01 localhost run-parts(/etc/cron.hourly)[119146]: starting 0anacron
+Sep 28 12:01:01 localhost run-parts(/etc/cron.hourly)[119155]: finished 0anacron
+Sep 28 12:01:01 localhost run-parts(/etc/cron.hourly)[119146]: starting mcelog.cron
+Sep 28 12:01:01 localhost run-parts(/etc/cron.hourly)[119161]: finished mcelog.cron
+Sep 28 12:10:01 localhost CROND[119238]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 12:12:01 localhost CROND[119261]: (root) CMD (wget http://192.168.45.20/hrm/auto_mail/upcoming_birthday_controller.php)
+Sep 28 12:20:01 localhost CROND[119336]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 12:30:01 localhost CROND[119424]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 12:40:01 localhost CROND[119511]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 12:50:01 localhost CROND[119598]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 13:00:01 localhost CROND[119685]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 13:01:01 localhost CROND[119698]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 13:01:01 localhost run-parts(/etc/cron.hourly)[119698]: starting 0anacron
+Sep 28 13:01:01 localhost run-parts(/etc/cron.hourly)[119707]: finished 0anacron
+Sep 28 13:01:01 localhost run-parts(/etc/cron.hourly)[119698]: starting mcelog.cron
+Sep 28 13:01:01 localhost run-parts(/etc/cron.hourly)[119713]: finished mcelog.cron
+Sep 28 13:10:01 localhost CROND[119790]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 13:20:01 localhost CROND[119877]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 13:30:01 localhost CROND[119965]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 13:40:01 localhost CROND[120052]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 13:50:01 localhost CROND[120139]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 14:00:01 localhost CROND[120226]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 14:01:01 localhost CROND[120239]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 14:01:01 localhost run-parts(/etc/cron.hourly)[120239]: starting 0anacron
+Sep 28 14:01:01 localhost run-parts(/etc/cron.hourly)[120248]: finished 0anacron
+Sep 28 14:01:01 localhost run-parts(/etc/cron.hourly)[120239]: starting mcelog.cron
+Sep 28 14:01:01 localhost run-parts(/etc/cron.hourly)[120254]: finished mcelog.cron
+Sep 28 14:10:01 localhost CROND[120330]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 14:20:01 localhost CROND[120417]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 14:30:01 localhost CROND[120505]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 14:40:01 localhost CROND[120592]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 14:50:01 localhost CROND[120679]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 15:00:01 localhost CROND[120767]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 15:01:01 localhost CROND[120780]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 15:01:01 localhost run-parts(/etc/cron.hourly)[120780]: starting 0anacron
+Sep 28 15:01:01 localhost run-parts(/etc/cron.hourly)[120789]: finished 0anacron
+Sep 28 15:01:01 localhost run-parts(/etc/cron.hourly)[120780]: starting mcelog.cron
+Sep 28 15:01:01 localhost run-parts(/etc/cron.hourly)[120795]: finished mcelog.cron
+Sep 28 15:10:01 localhost CROND[120872]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 15:20:01 localhost CROND[120960]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 15:30:01 localhost CROND[121047]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 15:40:01 localhost CROND[121133]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 15:50:01 localhost CROND[121220]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 16:00:01 localhost CROND[121307]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 16:01:01 localhost CROND[121320]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 16:01:01 localhost run-parts(/etc/cron.hourly)[121320]: starting 0anacron
+Sep 28 16:01:01 localhost run-parts(/etc/cron.hourly)[121329]: finished 0anacron
+Sep 28 16:01:01 localhost run-parts(/etc/cron.hourly)[121320]: starting mcelog.cron
+Sep 28 16:01:01 localhost run-parts(/etc/cron.hourly)[121335]: finished mcelog.cron
+Sep 28 16:10:01 localhost CROND[121403]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 16:20:01 localhost CROND[121491]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 16:30:01 localhost CROND[121579]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 16:40:01 localhost CROND[121667]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 16:50:01 localhost CROND[121754]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 17:00:01 localhost CROND[121841]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 17:01:01 localhost CROND[121854]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 17:01:01 localhost run-parts(/etc/cron.hourly)[121854]: starting 0anacron
+Sep 28 17:01:01 localhost run-parts(/etc/cron.hourly)[121863]: finished 0anacron
+Sep 28 17:01:01 localhost run-parts(/etc/cron.hourly)[121854]: starting mcelog.cron
+Sep 28 17:01:01 localhost run-parts(/etc/cron.hourly)[121869]: finished mcelog.cron
+Sep 28 17:10:01 localhost CROND[121946]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 17:20:01 localhost CROND[122033]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 17:30:01 localhost CROND[122120]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 17:40:01 localhost CROND[122207]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 17:50:01 localhost CROND[122294]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 18:00:01 localhost CROND[122380]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 18:01:01 localhost CROND[122394]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 18:01:01 localhost run-parts(/etc/cron.hourly)[122394]: starting 0anacron
+Sep 28 18:01:01 localhost run-parts(/etc/cron.hourly)[122403]: finished 0anacron
+Sep 28 18:01:01 localhost run-parts(/etc/cron.hourly)[122394]: starting mcelog.cron
+Sep 28 18:01:01 localhost run-parts(/etc/cron.hourly)[122409]: finished mcelog.cron
+Sep 28 18:10:01 localhost CROND[122487]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 18:20:01 localhost CROND[122576]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 18:30:01 localhost CROND[122663]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 18:40:01 localhost CROND[122749]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 18:50:01 localhost CROND[122836]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 19:00:01 localhost CROND[122923]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 19:01:01 localhost CROND[122936]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 19:01:01 localhost run-parts(/etc/cron.hourly)[122936]: starting 0anacron
+Sep 28 19:01:01 localhost run-parts(/etc/cron.hourly)[122945]: finished 0anacron
+Sep 28 19:01:01 localhost run-parts(/etc/cron.hourly)[122936]: starting mcelog.cron
+Sep 28 19:01:01 localhost run-parts(/etc/cron.hourly)[122951]: finished mcelog.cron
+Sep 28 19:10:01 localhost CROND[123028]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 19:20:01 localhost CROND[123115]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 19:30:01 localhost CROND[123202]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 19:40:01 localhost CROND[123289]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 19:50:01 localhost CROND[123375]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 20:00:01 localhost CROND[123463]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 20:01:01 localhost CROND[123476]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 20:01:01 localhost run-parts(/etc/cron.hourly)[123476]: starting 0anacron
+Sep 28 20:01:01 localhost run-parts(/etc/cron.hourly)[123485]: finished 0anacron
+Sep 28 20:01:01 localhost run-parts(/etc/cron.hourly)[123476]: starting mcelog.cron
+Sep 28 20:01:01 localhost run-parts(/etc/cron.hourly)[123491]: finished mcelog.cron
+Sep 28 20:10:01 localhost CROND[123568]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 20:20:01 localhost CROND[123656]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 20:30:01 localhost CROND[123742]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 20:40:01 localhost CROND[123829]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 20:50:01 localhost CROND[123916]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 21:00:01 localhost CROND[124002]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 21:01:01 localhost CROND[124015]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 21:01:01 localhost run-parts(/etc/cron.hourly)[124015]: starting 0anacron
+Sep 28 21:01:01 localhost run-parts(/etc/cron.hourly)[124024]: finished 0anacron
+Sep 28 21:01:01 localhost run-parts(/etc/cron.hourly)[124015]: starting mcelog.cron
+Sep 28 21:01:01 localhost run-parts(/etc/cron.hourly)[124030]: finished mcelog.cron
+Sep 28 21:10:01 localhost CROND[124109]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 21:20:01 localhost CROND[124196]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 21:30:01 localhost CROND[124283]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 21:40:01 localhost CROND[124370]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 21:50:01 localhost CROND[124457]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 22:00:01 localhost CROND[124544]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 22:01:01 localhost CROND[124557]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 22:01:01 localhost run-parts(/etc/cron.hourly)[124557]: starting 0anacron
+Sep 28 22:01:01 localhost run-parts(/etc/cron.hourly)[124566]: finished 0anacron
+Sep 28 22:01:01 localhost run-parts(/etc/cron.hourly)[124557]: starting mcelog.cron
+Sep 28 22:01:01 localhost run-parts(/etc/cron.hourly)[124572]: finished mcelog.cron
+Sep 28 22:10:01 localhost CROND[124650]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 22:20:01 localhost CROND[124736]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 22:30:01 localhost CROND[124828]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 22:40:01 localhost CROND[124918]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 22:50:01 localhost CROND[125006]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:00:01 localhost CROND[125092]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:01:02 localhost CROND[125106]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 28 23:01:02 localhost run-parts(/etc/cron.hourly)[125106]: starting 0anacron
+Sep 28 23:01:02 localhost run-parts(/etc/cron.hourly)[125115]: finished 0anacron
+Sep 28 23:01:02 localhost run-parts(/etc/cron.hourly)[125106]: starting mcelog.cron
+Sep 28 23:01:02 localhost run-parts(/etc/cron.hourly)[125121]: finished mcelog.cron
+Sep 28 23:10:01 localhost CROND[125198]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:20:01 localhost CROND[125286]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:30:01 localhost CROND[125374]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:40:01 localhost CROND[125463]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:50:01 localhost CROND[125556]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 28 23:53:01 localhost CROND[125596]: (root) CMD (/usr/lib64/sa/sa2 -A)
+Sep 29 00:00:01 localhost CROND[125665]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 00:01:01 localhost CROND[125679]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 00:01:01 localhost run-parts(/etc/cron.hourly)[125679]: starting 0anacron
+Sep 29 00:01:01 localhost anacron[125689]: Anacron started on 2022-09-29
+Sep 29 00:01:01 localhost anacron[125689]: Normal exit (0 jobs run)
+Sep 29 00:01:01 localhost run-parts(/etc/cron.hourly)[125691]: finished 0anacron
+Sep 29 00:01:01 localhost run-parts(/etc/cron.hourly)[125679]: starting mcelog.cron
+Sep 29 00:01:01 localhost run-parts(/etc/cron.hourly)[125697]: finished mcelog.cron
+Sep 29 00:10:01 localhost CROND[125796]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 00:20:01 localhost CROND[125899]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 00:30:01 localhost CROND[125992]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 00:40:01 localhost CROND[126135]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 00:50:01 localhost CROND[126239]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 01:00:02 localhost CROND[126334]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 01:01:01 localhost CROND[126347]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 01:01:01 localhost run-parts(/etc/cron.hourly)[126347]: starting 0anacron
+Sep 29 01:01:01 localhost anacron[126357]: Anacron started on 2022-09-29
+Sep 29 01:01:01 localhost run-parts(/etc/cron.hourly)[126359]: finished 0anacron
+Sep 29 01:01:01 localhost anacron[126357]: Normal exit (0 jobs run)
+Sep 29 01:01:01 localhost run-parts(/etc/cron.hourly)[126347]: starting mcelog.cron
+Sep 29 01:01:01 localhost run-parts(/etc/cron.hourly)[126365]: finished mcelog.cron
+Sep 29 01:10:01 localhost CROND[126453]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 01:20:01 localhost CROND[126546]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 01:30:01 localhost CROND[126634]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 01:40:01 localhost CROND[126725]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 01:50:01 localhost CROND[126832]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 02:00:01 localhost CROND[126938]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 02:01:01 localhost CROND[126956]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 02:01:01 localhost run-parts(/etc/cron.hourly)[126956]: starting 0anacron
+Sep 29 02:01:01 localhost anacron[126966]: Anacron started on 2022-09-29
+Sep 29 02:01:01 localhost run-parts(/etc/cron.hourly)[126968]: finished 0anacron
+Sep 29 02:01:01 localhost anacron[126966]: Normal exit (0 jobs run)
+Sep 29 02:01:01 localhost run-parts(/etc/cron.hourly)[126956]: starting mcelog.cron
+Sep 29 02:01:01 localhost run-parts(/etc/cron.hourly)[126974]: finished mcelog.cron
+Sep 29 02:10:01 localhost CROND[127061]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 02:20:01 localhost CROND[127190]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 02:30:01 localhost CROND[127283]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 02:40:01 localhost CROND[127375]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 02:50:01 localhost CROND[127482]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 03:00:01 localhost CROND[127575]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 03:01:01 localhost CROND[127588]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 03:01:01 localhost run-parts(/etc/cron.hourly)[127588]: starting 0anacron
+Sep 29 03:01:01 localhost anacron[127598]: Anacron started on 2022-09-29
+Sep 29 03:01:01 localhost run-parts(/etc/cron.hourly)[127600]: finished 0anacron
+Sep 29 03:01:01 localhost anacron[127598]: Will run job `cron.daily' in 42 min.
+Sep 29 03:01:01 localhost anacron[127598]: Jobs will be executed sequentially
+Sep 29 03:01:01 localhost run-parts(/etc/cron.hourly)[127588]: starting mcelog.cron
+Sep 29 03:01:01 localhost run-parts(/etc/cron.hourly)[127606]: finished mcelog.cron
+Sep 29 03:10:01 localhost CROND[127685]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 03:20:01 localhost CROND[127782]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 03:30:01 localhost CROND[127872]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 03:40:01 localhost CROND[127959]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 03:43:01 localhost anacron[127598]: Job `cron.daily' started
+Sep 29 03:43:01 localhost run-parts(/etc/cron.daily)[127988]: starting logrotate
+Sep 29 03:43:02 localhost run-parts(/etc/cron.daily)[127996]: finished logrotate
+Sep 29 03:43:02 localhost run-parts(/etc/cron.daily)[127988]: starting man-db.cron
+Sep 29 03:43:02 localhost run-parts(/etc/cron.daily)[128007]: finished man-db.cron
+Sep 29 03:43:02 localhost run-parts(/etc/cron.daily)[127988]: starting mlocate
+Sep 29 03:43:02 localhost run-parts(/etc/cron.daily)[128018]: finished mlocate
+Sep 29 03:43:02 localhost anacron[127598]: Job `cron.daily' terminated
+Sep 29 03:43:02 localhost anacron[127598]: Normal exit (1 job run)
+Sep 29 03:50:01 localhost CROND[128081]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 04:00:01 localhost CROND[128176]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 04:01:01 localhost CROND[128189]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 04:01:01 localhost run-parts(/etc/cron.hourly)[128189]: starting 0anacron
+Sep 29 04:01:01 localhost run-parts(/etc/cron.hourly)[128199]: finished 0anacron
+Sep 29 04:01:01 localhost run-parts(/etc/cron.hourly)[128189]: starting mcelog.cron
+Sep 29 04:01:01 localhost run-parts(/etc/cron.hourly)[128205]: finished mcelog.cron
+Sep 29 04:10:01 localhost CROND[128288]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 04:20:01 localhost CROND[128378]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 04:30:01 localhost CROND[128468]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 04:40:01 localhost CROND[128555]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 04:50:01 localhost CROND[128642]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 05:00:01 localhost CROND[128741]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 05:01:01 localhost CROND[128755]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 05:01:01 localhost run-parts(/etc/cron.hourly)[128755]: starting 0anacron
+Sep 29 05:01:01 localhost run-parts(/etc/cron.hourly)[128764]: finished 0anacron
+Sep 29 05:01:01 localhost run-parts(/etc/cron.hourly)[128755]: starting mcelog.cron
+Sep 29 05:01:01 localhost run-parts(/etc/cron.hourly)[128770]: finished mcelog.cron
+Sep 29 05:10:01 localhost CROND[128852]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 05:20:01 localhost CROND[128965]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 05:22:19 localhost crontab[129055]: (root) BEGIN EDIT (root)
+Sep 29 05:30:01 localhost CROND[129139]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 05:40:01 localhost CROND[129251]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 05:50:01 localhost CROND[129359]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 06:00:01 localhost CROND[129469]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 06:01:01 localhost CROND[129483]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 06:01:01 localhost run-parts(/etc/cron.hourly)[129483]: starting 0anacron
+Sep 29 06:01:01 localhost run-parts(/etc/cron.hourly)[129492]: finished 0anacron
+Sep 29 06:01:01 localhost run-parts(/etc/cron.hourly)[129483]: starting mcelog.cron
+Sep 29 06:01:01 localhost run-parts(/etc/cron.hourly)[129498]: finished mcelog.cron
+Sep 29 06:10:01 localhost CROND[129595]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 06:20:01 localhost CROND[129695]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 06:30:01 localhost CROND[129790]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 06:40:01 localhost CROND[129879]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 06:50:01 localhost CROND[130150]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 07:00:01 localhost CROND[130246]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 07:01:01 localhost CROND[130259]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 07:01:01 localhost run-parts(/etc/cron.hourly)[130259]: starting 0anacron
+Sep 29 07:01:01 localhost run-parts(/etc/cron.hourly)[130268]: finished 0anacron
+Sep 29 07:01:01 localhost run-parts(/etc/cron.hourly)[130259]: starting mcelog.cron
+Sep 29 07:01:01 localhost run-parts(/etc/cron.hourly)[130274]: finished mcelog.cron
+Sep 29 07:10:01 localhost CROND[130356]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 07:20:01 localhost CROND[130443]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 07:30:01 localhost CROND[130541]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 07:40:01 localhost CROND[130633]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 07:50:01 localhost CROND[130726]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 08:00:01 localhost CROND[130823]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 08:01:01 localhost CROND[130842]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 08:01:01 localhost CROND[130843]: (root) CMD (/var/www/erp/auto_mail/total_mail.sh)
+Sep 29 08:01:01 localhost run-parts(/etc/cron.hourly)[130842]: starting 0anacron
+Sep 29 08:01:01 localhost run-parts(/etc/cron.hourly)[130854]: finished 0anacron
+Sep 29 08:01:01 localhost run-parts(/etc/cron.hourly)[130842]: starting mcelog.cron
+Sep 29 08:01:01 localhost run-parts(/etc/cron.hourly)[130861]: finished mcelog.cron
+Sep 29 08:10:01 localhost CROND[130952]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 08:20:01 localhost CROND[131052]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 08:30:01 localhost CROND[131140]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 08:40:01 localhost CROND[131229]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 08:50:01 localhost CROND[131317]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 09:00:01 localhost CROND[131404]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 09:01:01 localhost CROND[131417]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 09:01:01 localhost run-parts(/etc/cron.hourly)[131417]: starting 0anacron
+Sep 29 09:01:01 localhost run-parts(/etc/cron.hourly)[131426]: finished 0anacron
+Sep 29 09:01:01 localhost run-parts(/etc/cron.hourly)[131417]: starting mcelog.cron
+Sep 29 09:01:01 localhost run-parts(/etc/cron.hourly)[131432]: finished mcelog.cron
+Sep 29 09:10:01 localhost CROND[131510]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 09:20:01 localhost CROND[131600]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 09:30:01 localhost CROND[131687]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 09:40:01 localhost CROND[131775]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 09:50:01 localhost CROND[131865]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 10:00:01 localhost CROND[131953]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 10:01:01 localhost CROND[131966]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 10:01:01 localhost run-parts(/etc/cron.hourly)[131966]: starting 0anacron
+Sep 29 10:01:01 localhost run-parts(/etc/cron.hourly)[131975]: finished 0anacron
+Sep 29 10:01:01 localhost run-parts(/etc/cron.hourly)[131966]: starting mcelog.cron
+Sep 29 10:01:01 localhost run-parts(/etc/cron.hourly)[131981]: finished mcelog.cron
+Sep 29 10:10:01 localhost CROND[132058]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 10:20:01 localhost CROND[132144]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 10:30:01 localhost CROND[132235]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 10:40:01 localhost CROND[132322]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 10:50:01 localhost CROND[132409]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 11:00:01 localhost CROND[132498]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 11:01:01 localhost CROND[132511]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 11:01:01 localhost run-parts(/etc/cron.hourly)[132511]: starting 0anacron
+Sep 29 11:01:01 localhost run-parts(/etc/cron.hourly)[132520]: finished 0anacron
+Sep 29 11:01:01 localhost run-parts(/etc/cron.hourly)[132511]: starting mcelog.cron
+Sep 29 11:01:01 localhost run-parts(/etc/cron.hourly)[132526]: finished mcelog.cron
+Sep 29 11:10:01 localhost CROND[132605]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 11:20:01 localhost CROND[132691]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 11:30:01 localhost CROND[132777]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 11:40:01 localhost CROND[132865]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 11:50:01 localhost CROND[132953]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 12:00:01 localhost CROND[133040]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 12:01:01 localhost CROND[133053]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 12:01:01 localhost run-parts(/etc/cron.hourly)[133053]: starting 0anacron
+Sep 29 12:01:01 localhost run-parts(/etc/cron.hourly)[133062]: finished 0anacron
+Sep 29 12:01:01 localhost run-parts(/etc/cron.hourly)[133053]: starting mcelog.cron
+Sep 29 12:01:01 localhost run-parts(/etc/cron.hourly)[133068]: finished mcelog.cron
+Sep 29 12:10:01 localhost CROND[133145]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 12:12:01 localhost CROND[133168]: (root) CMD (wget http://192.168.45.20/hrm/auto_mail/upcoming_birthday_controller.php)
+Sep 29 12:20:01 localhost CROND[133243]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 12:30:01 localhost CROND[133331]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 12:40:01 localhost CROND[133418]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 12:50:01 localhost CROND[133506]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 13:00:01 localhost CROND[133592]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 13:01:01 localhost CROND[133605]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 13:01:01 localhost run-parts(/etc/cron.hourly)[133605]: starting 0anacron
+Sep 29 13:01:01 localhost run-parts(/etc/cron.hourly)[133614]: finished 0anacron
+Sep 29 13:01:01 localhost run-parts(/etc/cron.hourly)[133605]: starting mcelog.cron
+Sep 29 13:01:01 localhost run-parts(/etc/cron.hourly)[133620]: finished mcelog.cron
+Sep 29 13:10:01 localhost CROND[133697]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 13:20:01 localhost CROND[133785]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 13:30:01 localhost CROND[133872]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 13:40:01 localhost CROND[133959]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 13:50:01 localhost CROND[134047]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 14:00:01 localhost CROND[134133]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 14:01:01 localhost CROND[134146]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 14:01:01 localhost run-parts(/etc/cron.hourly)[134146]: starting 0anacron
+Sep 29 14:01:01 localhost run-parts(/etc/cron.hourly)[134155]: finished 0anacron
+Sep 29 14:01:01 localhost run-parts(/etc/cron.hourly)[134146]: starting mcelog.cron
+Sep 29 14:01:01 localhost run-parts(/etc/cron.hourly)[134161]: finished mcelog.cron
+Sep 29 14:10:02 localhost CROND[134239]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 14:20:01 localhost CROND[134319]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 14:30:01 localhost CROND[134406]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 14:40:01 localhost CROND[134493]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 14:50:01 localhost CROND[134581]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 15:00:01 localhost CROND[134669]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 15:01:01 localhost CROND[134682]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 15:01:01 localhost run-parts(/etc/cron.hourly)[134682]: starting 0anacron
+Sep 29 15:01:01 localhost run-parts(/etc/cron.hourly)[134691]: finished 0anacron
+Sep 29 15:01:01 localhost run-parts(/etc/cron.hourly)[134682]: starting mcelog.cron
+Sep 29 15:01:01 localhost run-parts(/etc/cron.hourly)[134697]: finished mcelog.cron
+Sep 29 15:10:01 localhost CROND[134774]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 15:20:01 localhost CROND[134862]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 15:30:01 localhost CROND[134948]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 15:40:01 localhost CROND[135036]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 15:50:01 localhost CROND[135124]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 16:00:01 localhost CROND[135215]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 16:01:01 localhost CROND[135228]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 16:01:01 localhost run-parts(/etc/cron.hourly)[135228]: starting 0anacron
+Sep 29 16:01:01 localhost run-parts(/etc/cron.hourly)[135237]: finished 0anacron
+Sep 29 16:01:01 localhost run-parts(/etc/cron.hourly)[135228]: starting mcelog.cron
+Sep 29 16:01:01 localhost run-parts(/etc/cron.hourly)[135243]: finished mcelog.cron
+Sep 29 16:10:01 localhost CROND[135323]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 16:20:01 localhost CROND[135410]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 16:30:02 localhost CROND[135496]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 16:40:01 localhost CROND[135583]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 16:50:01 localhost CROND[135670]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 17:00:01 localhost CROND[135757]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 17:01:01 localhost CROND[135770]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 17:01:01 localhost run-parts(/etc/cron.hourly)[135770]: starting 0anacron
+Sep 29 17:01:01 localhost run-parts(/etc/cron.hourly)[135779]: finished 0anacron
+Sep 29 17:01:01 localhost run-parts(/etc/cron.hourly)[135770]: starting mcelog.cron
+Sep 29 17:01:01 localhost run-parts(/etc/cron.hourly)[135785]: finished mcelog.cron
+Sep 29 17:10:01 localhost CROND[135862]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 17:20:01 localhost CROND[135949]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 17:30:01 localhost CROND[136036]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 17:40:01 localhost CROND[136126]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 17:50:01 localhost CROND[136213]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 18:00:01 localhost CROND[136302]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 18:01:01 localhost CROND[136315]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 18:01:01 localhost run-parts(/etc/cron.hourly)[136315]: starting 0anacron
+Sep 29 18:01:01 localhost run-parts(/etc/cron.hourly)[136324]: finished 0anacron
+Sep 29 18:01:01 localhost run-parts(/etc/cron.hourly)[136315]: starting mcelog.cron
+Sep 29 18:01:01 localhost run-parts(/etc/cron.hourly)[136330]: finished mcelog.cron
+Sep 29 18:10:01 localhost CROND[136410]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 18:20:01 localhost CROND[136496]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 18:30:01 localhost CROND[136583]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 18:40:01 localhost CROND[136671]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 18:50:01 localhost CROND[136758]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 19:00:01 localhost CROND[136844]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 19:01:01 localhost CROND[136858]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 19:01:01 localhost run-parts(/etc/cron.hourly)[136858]: starting 0anacron
+Sep 29 19:01:01 localhost run-parts(/etc/cron.hourly)[136867]: finished 0anacron
+Sep 29 19:01:01 localhost run-parts(/etc/cron.hourly)[136858]: starting mcelog.cron
+Sep 29 19:01:01 localhost run-parts(/etc/cron.hourly)[136873]: finished mcelog.cron
+Sep 29 19:10:01 localhost CROND[136949]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 19:20:01 localhost CROND[137038]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 19:30:01 localhost CROND[137125]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 19:40:01 localhost CROND[137212]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 19:50:01 localhost CROND[137299]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 20:00:01 localhost CROND[137386]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 20:01:01 localhost CROND[137399]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 20:01:01 localhost run-parts(/etc/cron.hourly)[137399]: starting 0anacron
+Sep 29 20:01:01 localhost run-parts(/etc/cron.hourly)[137408]: finished 0anacron
+Sep 29 20:01:01 localhost run-parts(/etc/cron.hourly)[137399]: starting mcelog.cron
+Sep 29 20:01:01 localhost run-parts(/etc/cron.hourly)[137414]: finished mcelog.cron
+Sep 29 20:10:01 localhost CROND[137491]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 20:20:01 localhost CROND[137578]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 20:30:01 localhost CROND[137666]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 20:40:01 localhost CROND[137753]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 20:50:01 localhost CROND[137840]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 21:00:01 localhost CROND[137927]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 21:01:02 localhost CROND[137941]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 21:01:02 localhost run-parts(/etc/cron.hourly)[137941]: starting 0anacron
+Sep 29 21:01:02 localhost run-parts(/etc/cron.hourly)[137950]: finished 0anacron
+Sep 29 21:01:02 localhost run-parts(/etc/cron.hourly)[137941]: starting mcelog.cron
+Sep 29 21:01:02 localhost run-parts(/etc/cron.hourly)[137956]: finished mcelog.cron
+Sep 29 21:10:01 localhost CROND[138033]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 21:20:01 localhost CROND[138120]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 21:30:01 localhost CROND[138208]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 21:40:01 localhost CROND[138295]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 21:50:01 localhost CROND[138382]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 22:00:01 localhost CROND[138468]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 22:01:01 localhost CROND[138481]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 22:01:01 localhost run-parts(/etc/cron.hourly)[138481]: starting 0anacron
+Sep 29 22:01:01 localhost run-parts(/etc/cron.hourly)[138490]: finished 0anacron
+Sep 29 22:01:01 localhost run-parts(/etc/cron.hourly)[138481]: starting mcelog.cron
+Sep 29 22:01:01 localhost run-parts(/etc/cron.hourly)[138496]: finished mcelog.cron
+Sep 29 22:10:01 localhost CROND[138581]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 22:20:01 localhost CROND[138668]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 22:30:01 localhost CROND[138755]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 22:40:01 localhost CROND[138847]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 22:50:01 localhost CROND[138937]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:00:01 localhost CROND[139029]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:01:01 localhost CROND[139042]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 29 23:01:01 localhost run-parts(/etc/cron.hourly)[139042]: starting 0anacron
+Sep 29 23:01:01 localhost run-parts(/etc/cron.hourly)[139051]: finished 0anacron
+Sep 29 23:01:01 localhost run-parts(/etc/cron.hourly)[139042]: starting mcelog.cron
+Sep 29 23:01:01 localhost run-parts(/etc/cron.hourly)[139057]: finished mcelog.cron
+Sep 29 23:10:01 localhost CROND[139140]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:20:01 localhost CROND[139227]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:30:01 localhost CROND[139337]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:40:01 localhost CROND[139425]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:50:01 localhost CROND[139515]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 29 23:53:01 localhost CROND[139546]: (root) CMD (/usr/lib64/sa/sa2 -A)
+Sep 30 00:00:01 localhost CROND[139629]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 00:01:01 localhost CROND[139643]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 00:01:01 localhost run-parts(/etc/cron.hourly)[139643]: starting 0anacron
+Sep 30 00:01:01 localhost anacron[139653]: Anacron started on 2022-09-30
+Sep 30 00:01:01 localhost run-parts(/etc/cron.hourly)[139655]: finished 0anacron
+Sep 30 00:01:01 localhost anacron[139653]: Normal exit (0 jobs run)
+Sep 30 00:01:01 localhost run-parts(/etc/cron.hourly)[139643]: starting mcelog.cron
+Sep 30 00:01:01 localhost run-parts(/etc/cron.hourly)[139661]: finished mcelog.cron
+Sep 30 00:10:01 localhost CROND[139739]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 00:20:01 localhost CROND[139838]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 00:30:01 localhost CROND[139928]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 00:40:01 localhost CROND[140031]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 00:50:01 localhost CROND[140137]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 01:00:01 localhost CROND[140231]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 01:01:02 localhost CROND[140244]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 01:01:02 localhost run-parts(/etc/cron.hourly)[140244]: starting 0anacron
+Sep 30 01:01:02 localhost anacron[140254]: Anacron started on 2022-09-30
+Sep 30 01:01:02 localhost run-parts(/etc/cron.hourly)[140256]: finished 0anacron
+Sep 30 01:01:02 localhost anacron[140254]: Normal exit (0 jobs run)
+Sep 30 01:01:02 localhost run-parts(/etc/cron.hourly)[140244]: starting mcelog.cron
+Sep 30 01:01:02 localhost run-parts(/etc/cron.hourly)[140262]: finished mcelog.cron
+Sep 30 01:10:01 localhost CROND[140351]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 01:20:01 localhost CROND[140445]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 01:30:01 localhost CROND[140542]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 01:40:01 localhost CROND[140624]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 01:50:01 localhost CROND[140738]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 02:00:01 localhost CROND[140859]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 02:01:01 localhost CROND[140872]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 02:01:01 localhost run-parts(/etc/cron.hourly)[140872]: starting 0anacron
+Sep 30 02:01:01 localhost anacron[140882]: Anacron started on 2022-09-30
+Sep 30 02:01:01 localhost run-parts(/etc/cron.hourly)[140884]: finished 0anacron
+Sep 30 02:01:01 localhost anacron[140882]: Normal exit (0 jobs run)
+Sep 30 02:01:01 localhost run-parts(/etc/cron.hourly)[140872]: starting mcelog.cron
+Sep 30 02:01:01 localhost run-parts(/etc/cron.hourly)[140890]: finished mcelog.cron
+Sep 30 02:10:01 localhost CROND[140976]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 02:20:01 localhost CROND[141077]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 02:30:01 localhost CROND[141178]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 02:40:01 localhost CROND[141277]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 02:50:01 localhost CROND[141366]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:00:01 localhost CROND[141453]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:01:02 localhost CROND[141466]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 03:01:02 localhost run-parts(/etc/cron.hourly)[141466]: starting 0anacron
+Sep 30 03:01:02 localhost anacron[141476]: Anacron started on 2022-09-30
+Sep 30 03:01:02 localhost run-parts(/etc/cron.hourly)[141478]: finished 0anacron
+Sep 30 03:01:02 localhost anacron[141476]: Will run job `cron.daily' in 49 min.
+Sep 30 03:01:02 localhost anacron[141476]: Jobs will be executed sequentially
+Sep 30 03:01:02 localhost run-parts(/etc/cron.hourly)[141466]: starting mcelog.cron
+Sep 30 03:01:02 localhost run-parts(/etc/cron.hourly)[141484]: finished mcelog.cron
+Sep 30 03:10:01 localhost CROND[141564]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:20:01 localhost CROND[141655]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:30:01 localhost CROND[141741]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:40:01 localhost CROND[141829]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:50:01 localhost CROND[141923]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 03:50:02 localhost anacron[141476]: Job `cron.daily' started
+Sep 30 03:50:02 localhost run-parts(/etc/cron.daily)[141927]: starting logrotate
+Sep 30 03:50:02 localhost run-parts(/etc/cron.daily)[141935]: finished logrotate
+Sep 30 03:50:02 localhost run-parts(/etc/cron.daily)[141927]: starting man-db.cron
+Sep 30 03:50:02 localhost run-parts(/etc/cron.daily)[141946]: finished man-db.cron
+Sep 30 03:50:02 localhost run-parts(/etc/cron.daily)[141927]: starting mlocate
+Sep 30 03:50:02 localhost run-parts(/etc/cron.daily)[141957]: finished mlocate
+Sep 30 03:50:02 localhost anacron[141476]: Job `cron.daily' terminated
+Sep 30 03:50:02 localhost anacron[141476]: Normal exit (1 job run)
+Sep 30 04:00:01 localhost CROND[142046]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 04:01:01 localhost CROND[142060]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 04:01:01 localhost run-parts(/etc/cron.hourly)[142060]: starting 0anacron
+Sep 30 04:01:01 localhost run-parts(/etc/cron.hourly)[142069]: finished 0anacron
+Sep 30 04:01:01 localhost run-parts(/etc/cron.hourly)[142060]: starting mcelog.cron
+Sep 30 04:01:01 localhost run-parts(/etc/cron.hourly)[142075]: finished mcelog.cron
+Sep 30 04:10:01 localhost CROND[142153]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 04:20:01 localhost CROND[142240]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 04:30:01 localhost CROND[142326]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 04:40:01 localhost CROND[142417]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 04:50:01 localhost CROND[142519]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 05:00:01 localhost CROND[142608]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 05:01:01 localhost CROND[142621]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 05:01:01 localhost run-parts(/etc/cron.hourly)[142621]: starting 0anacron
+Sep 30 05:01:01 localhost run-parts(/etc/cron.hourly)[142630]: finished 0anacron
+Sep 30 05:01:01 localhost run-parts(/etc/cron.hourly)[142621]: starting mcelog.cron
+Sep 30 05:01:01 localhost run-parts(/etc/cron.hourly)[142636]: finished mcelog.cron
+Sep 30 05:10:02 localhost CROND[142719]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 05:20:01 localhost CROND[142824]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 05:30:01 localhost CROND[142917]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 05:40:01 localhost CROND[143008]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 05:50:01 localhost CROND[143110]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 06:00:01 localhost CROND[143201]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 06:01:01 localhost CROND[143215]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 06:01:01 localhost run-parts(/etc/cron.hourly)[143215]: starting 0anacron
+Sep 30 06:01:01 localhost run-parts(/etc/cron.hourly)[143224]: finished 0anacron
+Sep 30 06:01:01 localhost run-parts(/etc/cron.hourly)[143215]: starting mcelog.cron
+Sep 30 06:01:01 localhost run-parts(/etc/cron.hourly)[143230]: finished mcelog.cron
+Sep 30 06:10:01 localhost CROND[143306]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 06:20:01 localhost CROND[143396]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 06:30:01 localhost CROND[143482]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 06:40:01 localhost CROND[143573]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 06:50:01 localhost CROND[143680]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 07:00:01 localhost CROND[143767]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 07:01:01 localhost CROND[143780]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 07:01:01 localhost run-parts(/etc/cron.hourly)[143780]: starting 0anacron
+Sep 30 07:01:01 localhost run-parts(/etc/cron.hourly)[143789]: finished 0anacron
+Sep 30 07:01:01 localhost run-parts(/etc/cron.hourly)[143780]: starting mcelog.cron
+Sep 30 07:01:01 localhost run-parts(/etc/cron.hourly)[143795]: finished mcelog.cron
+Sep 30 07:10:01 localhost CROND[143876]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 07:20:02 localhost CROND[143968]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 07:30:01 localhost CROND[144065]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 07:40:01 localhost CROND[144153]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 07:50:01 localhost CROND[144241]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 08:00:01 localhost CROND[144328]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 08:01:01 localhost CROND[144343]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 08:01:01 localhost CROND[144344]: (root) CMD (/var/www/erp/auto_mail/total_mail.sh)
+Sep 30 08:01:01 localhost run-parts(/etc/cron.hourly)[144343]: starting 0anacron
+Sep 30 08:01:01 localhost run-parts(/etc/cron.hourly)[144356]: finished 0anacron
+Sep 30 08:01:01 localhost run-parts(/etc/cron.hourly)[144343]: starting mcelog.cron
+Sep 30 08:01:01 localhost run-parts(/etc/cron.hourly)[144362]: finished mcelog.cron
+Sep 30 08:10:01 localhost CROND[144454]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 08:20:01 localhost CROND[144545]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 08:30:01 localhost CROND[144632]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 08:40:01 localhost CROND[144727]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 08:50:01 localhost CROND[144815]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 09:00:02 localhost CROND[144903]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 09:01:01 localhost CROND[144916]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 09:01:01 localhost run-parts(/etc/cron.hourly)[144916]: starting 0anacron
+Sep 30 09:01:01 localhost run-parts(/etc/cron.hourly)[144925]: finished 0anacron
+Sep 30 09:01:01 localhost run-parts(/etc/cron.hourly)[144916]: starting mcelog.cron
+Sep 30 09:01:01 localhost run-parts(/etc/cron.hourly)[144931]: finished mcelog.cron
+Sep 30 09:10:01 localhost CROND[145013]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 09:20:01 localhost CROND[145100]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 09:30:01 localhost CROND[145187]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 09:40:01 localhost CROND[145273]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 09:50:01 localhost CROND[145359]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 10:00:01 localhost CROND[145446]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 10:01:01 localhost CROND[145459]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 10:01:01 localhost run-parts(/etc/cron.hourly)[145459]: starting 0anacron
+Sep 30 10:01:01 localhost run-parts(/etc/cron.hourly)[145468]: finished 0anacron
+Sep 30 10:01:01 localhost run-parts(/etc/cron.hourly)[145459]: starting mcelog.cron
+Sep 30 10:01:01 localhost run-parts(/etc/cron.hourly)[145474]: finished mcelog.cron
+Sep 30 10:10:01 localhost CROND[145552]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 10:20:01 localhost CROND[145641]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 10:30:01 localhost CROND[145728]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 10:40:01 localhost CROND[145815]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 10:50:01 localhost CROND[145903]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 11:00:01 localhost CROND[145991]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 11:01:01 localhost CROND[146005]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 11:01:01 localhost run-parts(/etc/cron.hourly)[146005]: starting 0anacron
+Sep 30 11:01:01 localhost run-parts(/etc/cron.hourly)[146014]: finished 0anacron
+Sep 30 11:01:02 localhost run-parts(/etc/cron.hourly)[146005]: starting mcelog.cron
+Sep 30 11:01:02 localhost run-parts(/etc/cron.hourly)[146020]: finished mcelog.cron
+Sep 30 11:10:01 localhost CROND[146098]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 11:20:01 localhost CROND[146185]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 11:30:01 localhost CROND[146271]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 11:40:01 localhost CROND[146358]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 11:50:01 localhost CROND[146446]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 12:00:01 localhost CROND[146534]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 12:01:01 localhost CROND[146547]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 12:01:01 localhost run-parts(/etc/cron.hourly)[146547]: starting 0anacron
+Sep 30 12:01:01 localhost run-parts(/etc/cron.hourly)[146556]: finished 0anacron
+Sep 30 12:01:01 localhost run-parts(/etc/cron.hourly)[146547]: starting mcelog.cron
+Sep 30 12:01:01 localhost run-parts(/etc/cron.hourly)[146562]: finished mcelog.cron
+Sep 30 12:10:01 localhost CROND[146639]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 12:12:01 localhost CROND[146662]: (root) CMD (wget http://192.168.45.20/hrm/auto_mail/upcoming_birthday_controller.php)
+Sep 30 12:20:01 localhost CROND[146742]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 12:30:01 localhost CROND[146829]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 12:40:01 localhost CROND[146917]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 12:50:01 localhost CROND[147004]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 13:00:01 localhost CROND[147083]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 13:01:01 localhost CROND[147097]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 13:01:01 localhost run-parts(/etc/cron.hourly)[147097]: starting 0anacron
+Sep 30 13:01:01 localhost run-parts(/etc/cron.hourly)[147106]: finished 0anacron
+Sep 30 13:01:01 localhost run-parts(/etc/cron.hourly)[147097]: starting mcelog.cron
+Sep 30 13:01:01 localhost run-parts(/etc/cron.hourly)[147112]: finished mcelog.cron
+Sep 30 13:10:01 localhost CROND[147190]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 13:20:01 localhost CROND[147277]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 13:30:01 localhost CROND[147365]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 13:40:01 localhost CROND[147452]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 13:50:01 localhost CROND[147539]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 14:00:01 localhost CROND[147626]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 14:01:01 localhost CROND[147639]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 14:01:01 localhost run-parts(/etc/cron.hourly)[147639]: starting 0anacron
+Sep 30 14:01:01 localhost run-parts(/etc/cron.hourly)[147648]: finished 0anacron
+Sep 30 14:01:01 localhost run-parts(/etc/cron.hourly)[147639]: starting mcelog.cron
+Sep 30 14:01:01 localhost run-parts(/etc/cron.hourly)[147654]: finished mcelog.cron
+Sep 30 14:10:01 localhost CROND[147732]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 14:20:01 localhost CROND[147819]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 14:30:01 localhost CROND[147906]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 14:40:01 localhost CROND[147993]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 14:50:01 localhost CROND[148081]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 15:00:02 localhost CROND[148170]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 15:01:01 localhost CROND[148183]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 15:01:01 localhost run-parts(/etc/cron.hourly)[148183]: starting 0anacron
+Sep 30 15:01:01 localhost run-parts(/etc/cron.hourly)[148192]: finished 0anacron
+Sep 30 15:01:01 localhost run-parts(/etc/cron.hourly)[148183]: starting mcelog.cron
+Sep 30 15:01:01 localhost run-parts(/etc/cron.hourly)[148198]: finished mcelog.cron
+Sep 30 15:10:01 localhost CROND[148278]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 15:20:01 localhost CROND[148365]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 15:30:01 localhost CROND[148452]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 15:40:01 localhost CROND[148539]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 15:50:01 localhost CROND[148626]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 16:00:01 localhost CROND[148714]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 16:01:01 localhost CROND[148727]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 16:01:01 localhost run-parts(/etc/cron.hourly)[148727]: starting 0anacron
+Sep 30 16:01:01 localhost run-parts(/etc/cron.hourly)[148736]: finished 0anacron
+Sep 30 16:01:01 localhost run-parts(/etc/cron.hourly)[148727]: starting mcelog.cron
+Sep 30 16:01:01 localhost run-parts(/etc/cron.hourly)[148742]: finished mcelog.cron
+Sep 30 16:10:01 localhost CROND[148819]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 16:20:01 localhost CROND[148906]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 16:30:01 localhost CROND[148993]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 16:40:01 localhost CROND[149080]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 16:50:01 localhost CROND[149167]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 17:00:01 localhost CROND[149256]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 17:01:01 localhost CROND[149269]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 17:01:01 localhost run-parts(/etc/cron.hourly)[149269]: starting 0anacron
+Sep 30 17:01:02 localhost run-parts(/etc/cron.hourly)[149278]: finished 0anacron
+Sep 30 17:01:02 localhost run-parts(/etc/cron.hourly)[149269]: starting mcelog.cron
+Sep 30 17:01:02 localhost run-parts(/etc/cron.hourly)[149284]: finished mcelog.cron
+Sep 30 17:10:01 localhost CROND[149361]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 17:20:01 localhost CROND[149448]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 17:30:01 localhost CROND[149535]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 17:40:01 localhost CROND[149621]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 17:50:01 localhost CROND[149708]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 18:00:01 localhost CROND[149796]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 18:01:01 localhost CROND[149809]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 18:01:01 localhost run-parts(/etc/cron.hourly)[149809]: starting 0anacron
+Sep 30 18:01:01 localhost run-parts(/etc/cron.hourly)[149818]: finished 0anacron
+Sep 30 18:01:01 localhost run-parts(/etc/cron.hourly)[149809]: starting mcelog.cron
+Sep 30 18:01:01 localhost run-parts(/etc/cron.hourly)[149824]: finished mcelog.cron
+Sep 30 18:10:01 localhost CROND[149902]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 18:20:01 localhost CROND[149989]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 18:30:01 localhost CROND[150076]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 18:40:01 localhost CROND[150165]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 18:50:01 localhost CROND[150252]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 19:00:01 localhost CROND[150341]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 19:01:01 localhost CROND[150354]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 19:01:01 localhost run-parts(/etc/cron.hourly)[150354]: starting 0anacron
+Sep 30 19:01:01 localhost run-parts(/etc/cron.hourly)[150363]: finished 0anacron
+Sep 30 19:01:01 localhost run-parts(/etc/cron.hourly)[150354]: starting mcelog.cron
+Sep 30 19:01:01 localhost run-parts(/etc/cron.hourly)[150369]: finished mcelog.cron
+Sep 30 19:10:01 localhost CROND[150445]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 19:20:01 localhost CROND[150532]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 19:30:01 localhost CROND[150619]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 19:40:01 localhost CROND[150706]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 19:50:01 localhost CROND[150794]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 20:00:01 localhost CROND[150881]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 20:01:01 localhost CROND[150895]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 20:01:01 localhost run-parts(/etc/cron.hourly)[150895]: starting 0anacron
+Sep 30 20:01:01 localhost run-parts(/etc/cron.hourly)[150904]: finished 0anacron
+Sep 30 20:01:01 localhost run-parts(/etc/cron.hourly)[150895]: starting mcelog.cron
+Sep 30 20:01:01 localhost run-parts(/etc/cron.hourly)[150910]: finished mcelog.cron
+Sep 30 20:10:01 localhost CROND[150986]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 20:20:01 localhost CROND[151074]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 20:30:01 localhost CROND[151161]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 20:40:01 localhost CROND[151248]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 20:50:01 localhost CROND[151336]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 21:00:01 localhost CROND[151423]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 21:01:01 localhost CROND[151436]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 21:01:01 localhost run-parts(/etc/cron.hourly)[151436]: starting 0anacron
+Sep 30 21:01:01 localhost run-parts(/etc/cron.hourly)[151445]: finished 0anacron
+Sep 30 21:01:01 localhost run-parts(/etc/cron.hourly)[151436]: starting mcelog.cron
+Sep 30 21:01:01 localhost run-parts(/etc/cron.hourly)[151451]: finished mcelog.cron
+Sep 30 21:10:01 localhost CROND[151528]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 21:20:01 localhost CROND[151614]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 21:30:01 localhost CROND[151701]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 21:40:01 localhost CROND[151789]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 21:50:01 localhost CROND[151876]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 22:00:01 localhost CROND[151963]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 22:01:01 localhost CROND[151977]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 22:01:01 localhost run-parts(/etc/cron.hourly)[151977]: starting 0anacron
+Sep 30 22:01:01 localhost run-parts(/etc/cron.hourly)[151986]: finished 0anacron
+Sep 30 22:01:01 localhost run-parts(/etc/cron.hourly)[151977]: starting mcelog.cron
+Sep 30 22:01:01 localhost run-parts(/etc/cron.hourly)[151992]: finished mcelog.cron
+Sep 30 22:10:01 localhost CROND[152072]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 22:20:01 localhost CROND[152159]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 22:30:01 localhost CROND[152249]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 22:40:01 localhost CROND[152340]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 22:50:01 localhost CROND[152429]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:00:01 localhost CROND[152516]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:01:01 localhost CROND[152529]: (root) CMD (run-parts /etc/cron.hourly)
+Sep 30 23:01:01 localhost run-parts(/etc/cron.hourly)[152529]: starting 0anacron
+Sep 30 23:01:01 localhost run-parts(/etc/cron.hourly)[152538]: finished 0anacron
+Sep 30 23:01:01 localhost run-parts(/etc/cron.hourly)[152529]: starting mcelog.cron
+Sep 30 23:01:01 localhost run-parts(/etc/cron.hourly)[152544]: finished mcelog.cron
+Sep 30 23:10:01 localhost CROND[152620]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:20:01 localhost CROND[152734]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:30:01 localhost CROND[152846]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:40:01 localhost CROND[152934]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:50:01 localhost CROND[153022]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Sep 30 23:53:01 localhost CROND[153053]: (root) CMD (/usr/lib64/sa/sa2 -A)
+Oct  1 00:00:01 localhost CROND[153123]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 00:01:01 localhost CROND[153137]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 00:01:01 localhost run-parts(/etc/cron.hourly)[153137]: starting 0anacron
+Oct  1 00:01:01 localhost anacron[153147]: Anacron started on 2022-10-01
+Oct  1 00:01:01 localhost run-parts(/etc/cron.hourly)[153149]: finished 0anacron
+Oct  1 00:01:01 localhost anacron[153147]: Normal exit (0 jobs run)
+Oct  1 00:01:01 localhost run-parts(/etc/cron.hourly)[153137]: starting mcelog.cron
+Oct  1 00:01:01 localhost run-parts(/etc/cron.hourly)[153155]: finished mcelog.cron
+Oct  1 00:10:01 localhost CROND[153225]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 00:20:01 localhost CROND[153319]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 00:30:01 localhost CROND[153427]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 00:40:01 localhost CROND[153546]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 00:50:01 localhost CROND[153635]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 00:54:26 localhost crontab[153724]: (root) BEGIN EDIT (root)
+Oct  1 01:00:01 localhost CROND[153780]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 01:01:01 localhost CROND[153793]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 01:01:01 localhost run-parts(/etc/cron.hourly)[153793]: starting 0anacron
+Oct  1 01:01:01 localhost anacron[153803]: Anacron started on 2022-10-01
+Oct  1 01:01:01 localhost run-parts(/etc/cron.hourly)[153805]: finished 0anacron
+Oct  1 01:01:01 localhost anacron[153803]: Normal exit (0 jobs run)
+Oct  1 01:01:01 localhost run-parts(/etc/cron.hourly)[153793]: starting mcelog.cron
+Oct  1 01:01:01 localhost run-parts(/etc/cron.hourly)[153811]: finished mcelog.cron
+Oct  1 01:10:01 localhost CROND[153891]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 01:20:01 localhost CROND[153981]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 01:30:01 localhost CROND[154068]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 01:40:02 localhost CROND[154156]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 01:50:01 localhost CROND[154253]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 02:00:01 localhost CROND[154339]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 02:01:01 localhost CROND[154352]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 02:01:01 localhost run-parts(/etc/cron.hourly)[154352]: starting 0anacron
+Oct  1 02:01:01 localhost anacron[154362]: Anacron started on 2022-10-01
+Oct  1 02:01:01 localhost run-parts(/etc/cron.hourly)[154364]: finished 0anacron
+Oct  1 02:01:01 localhost anacron[154362]: Normal exit (0 jobs run)
+Oct  1 02:01:01 localhost run-parts(/etc/cron.hourly)[154352]: starting mcelog.cron
+Oct  1 02:01:01 localhost run-parts(/etc/cron.hourly)[154370]: finished mcelog.cron
+Oct  1 02:10:01 localhost CROND[154448]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 02:20:01 localhost CROND[154538]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 02:30:01 localhost CROND[154629]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 02:36:38 localhost crontab[154731]: (root) BEGIN EDIT (root)
+Oct  1 02:37:08 localhost crontab[154731]: (root) END EDIT (root)
+Oct  1 02:38:11 localhost crontab[154747]: (root) BEGIN EDIT (root)
+Oct  1 02:38:48 localhost crontab[154747]: (root) END EDIT (root)
+Oct  1 02:40:01 localhost CROND[154783]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 02:50:01 localhost CROND[154880]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 03:00:01 localhost CROND[154970]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 03:01:01 localhost CROND[154993]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 03:01:01 localhost run-parts(/etc/cron.hourly)[154993]: starting 0anacron
+Oct  1 03:01:01 localhost anacron[155003]: Anacron started on 2022-10-01
+Oct  1 03:01:01 localhost run-parts(/etc/cron.hourly)[155005]: finished 0anacron
+Oct  1 03:01:01 localhost anacron[155003]: Will run job `cron.daily' in 24 min.
+Oct  1 03:01:01 localhost anacron[155003]: Jobs will be executed sequentially
+Oct  1 03:01:01 localhost run-parts(/etc/cron.hourly)[154993]: starting mcelog.cron
+Oct  1 03:01:01 localhost run-parts(/etc/cron.hourly)[155011]: finished mcelog.cron
+Oct  1 03:10:01 localhost CROND[155105]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 03:20:01 localhost CROND[155193]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 03:25:01 localhost anacron[155003]: Job `cron.daily' started
+Oct  1 03:25:01 localhost run-parts(/etc/cron.daily)[155238]: starting logrotate
+Oct  1 03:25:01 localhost run-parts(/etc/cron.daily)[155246]: finished logrotate
+Oct  1 03:25:01 localhost run-parts(/etc/cron.daily)[155238]: starting man-db.cron
+Oct  1 03:25:02 localhost run-parts(/etc/cron.daily)[155257]: finished man-db.cron
+Oct  1 03:25:02 localhost run-parts(/etc/cron.daily)[155238]: starting mlocate
+Oct  1 03:25:02 localhost run-parts(/etc/cron.daily)[155268]: finished mlocate
+Oct  1 03:25:02 localhost anacron[155003]: Job `cron.daily' terminated
+Oct  1 03:25:02 localhost anacron[155003]: Normal exit (1 job run)
+Oct  1 03:30:01 localhost CROND[155313]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 03:40:01 localhost CROND[155424]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 03:50:02 localhost CROND[155511]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 04:00:01 localhost CROND[155597]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 04:01:01 localhost CROND[155611]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 04:01:01 localhost run-parts(/etc/cron.hourly)[155611]: starting 0anacron
+Oct  1 04:01:01 localhost run-parts(/etc/cron.hourly)[155620]: finished 0anacron
+Oct  1 04:01:01 localhost run-parts(/etc/cron.hourly)[155611]: starting mcelog.cron
+Oct  1 04:01:01 localhost run-parts(/etc/cron.hourly)[155626]: finished mcelog.cron
+Oct  1 04:10:01 localhost CROND[155702]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 04:20:01 localhost CROND[155788]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 04:30:01 localhost CROND[155875]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 04:40:01 localhost CROND[155964]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 04:50:01 localhost CROND[156059]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 05:00:01 localhost CROND[156147]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 05:01:01 localhost CROND[156161]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 05:01:01 localhost run-parts(/etc/cron.hourly)[156161]: starting 0anacron
+Oct  1 05:01:01 localhost run-parts(/etc/cron.hourly)[156170]: finished 0anacron
+Oct  1 05:01:01 localhost run-parts(/etc/cron.hourly)[156161]: starting mcelog.cron
+Oct  1 05:01:01 localhost run-parts(/etc/cron.hourly)[156176]: finished mcelog.cron
+Oct  1 05:10:01 localhost CROND[156253]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 05:20:01 localhost CROND[156345]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 05:30:01 localhost CROND[156459]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 05:40:01 localhost CROND[156545]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 05:50:01 localhost CROND[156635]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 06:00:01 localhost CROND[156723]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 06:01:01 localhost CROND[156736]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 06:01:01 localhost run-parts(/etc/cron.hourly)[156736]: starting 0anacron
+Oct  1 06:01:01 localhost run-parts(/etc/cron.hourly)[156745]: finished 0anacron
+Oct  1 06:01:01 localhost run-parts(/etc/cron.hourly)[156736]: starting mcelog.cron
+Oct  1 06:01:01 localhost run-parts(/etc/cron.hourly)[156751]: finished mcelog.cron
+Oct  1 06:10:01 localhost CROND[156828]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 06:20:01 localhost CROND[156916]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 06:30:01 localhost CROND[157005]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 06:40:01 localhost CROND[157093]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 06:50:01 localhost CROND[157205]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 07:00:01 localhost CROND[157313]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 07:01:01 localhost CROND[157326]: (root) CMD (run-parts /etc/cron.hourly)
+Oct  1 07:01:01 localhost run-parts(/etc/cron.hourly)[157326]: starting 0anacron
+Oct  1 07:01:01 localhost run-parts(/etc/cron.hourly)[157335]: finished 0anacron
+Oct  1 07:01:01 localhost run-parts(/etc/cron.hourly)[157326]: starting mcelog.cron
+Oct  1 07:01:01 localhost run-parts(/etc/cron.hourly)[157341]: finished mcelog.cron
+Oct  1 07:10:01 localhost CROND[157418]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 07:20:01 localhost CROND[157528]: (root) CMD (/usr/lib64/sa/sa1 1 1)
+Oct  1 07:26:47 localhost crontab[157661]: (root) BEGIN EDIT (root)
